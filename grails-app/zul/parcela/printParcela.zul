@@ -79,6 +79,9 @@
                     <row>
                         <label style="font-size:12pt" value="Ref. ao pag.  de credito Nº."/>
                         <label style="font-size:12pt" value="@load(vm.creditoInstance.numeroDoCredito)"/>
+                        <label style="font-size:12pt" value="V. em Crédito: "/>
+                        <label style="font-size:12pt"
+                               value="@load(vm.totalEmDivida)@converter('formatedNumber', format='MZN###,##0.00')"/>
                     </row>
                     <row>
                         <cell colspan="4">
@@ -189,6 +192,9 @@
                     <row>
                         <label style="font-size:12pt" value="Ref. ao pag. de credito Nº."/>
                         <label style="font-size:12pt" value="@load(vm.creditoInstance.numeroDoCredito)"/>
+                        <label style="font-size:12pt" value="V. em Crédito:  "/>
+                        <label style="font-size:12pt"
+                               value="@load(vm.totalEmDivida)@converter('formatedNumber', format='MZN###,##0.00')"/>
                     </row>
 
                     <row>

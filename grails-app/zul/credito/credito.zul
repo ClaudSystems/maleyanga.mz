@@ -43,7 +43,7 @@
                              style="font-size:18px;background:#95B9C7;color:black"
                              value="@bind(vm.filterCliente)"
                              onChange="@command('doSearchCliente')"
-                             instant="false"/>
+                             instant="true"/>
 
                     <listbox onSelect="@command('showCreditos')" checkmark="true" style="@bind('style')"
                              selectedItem="@bind(vm.selectedCliente)"
@@ -78,13 +78,13 @@
                 <tabpanel>
 
                     <hbox>
-                        <div visible="@load(not empty vm.contaCapital.id)">
-                            <button image="${z.resource(dir:'images', file:'add.png')}"
+                        <!--<div visible="@load(not empty vm.contaCapital.id)">
+                            <button visible="false" id="bt_add_novo_credito" image="${z.resource(dir:'images', file:'add.png')}"
                                     style="font-size:14px" onClick="@command('addCredito')"
                                     label="Novo Crédito"/>
 
 
-                        </div>
+                        </div>-->
 
 
                         <label visible="@load(not empty vm.contaCapital.id)" value="Conta:"/>

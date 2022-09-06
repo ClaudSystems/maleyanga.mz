@@ -25,8 +25,12 @@ class PrintParcelaViewModel {
     BigDecimal total =0.0
     String valorPorExtenso
     Cliente cliente
-
+    BigDecimal totalEmDivida
     CurrencyWriter currencyWriter = CurrencyWriter.getInstance()
+
+    BigDecimal getTotalEmDivida() {
+        return creditoInstance.valorEmDivida
+    }
 
     String getCliente() {
 

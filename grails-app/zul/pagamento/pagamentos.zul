@@ -87,11 +87,11 @@
                                         </columns>
                                         <rows>
                                             <row>
-                                                <textbox width="200px" placeholder="Nome do cliente ou Nº do Crédito"
-                                                         style="background:#95B9C7;color:black"
+                                                <textbox width="250px" placeholder="Nome do cliente ou Nº do Crédito"
+                                                         style="background:#95B9C7;color:black;font-size:18px"
                                                          value="@bind(vm.filterCliente)"
                                                          onChange="@command('doSearchCliente')"
-                                                         instant="false"/>
+                                                         instant="true"/>
                                                 <listbox checkmark="true" style="@bind('style')"
                                                          selectedItem="@bind(vm.selectedCliente)"
                                                          model="@load(vm.clientes)" width=""
@@ -321,7 +321,7 @@
                                                      height="" mold="paging" pageSize="4">
                                                 <listhead sizable="true">
 
-                                                    <listheader sort="auto(descricao)" width="120px" label="Prestação"
+                                                    <listheader sort="auto(descricao)" width="130px" label="Prestação"
                                                                 align="left"/>
                                                     <listheader sort="auto(valorDaPrestacao)" width="90px"
                                                                 label="V. Da Prest."
@@ -335,7 +335,7 @@
                                                                 align="left"/>
                                                     <listheader sort="auto(diasDeMora)" width="40px" label="Mora"
                                                                 align="left"/>
-                                                    <listheader sort="auto(dataPrevistoDePagamento)" width="75px"
+                                                    <listheader sort="auto(dataPrevistoDePagamento)" width="66px"
                                                                 label="Data Prev. De Pag."
                                                                 align="left"/>
 
@@ -510,12 +510,38 @@
                     </div>
                 </tabpanel>
                 <tabpanel>
-                    <button visible="@load(!not empty vm.saida)"
-                            image="${z.resource(dir:'images', file:'add.png')}"
-                            style="color:black;background:#20c199" onClick="@command('addEntrada')"
-                            label="Nova Entrada"/>
-                    <hbox visible="@load(not empty vm.parcelaEntrada)">
-                        <grid width="450px">
+                    <hbox>
+
+
+                        <textbox width="250px" placeholder="Nome do cliente ou Nº do Crédito"
+                                 style="background:#95B9C7;color:black;font-size:18px"
+                                 value="@bind(vm.filterCliente)"
+                                 onChange="@command('doSearchCliente')"
+                                 instant="true"/>
+                        <listbox checkmark="true" style="@bind('style')"
+                                 selectedItem="@bind(vm.selectedCliente)"
+                                 model="@load(vm.clientes)" width="400px"
+                                 height="" mold="paging" pageSize="4">
+
+
+                            <template name="model" status="s">
+
+                                <listitem onClick="@command('showCreditos')">
+
+                                    <listcell label="@load(each.nome)"/>
+
+                                </listitem>
+                            </template>
+
+                        </listbox>
+                        <button visible="@load(!not empty vm.saida)"
+                                image="${z.resource(dir:'images', file:'add.png')}"
+                                style="color:black;background:#20c199" onClick="@command('addEntrada')"
+                                label="Nova Entrada"/>
+                    </hbox>
+                    <hbox id="hb_entrada" visible="true">
+
+                        <grid id="gd_entrada" visible="false" width="450px">
                             <columns>
                                 <column width="150px"/>
                                 <column/>
@@ -537,11 +563,11 @@
                                 </row>
                                 <row>
                                     <label value="Descrição"/>
-                                    <textbox width="100%" value="@bind(vm.parcelaEntrada.descricao)"/>
+                                    <textbox readonly="true" width="100%" value="@bind(vm.parcelaEntrada.descricao)"/>
                                 </row>
                                 <row>
                                     <label value="Nome"/>
-                                    <textbox constraint="no empty" width="100%"
+                                    <textbox readonly="true" constraint="no empty" width="100%"
                                              value="@bind(vm.parcelaEntrada.nomeDoCliente)"/>
                                 </row>
                                 <row>
@@ -663,7 +689,7 @@
                                 </row>
                                 <row>
                                     <label value="Descrição"/>
-                                    <textbox width="100%" value="@bind(vm.saida.descricao)"/>
+                                    <textbox id="tb_saida_descriao" width="100%" value="@bind(vm.saida.descricao)"/>
                                 </row>
                                 <row>
                                     <label value="Forma De Pag."/>
@@ -744,10 +770,10 @@
                 <tabpanel>
 
                     <hbox>
-                        <textbox width="200px" placeholder="Nome do cliente ou Nº do Crédito"
-                                 style="background:#95B9C7;color:black" value="@bind(vm.filterCliente)"
+                        <textbox width="250px" placeholder="Nome do cliente ou Nº do Crédito"
+                                 style="background:#95B9C7;color:black;font-size:18px" value="@bind(vm.filterCliente)"
                                  onChange="@command('doSearchCliente')"
-                                 instant="false"/>
+                                 instant="true"/>
                         <listbox checkmark="true" style="@bind('style')"
                                  selectedItem="@bind(vm.selectedClientee)"
                                  model="@load(vm.clientess)" width="300px"

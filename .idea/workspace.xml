@@ -48,15 +48,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="concuida a 1º versao da listagem de pedidos de credito">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_09_2021_12_29__Default_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_09_2021_12_29__Default_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.slcache/.index" beforeDir="false" afterPath="$PROJECT_DIR$/.slcache/.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/credito/CreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/credito/CreditoViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/credito/PrintExtratoDeCreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/credito/PrintExtratoDeCreditoViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pedidoDeCredito/PedidoDeCreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pedidoDeCredito/PedidoDeCreditoViewModel.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentoListViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentoListViewModel.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/parcela/PrintEntradaViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/parcela/PrintEntradaViewModel.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/parcela/PrintParcelaViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/parcela/PrintParcelaViewModel.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/credito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/credito.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/printExtratoDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/printExtratoDeCredito.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidoDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidoDeCredito.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidosDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidosDeCredito.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/zul/pagamento/pagamentos.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pagamento/pagamentos.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/zul/parcela/printEntrada.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/parcela/printEntrada.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/zul/parcela/printParcela.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/parcela/printParcela.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mz.maleyanga-grailsPlugins.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mz.maleyanga-grailsPlugins.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mz.maleyanga.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mz.maleyanga.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,22 +94,8 @@
   <component name="GrailsSDKManager">
     <option name="grailsSDKs">
       <map>
-        <entry key="$PROJECT_DIR$" value="Z:\App\grails-2.3.11\grails-2.3.11" />
+        <entry key="$PROJECT_DIR$" value="W:\App\grails-2.3.11\grails-2.3.11" />
       </map>
-    </option>
-  </component>
-  <component name="GroovyConsoleState">
-    <option name="list">
-      <list>
-        <Entry>
-          <option name="moduleName" value="mz.maleyanga" />
-          <option name="url" value="file://$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console_1.groovy" />
-        </Entry>
-        <Entry>
-          <option name="moduleName" value="mz.maleyanga" />
-          <option name="url" value="file://$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console.groovy" />
-        </Entry>
-      </list>
     </option>
   </component>
   <component name="ProjectId" id="1dRPlX2oRrMv37NmehA7ATk4k50" />
@@ -1490,6 +1481,23 @@
       <workItem from="1658130679885" duration="6000" />
       <workItem from="1658130711827" duration="3575000" />
       <workItem from="1658172158125" duration="14999000" />
+      <workItem from="1661260683741" duration="83000" />
+      <workItem from="1661260770023" duration="64000" />
+      <workItem from="1661260836658" duration="362000" />
+      <workItem from="1661264645305" duration="701000" />
+      <workItem from="1661265364762" duration="382000" />
+      <workItem from="1661265751442" duration="1305000" />
+      <workItem from="1661795419321" duration="626000" />
+      <workItem from="1661903861570" duration="1668000" />
+      <workItem from="1661908296525" duration="582000" />
+      <workItem from="1661909284770" duration="643000" />
+      <workItem from="1662289038126" duration="334000" />
+      <workItem from="1662289771621" duration="124000" />
+      <workItem from="1662378078171" duration="726000" />
+      <workItem from="1662378822470" duration="1741000" />
+      <workItem from="1662384917008" duration="14108000" />
+      <workItem from="1662403950007" duration="4000" />
+      <workItem from="1662440188963" duration="122000" />
     </task>
     <task id="LOCAL-00110" summary="versão da matola">
       <created>1629730489112</created>
@@ -1943,62 +1951,73 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser" timestamp="1658173043360">
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser" timestamp="1662399391358">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1658173043360" />
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399391358" />
+    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1662389248967" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1658132408599">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1658132408599" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1655871285688">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1662391288501">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1655871285688" />
-    <state width="1323" height="86" key="GridCell.Tab.0.bottom" timestamp="1658184039356">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1662391288501" />
+    <state width="1237" height="195" key="GridCell.Tab.0.bottom" timestamp="1662401388458">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1323" height="86" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1658184039356" />
-    <state width="1323" height="86" key="GridCell.Tab.0.center" timestamp="1658184039356">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="195" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
+    <state width="1323" height="195" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
+    <state width="1323" height="195" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1662389328474" />
+    <state width="1237" height="195" key="GridCell.Tab.0.center" timestamp="1662401388458">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1323" height="86" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1658184039356" />
-    <state width="1323" height="86" key="GridCell.Tab.0.left" timestamp="1658184039355">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="195" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
+    <state width="1323" height="195" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
+    <state width="1323" height="195" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1662389328474" />
+    <state width="1237" height="195" key="GridCell.Tab.0.left" timestamp="1662401388458">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1323" height="86" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1658184039355" />
-    <state width="1323" height="86" key="GridCell.Tab.0.right" timestamp="1658184039356">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="195" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
+    <state width="1323" height="195" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
+    <state width="1323" height="195" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1662389328474" />
+    <state width="1237" height="195" key="GridCell.Tab.0.right" timestamp="1662401388458">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1323" height="86" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1658184039356" />
+    <state width="1237" height="195" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
+    <state width="1323" height="195" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
+    <state width="1323" height="195" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1662389328474" />
     <state x="481" y="66" key="RollbackChangesDialog" timestamp="1658135385382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="481" y="66" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1658135385382" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1654377377876">
+    <state x="163" y="0" key="SettingsEditor" timestamp="1662440311797">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1654377377876" />
-    <state width="515" height="477" key="SwitcherDM" timestamp="1658187523017">
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1662440311797" />
+    <state width="515" height="477" key="SwitcherDM" timestamp="1662389040646">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="515" height="477" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1658187523017" />
+    <state width="515" height="477" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1662389040646" />
     <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1656439371644">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1656439371644" />
-    <state x="390" y="99" width="585" height="588" key="find.popup" timestamp="1657996891197">
+    <state x="390" y="99" width="585" height="588" key="find.popup" timestamp="1661908443034">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="390" y="99" width="585" height="588" key="find.popup/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1661908443034" />
     <state x="390" y="99" width="585" height="588" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1657996891197" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1657245145312">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1657245145312" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1658187534432">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1662399363747">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1658187534432" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399363747" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1662389046805" />
   </component>
   <component name="grailsSettings">
     <option name="map">
@@ -2010,12 +2029,12 @@
               <option name="pluginDependenciesCrc" value="-1620851198" />
               <option name="properties">
                 <map>
-                  <entry key="grails.global.plugins.dir" value="z:\Users\Fanisso\.grails\2.3.11\global-plugins" />
+                  <entry key="grails.global.plugins.dir" value="C:\Users\calen\.grails\2.3.11\global-plugins" />
                   <entry key="grails.project.fork.run" value="true" />
                   <entry key="grails.project.fork.test" value="true" />
                   <entry key="grails.project.plugins.dir" value="target\work\plugins" />
                   <entry key="grails.project.work.dir" value="target\work" />
-                  <entry key="grails.work.dir" value="z:\Users\Fanisso\.grails\2.3.11" />
+                  <entry key="grails.work.dir" value="C:\Users\calen\.grails\2.3.11" />
                 </map>
               </option>
             </GrailsSettings>

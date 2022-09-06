@@ -28,10 +28,14 @@ import org.zkoss.bind.annotation.NotifyChange
 import org.zkoss.zk.ui.select.annotation.Wire
 import org.zkoss.zul.Button
 import org.zkoss.zul.Div
+import org.zkoss.zul.Grid
+import org.zkoss.zul.Hbox
 import org.zkoss.zul.Label
 import org.zkoss.zul.ListModelList
 import org.zkoss.zul.Listbox
 import org.zkoss.zul.Row
+import org.zkoss.zul.Textbox
+
 import java.math.RoundingMode
 import java.sql.SQLException
 
@@ -41,7 +45,12 @@ class PagamentosViewModel {
     PagamentoService pagamentoService
     SessionStorageService sessionStorageService
      SettingsService settingsService
+    String red = "color:red;font-size:18px;font-weight;background:back"
+    String blue = "color:blue;font-size:18px;font-weight;background:back"
     @Wire Label info
+    @Wire Hbox hb_entrada
+    @Wire Textbox tb_saida_descriao
+    @Wire Grid gd_entrada
     @Wire Button bt_update_entrada
     @Wire Label lb_pag
     @Wire Label lb_remissoes
@@ -108,6 +117,8 @@ class PagamentosViewModel {
     @NotifyChange(["clientes","selectedCliente","pagamentos","selectedCredito","creditos","selectedPagamento","filterCliente"])
     void doSearchCliente() {
         info.value=""
+        gd_entrada.visible = false
+        selectedCliente= null
         fecharEditor()
         clientes.clear()
         clientess.clear()
@@ -189,6 +200,7 @@ class PagamentosViewModel {
         this.selectedClientee = selectedClientee
        clientess.clear()
         clientess.add(selectedClientee)
+        gd_entrada.visible = true
     }
 
     boolean getAllPagamentos() {
@@ -496,8 +508,10 @@ class PagamentosViewModel {
     }
     List<Parcela> getParcels() {
         if (parcels==null){
-            parcels = new ListModelList<Parcela>(Parcela.findAllByValorPagoGreaterThanAndDiarioAndUtilizador(0.0,diario,utilizador))
+            parcels = new ListModelList<Parcela>()
         }
+        parcels.clear()
+        parcels = Parcela.findAllByValorPagoGreaterThanAndDiarioAndUtilizador(0.0,diario,utilizador)
         return parcels
     }
 
@@ -517,14 +531,15 @@ class PagamentosViewModel {
     }
 
     BigDecimal getSaldo() {
-        System.println("getTotalSaidas="+getTotalSaidas())
-        System.println("getTotalParcelas="+getTotalParcelas())
+
         return getTotalParcelas()-getTotalSaidas()
     }
     List<Saida> getSaidas() {
         if(saidas==null){
-            saidas = new ListModelList<Saida>(Saida.findAllByDiarioAndUtilizadorAndOrigem(diario,utilizador,contaCaixa))
+            saidas = new ListModelList<Saida>()
         }
+        saidas.clear()
+        saidas = Saida.findAllByDiarioAndUtilizadorAndOrigem(diario,utilizador,contaCaixa)
         return saidas
     }
     Saida getSelectedSaida() {
@@ -550,16 +565,24 @@ class PagamentosViewModel {
     @Command
     @NotifyChange(["saida",'parcelaEntrada'])
     def fecharCaixa(){
-        parcelaEntrada=null
-
         getParcels()
         getSaidas()
+        for(Saida saida1 in saidas){
+            if(saida1.descricao=="FEIXO DE CAIXA"){
+                info.value ="Esta caixa já foi fechado, por favor contacte o seu gerente!"
+                info.style = red
+                return
+            }
+        }
+        parcelaEntrada=null
+
 
        saida  = new Saida()
 
         saida.valor = getSaldo()
         saida.dataDePagamento = new Date()
-        saida.descricao ="Feixo de caixa"
+        saida.descricao ="FEIXO DE CAIXA"
+        tb_saida_descriao.readonly= true
 
     }
 
@@ -693,6 +716,7 @@ class PagamentosViewModel {
      /*   bt_fechar_caixa.visible = false
         dv_filtragem.visible = false
         lb_pagamentos.visible = false*/
+        tb_saida_descriao.readonly = false
         saida = new Saida()
         saida.dataDePagamento = new Date()
         saida.formaDePagamento = "numerário"
@@ -822,9 +846,16 @@ class PagamentosViewModel {
     @Command
     @NotifyChange(['contaCaixa','tSaidas',"entradas"])
     def salvarEntrada(){
+        for(Saida saida1 in saidas){
+            if(saida1.descricao=="FEIXO DE CAIXA"){
+                info.value ="Esta caixa já foi fechado, por favor contacte o seu gerente!"
+                info.style =red
+                return
+            }
+        }
        try {
-           if(parcelaEntrada.nomeDoCliente==null){
-               info.value = "Digite o nome do cliente!"
+           if(parcelaEntrada.nomeDoCliente.empty){
+               info.value = "Selecione o cliente!"
                info.style = "color:red;font-weight;font-size:16px;background:back"
                return
            }
@@ -882,6 +913,8 @@ class PagamentosViewModel {
            parcelaEntrada.save(failOnError: true)
          //  lancamentoEntrada(parcelaEntrada)
            getEntradas()
+           info.value="Operação executada com sucesso!"
+           info.style =blue
        }catch(Exception e){
           info.value = e.toString()
            info.style = "color:red"
@@ -892,6 +925,17 @@ class PagamentosViewModel {
     @NotifyChange(["selectedPagamento",'parcela',"contaOrigem","saida","pagamento_id","parcelaEntrada","entradas"])
     @Command
     addEntrada(){
+        for(Saida saida1 in saidas){
+            if(saida1.descricao=="FEIXO DE CAIXA"){
+                info.value ="Esta caixa já foi fechado, por favor contacte o seu gerente!"
+                info.style =red
+                return
+            }
+        }
+        if(getSelectedCliente()){
+            gd_entrada.visible = true
+        }
+
 
        /* bt_fechar_caixa.visible =false
         dv_filtragem.visible = false
@@ -1139,6 +1183,14 @@ class PagamentosViewModel {
     @Command
     @NotifyChange(['parcelas','selectedCredito','parcela','selectedPagamento','pagamentos','pagamento','contaCaixa','contaCliente','tEntradas'])
     def salvarParcela(){
+        for(Saida saida1 in saidas){
+            if(saida1.descricao=="FEIXO DE CAIXA"){
+                info.value ="Esta caixa já foi fechado, por favor contacte o seu gerente!"
+                info.style =red
+                return
+            }
+        }
+
         if(settingsService.getSettings().pagamentosEmOrdem){
              def pagamentos = Pagamento.findAllByCredito(selectedCredito).sort{it.id}
             for(Pagamento pagamento in pagamentos){
@@ -1540,8 +1592,14 @@ class PagamentosViewModel {
             }
 
         }
+
     }
     Diario getDiario() {
+        Date data = new Date()
+        if(diario.dataDeReferencia.format("dd/MM/yyyy")!=data.format("dd/MM/yyyy")){
+            info.value= "Este diário não é refente ao dia de hoje!"
+            info.style= red
+        }
         return diario
     }
 
@@ -1574,6 +1632,7 @@ class PagamentosViewModel {
     @Init init() {
         getUtilizador()
         diario = diarioService.getDiario()
+
       //  sessionStorageService.parcela=null
       //  sessionStorageService.credito = null
        // utilizador = Utilizador.findById(springSecurityService.principal?.id)

@@ -51,7 +51,7 @@
                     <row>
                         <cell align="right" colspan="4">
                             <label style="font-size:12pt" value="Operador: "/>
-                            <label style="font-size:12pt" value="@load(vm.parcelaInstance.utilizador.username)"/>
+                            <label style="font-size:12pt" value="@load(vm.utilizador.username)"/>
 
                         </cell>
                     </row>

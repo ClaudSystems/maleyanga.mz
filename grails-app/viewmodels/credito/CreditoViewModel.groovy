@@ -40,14 +40,16 @@ import java.sql.SQLException
 class CreditoViewModel {
 
     @Wire Label info
+   // @Wire Button bt_add_novo_credito
     @Wire Grid gd_parcelas
     @Wire Hbox hb_editor
     @Wire Button bt_fechar
     @Wire Grid gd_new_credito
     @Wire Grid gd_new_credito2
     private  boolean  allCreditos
-    String red = "color:red;font-size:14pt"
-    String blue = "color:blue;font-size:14pt"
+    private  boolean  vw_bt_novo_credito = false
+    String red = "color:red;font-size:18px;font-weight;background:back"
+    String blue = "color:blue;font-size:18px;font-weight;background:back"
     ClienteService clienteService
     Utilizador utilizador
     private  boolean  allPagamentos
@@ -102,6 +104,9 @@ class CreditoViewModel {
     private  String creditosDe = "Créditos"
     private Pagamento pagamento
 
+    boolean getVw_bt_novo_credito() {
+       return vw_bt_novo_credito
+    }
 
     boolean getEditor() {
         return editor
@@ -113,15 +118,15 @@ class CreditoViewModel {
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "PAGAMENTO_CREATE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }
         try {
            pagamento.save(flush: true)
             info.value="Operação feita com sucesso!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }catch(SQLException e){
             info.value="Erro na gravação dos dados!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             System.println(e.toString())
         }
     }
@@ -133,15 +138,15 @@ class CreditoViewModel {
             Utilizador user = springSecurityService.currentUser as Utilizador
             if (!user.authorities.any { it.authority == "PAGAMENTO_DELETE" }) {
                 info.value="Este utilizador não tem permissão para executar esta acção !"
-                info.style = "color:red;font-weight;font-size:16px;background:back"
+                info.style = red
             }
            sPagamento.delete(flush: true)
             info.value="A Parcela Nº" +sPagamento.numeroDePagamento+" foi eliminada com sucesso!"
-            info.style = "color:blue;font-weight;font-size:16px;background:back"
+            info.style = blue
             getPagamentos()
         }catch(SQLException e){
             info.value="Erro na remoção da Parcela! detais:"+e.toString()
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }
     }
     @Command
@@ -233,7 +238,7 @@ class CreditoViewModel {
 
         {
             info.value="Altere as definições de credito de forma a poder usar a taxa manual!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }
     }
 
@@ -290,11 +295,11 @@ class CreditoViewModel {
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "CREDITO_DELETE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }
         if(credito.invalido){
             info.value="Este credito já foi invalidado!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
 
         }
        /* if(credito.estado=="Pendente"||credito.estado=="Fechado"||credito.estado=="EmProgresso"){
@@ -304,7 +309,7 @@ class CreditoViewModel {
 
         else {
             info.value="Double Click para eliminar este item!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }
     }
     @Command
@@ -314,12 +319,12 @@ class CreditoViewModel {
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "CREDITO_DELETE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         if (credito.id == null) {
             info.value="Seleccione um credito!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         try {
@@ -328,7 +333,7 @@ class CreditoViewModel {
                 for(Parcela parcela in p.parcelas){
                     if(parcela.valorPago>0.0||parcela.valorParcial>0.0){
                         info.value="Este credito não pode ser invalidado pois tem pagamentos efetivados!"
-                        info.style = "color:red;font-weight;font-size:16px;background:back"
+                        info.style = red
                         return
                     }
                 }
@@ -382,12 +387,12 @@ class CreditoViewModel {
             creditoDb.valorCreditado=0.0
             creditoDb.merge(flush: true)
             info.value="Crédito invalidado com sucesso!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
 
         }catch(Exception e){
             System.println(e.toString())
             info.value = "Erro na eliminação do crédito!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
         }
 
     }
@@ -446,9 +451,10 @@ class CreditoViewModel {
     private ListModelList<Pagamento> prestacoes
 
 
-    @NotifyChange(["creditos","credito"])
+    @NotifyChange(["creditos","credito","vw_bt_novo_credito","selectedCliente"])
     @Command
     void doSearchCredito(){
+        vw_bt_novo_credito= false
         info.value=""
         if(!filterCredito?.empty){
             credito = Credito?.findByNumeroDoCredito(filterCredito)
@@ -471,8 +477,10 @@ class CreditoViewModel {
 
 
     @Command
-    @NotifyChange(["credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor"])
+    @NotifyChange(["credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor","clientes"])
     void doSearchCliente() {
+      //  bt_add_novo_credito.visible = false
+        hb_editor.visible = false
         info.value = ""
         clientes.clear()
         List<Cliente> allItems = clienteService.findAllByName(filterCliente)
@@ -482,6 +490,10 @@ class CreditoViewModel {
                 clientes.add(item)
 
             }
+             if(clientes.empty||clientes.empty){
+                 info.value+="Cliente não indentificado !"
+                 info.style = red
+             }
         }
     }
 
@@ -733,7 +745,7 @@ class CreditoViewModel {
         return selectedCliente
     }
 
-    @NotifyChange(["creditosDe","pedidos","selectedCliente","contaCliente","clientes","cliente_style","credito"])
+    @NotifyChange(["creditosDe","pedidos","selectedCliente","contaCliente","clientes","cliente_style","credito","vw_bt_novo_credito"])
     void setSelectedCliente(Cliente selectedCliente) {
         info.value = ""
         sessionStorageService.credito = null
@@ -742,6 +754,8 @@ class CreditoViewModel {
         sessionStorageService.cliente = selectedCliente
         clientes.clear()
         clientes.add(selectedCliente)
+      //  bt_add_novo_credito.visible= true
+        addCredito()
 
     }
     @NotifyChange(['creditos',"credito"])
@@ -780,7 +794,7 @@ class CreditoViewModel {
             Utilizador user = springSecurityService.currentUser as Utilizador
             if (!user.authorities.any { it.authority == "PAGAMENTO_CREATE" }) {
                 info.value = "Este utilizador não tem permissão para executar esta acção !"
-                info.style = "color:red;font-weight;font-size:14ptpt;background:back"
+                info.style =red
                 return
             }
             pagamentoService.calcularMoraCaPital(credito)
@@ -799,7 +813,7 @@ class CreditoViewModel {
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "PAGAMENTO_EDIT" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
 
         }else {
            try {
@@ -821,7 +835,7 @@ class CreditoViewModel {
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "PAGAMENTO_DELETE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         try {
@@ -954,39 +968,40 @@ class CreditoViewModel {
         }
         if(credito.dateConcecao>new Date()){
             info.value = "Data de conceção é inválida!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             credito.dateConcecao = new Date()
         }
         if(credito.dateConcecao>new Date()){
             info.value = "Data de conceção é inválida!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             credito.dateConcecao = new Date()
         }
         if(contaCapital==null){
             info.value = "Este Utilizador não tem conta capital para gerar créditos!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         if(contaCapital.saldo<credito.valorCreditado){
             info.value = "O seu saldo não cobre o valor do crédito!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         if(selectedCliente==null){
             info.value = "Selecione um cliente!"
-            info.style = "color:red"
+            info.style = red
             return
         }
         if(!settings.permitirDesembolsoComDivida){
               if(selectedCliente.emDivida){
                     info.value = "Este cliente tem dívida!"
-                    info.style = "color:red"
+
+                    info.style = red
                   return
               }
         }
         if(credito.valorCreditado<=0){
             info.value = "O valor do crédito é inválido"
-            info.style = "color:red"
+            info.style = red
             return
 
         }
@@ -1156,7 +1171,7 @@ class CreditoViewModel {
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "PAGAMENTO_DELETE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         try {
@@ -1215,17 +1230,17 @@ class CreditoViewModel {
         def rconta = Conta.findByNumeroDaConta(credito.id.toString())
         if(rconta==null){
             info.value = "Selecione uma conta!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style =red
             return
         }
         if(dataFinal==null){
             info.value = "Selecione uma data!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         if(dataInicial==null){
             info.value = "Selecione uma data!"
-            info.style = "color:red;font-weight;font-size:16px;background:back"
+            info.style = red
             return
         }
         contaService.conta = rconta
