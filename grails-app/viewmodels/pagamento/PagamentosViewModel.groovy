@@ -688,10 +688,11 @@ class PagamentosViewModel {
         return sParcela
     }
 
+    @Command
     void setsParcela(Parcela sParcela) {
         this.sParcela = sParcela
         sessionStorageService.parcela=sParcela
-        sessionStorageService.credito=selectedCredito
+       sessionStorageService.credito=selectedCredito
     }
 
     ListModelList<Parcela> getParcelas() {

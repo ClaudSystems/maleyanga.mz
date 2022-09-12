@@ -399,7 +399,7 @@
                                                 <template name="model" status="s">
 
                                                     <listitem
-                                                            onClick="@command('showSelectedPagamento', index=each.id)">
+                                                            onClick="@command('', index=each.id)">
                                                         <listcell label="@load(each.id)"/>
                                                         <!-- <listcell label="@load(each.diario.numeroDoDiario)"/>-->
                                                         <listcell label="@load(each.numeroDoRecibo)"/>

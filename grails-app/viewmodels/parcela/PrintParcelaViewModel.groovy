@@ -68,7 +68,8 @@ class PrintParcelaViewModel {
         // initialzation code here
       //  parcelaInstance = Parcela.findById(parcelaService.parcelaInstance.id)
         parcelaInstance = sessionStorageService.parcela as Parcela
-        Utilizador utilizador = Utilizador.findById(parcelaInstance.utilizador.id)
+        def parcela = Parcela.findById(parcelaInstance.id)
+        Utilizador utilizador = Utilizador.findById(parcela.utilizador.id)
         username = utilizador.username
         if(parcelaInstance.pagamento!=null){
           //  creditoInstance = Credito.findById(parcelaService.parcelaInstance.pagamento.credito.id)

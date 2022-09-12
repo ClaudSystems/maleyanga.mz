@@ -50,7 +50,7 @@
                     </row>
                     <row>
                         <cell align="right" colspan="4">
-                            <label style="font-size:12pt" value="Operador: "/>
+                            <label style="font-size:12pt" value="Operador(a): "/>
                             <label style="font-size:12pt" value="@load(vm.username)"/>
 
                         </cell>
@@ -162,7 +162,7 @@
                     </row>
                     <row>
                         <cell align="right" colspan="4">
-                            <label style="font-size:12pt" value="Operador: "/>
+                            <label style="font-size:12pt" value="Operador(a): "/>
                             <label style="font-size:12pt" value="@load(vm.username)"/>
 
                         </cell>
