@@ -1112,7 +1112,7 @@ class CreditoViewModel {
             contaCliente.merge(flush: true)
 */
 
-            info.value = "O Credito No."+credito.numeroDoCredito+" da "+selectedCliente.nome+" foi criado com sucesso!"
+            info.value = "O Credito No."+credito.numeroDoCredito+" do(a) "+selectedCliente.nome+" foi criado com sucesso!"
             info.style = blue
             bt_salvar.visible = false
 

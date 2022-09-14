@@ -29,10 +29,6 @@ class ClienteService {
         return result
     }
 
-    List<Cliente> findAllByUtilizador(Utilizador utilizador) {
-        def results = Cliente.findAllByUtilizador(utilizador)
-        return results
-    }
 
     List<Cliente> findAllByName(String nome) {
         def c = Cliente.createCriteria()
