@@ -12,8 +12,8 @@ class DefinicaoDeCredito {
     String periodicidade
     String formaDeCalculo
     int recorenciaDeMoras = 0
-    BigDecimal percentualDejuros = 0
-    BigDecimal percentualJurosDeDemora = 0
+    BigDecimal percentualDejuros = 0.0
+    BigDecimal percentualJurosDeDemora = 0.00
     Taxa taxa
     boolean ativo = true
     Boolean excluirSabados = true
@@ -49,6 +49,7 @@ class DefinicaoDeCredito {
         excluirDiaDePagNoSabado nullable: true
         excluirDiaDePagNoDomingo nullable: true
         periodoVariavel nullable: true
+        percentualJurosDeDemora nullable: false, min: 0.00, max: 100.00, scale: 3
     }
 
     /*

@@ -19,8 +19,8 @@ class Credito implements Serializable {
     Integer moras = 0
     Date validade
     String numeroDoCredito
-    BigDecimal percentualDejuros = 25
-    BigDecimal percentualJurosDeDemora = 2
+    BigDecimal percentualDejuros = 0.0
+    BigDecimal percentualJurosDeDemora = 0.000
     BigDecimal totalDaDividaSemMoras = 0.0
     BigDecimal valorEmDivida = 0.0
     BigDecimal totalPago = 0.0

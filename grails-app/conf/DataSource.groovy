@@ -40,7 +40,7 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:postgresql://localhost:5432/maleyangapro"
+             url = "jdbc:postgresql://localhost:5432/maleyangapro"
            // url = "jdbc:postgresql://localhost:5432/nhandjendjeprod"
 
             properties {

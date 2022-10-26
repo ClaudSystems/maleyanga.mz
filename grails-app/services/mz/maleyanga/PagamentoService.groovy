@@ -24,13 +24,9 @@ import java.sql.SQLDataException
 class PagamentoService {
 
     Credito credito
-    boolean reterCapital
-    ContadorService contadorService
     SimuladorService simuladorService
     Pagamento pagamentoInstance
-    Parcela parcelaInstance
-    def contaService
-    def settingsService
+     def settingsService
 
 
     def criarPagamentos(Credito creditoInstance, DefinicaoDeCredito definicaoDeCredito) {

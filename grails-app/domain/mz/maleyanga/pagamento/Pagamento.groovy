@@ -26,7 +26,7 @@ class Pagamento implements Serializable {
     BigDecimal totalPagoNoPrazo = 0.0
     BigDecimal totalEmDivida = 0.0
     BigDecimal totalEmDividaSemMoras = 0.0
-    BigDecimal valorDeJurosDeDemora = 0.0
+    BigDecimal valorDeJurosDeDemora = 0.00
     BigDecimal valorPagoDemora = 0.0
     BigDecimal valorDaRemissao = 0.0
     int diasDeMora = 0

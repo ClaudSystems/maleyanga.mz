@@ -93,7 +93,8 @@
                     <label value="@load(vm.creditoInstance.id) "/>
                     <cell colspan="1">
                         <label style="text-align:right" value="Juros De Mora: "/>
-                        <label value="@load(vm.creditoInstance.percentualJurosDeDemora)@converter('formatedNumber', format='#,##.##%') "/>
+                        <label value="@load(vm.creditoInstance.percentualJurosDeDemora)@converter('formatedNumber', format='#,##.###') "/>
+                        <label value="%"/>
                     </cell>
 
                 </row>
