@@ -40,12 +40,9 @@ import java.sql.SQLException
 class CreditoViewModel {
 
     @Wire Label info
-   // @Wire Button bt_add_novo_credito
-    @Wire Grid gd_parcelas
     @Wire Hbox hb_editor
     @Wire Button bt_fechar
-    @Wire Grid gd_new_credito
-    @Wire Grid gd_new_credito2
+
     private  boolean  allCreditos
     private  boolean  vw_bt_novo_credito = false
     String red = "color:red;font-size:18px;font-weight;background:back"
@@ -287,7 +284,7 @@ class CreditoViewModel {
         }
         tb_abertos.value = "Creditos do(a) "+selectedCliente.nome
         mostrarCreditos=true
-        hb_editor.visible=false
+
     }
     @Command
     def alertDelete(){
@@ -454,7 +451,6 @@ class CreditoViewModel {
     @NotifyChange(["creditos","credito","vw_bt_novo_credito","selectedCliente"])
     @Command
     void doSearchCredito(){
-        vw_bt_novo_credito= false
         info.value=""
         if(!filterCredito?.empty){
             credito = Credito?.findByNumeroDoCredito(filterCredito)
@@ -480,7 +476,7 @@ class CreditoViewModel {
     @NotifyChange(["credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor","clientes"])
     void doSearchCliente() {
       //  bt_add_novo_credito.visible = false
-        hb_editor.visible = false
+
         info.value = ""
         clientes.clear()
         List<Cliente> allItems = clienteService.findAllByName(filterCliente)
@@ -754,7 +750,6 @@ class CreditoViewModel {
         sessionStorageService.cliente = selectedCliente
         clientes.clear()
         clientes.add(selectedCliente)
-      //  bt_add_novo_credito.visible= true
         addCredito()
 
     }
@@ -1141,8 +1136,6 @@ class CreditoViewModel {
         if(selectedCliente==null){
             info.value = "Selecione Um Cliente"
         }
-        hb_novo_credito.visible = true
-        hb_editor.visible = true
         credito = new Credito()
         credito.dateConcecao = new Date()
         numeroDePrestacoes = 0

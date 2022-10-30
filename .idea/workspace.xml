@@ -50,14 +50,8 @@
     <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="update de impressão e melhoria do codigo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.slcache/.index" beforeDir="false" afterPath="$PROJECT_DIR$/.slcache/.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/credito/Credito.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/credito/Credito.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pagamento/Pagamento.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pagamento/Pagamento.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/settings/DefinicaoDeCredito.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/settings/DefinicaoDeCredito.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/PagamentoService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/PagamentoService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/credito/CreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/credito/CreditoViewModel.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/credito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/credito.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/planoDePagamento.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/planoDePagamento.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/printExtratoDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/printExtratoDeCredito.zul" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1527,13 +1521,7 @@
       <workItem from="1666608891111" duration="2161000" />
       <workItem from="1666791879228" duration="465000" />
       <workItem from="1666794936120" duration="198000" />
-    </task>
-    <task id="LOCAL-00113" summary="add extrto to fundo de maneio. e fiz corecções de erros">
-      <created>1630086907673</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1630086907673</updated>
+      <workItem from="1666795413301" duration="2413000" />
     </task>
     <task id="LOCAL-00114" summary="add extrto to fundo de maneio. e fiz corecções de erros">
       <created>1630274650930</created>
@@ -1871,7 +1859,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663183356946</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="update de impressão e melhoria do codigo">
+      <created>1666795450427</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1666795450428</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1989,30 +1984,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1662391288501" />
-    <state width="1323" height="200" key="GridCell.Tab.0.bottom" timestamp="1666795134836">
+    <state width="1323" height="200" key="GridCell.Tab.0.bottom" timestamp="1666798788949">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="195" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
     <state width="1323" height="195" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
-    <state width="1323" height="200" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1666795134836" />
-    <state width="1323" height="200" key="GridCell.Tab.0.center" timestamp="1666795134836">
+    <state width="1323" height="200" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1666798788949" />
+    <state width="1323" height="200" key="GridCell.Tab.0.center" timestamp="1666798788949">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="195" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
     <state width="1323" height="195" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
-    <state width="1323" height="200" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1666795134836" />
-    <state width="1323" height="200" key="GridCell.Tab.0.left" timestamp="1666795134836">
+    <state width="1323" height="200" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1666798788949" />
+    <state width="1323" height="200" key="GridCell.Tab.0.left" timestamp="1666798788948">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="195" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
     <state width="1323" height="195" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
-    <state width="1323" height="200" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1666795134836" />
-    <state width="1323" height="200" key="GridCell.Tab.0.right" timestamp="1666795134836">
+    <state width="1323" height="200" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1666798788948" />
+    <state width="1323" height="200" key="GridCell.Tab.0.right" timestamp="1666798788949">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="195" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1662401388458" />
     <state width="1323" height="195" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1662399430191" />
-    <state width="1323" height="200" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1666795134836" />
+    <state width="1323" height="200" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1666798788949" />
     <state x="481" y="66" key="RollbackChangesDialog" timestamp="1666610207386">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -2021,10 +2016,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1662536145414" />
-    <state width="515" height="477" key="SwitcherDM" timestamp="1666795132725">
+    <state width="515" height="477" key="SwitcherDM" timestamp="1666796716074">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="515" height="477" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1666795132725" />
+    <state width="515" height="477" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1666796716074" />
     <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1662440627044">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
