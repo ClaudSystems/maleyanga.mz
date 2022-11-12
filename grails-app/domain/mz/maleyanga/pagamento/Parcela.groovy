@@ -3,6 +3,8 @@ package mz.maleyanga.pagamento
 import mz.maleyanga.cliente.Cliente
 import mz.maleyanga.diario.Diario
 import mz.maleyanga.documento.Anexo
+import mz.maleyanga.documento.Nota
+import mz.maleyanga.saidas.Saida
 import mz.maleyanga.security.Utilizador
 import mz.maleyanga.transacao.Transacao
 
@@ -31,9 +33,9 @@ class Parcela implements Serializable {
     Date lastUpdated
     Diario diario
     Boolean invalido
-
+    static hasMany = [notas: Nota]
     static mapping = {
-        //  utilizador lazy: false
+        notas lazy: false
         // diario lazy: false
         batchSize(10)
     }
@@ -53,7 +55,7 @@ class Parcela implements Serializable {
         dataDePagamento nullable: false
         descricao nullable: true
         anexo nullable: true
-        numeroDoRecibo nullable: true
+        numeroDoRecibo nullable: true, unique: true
         dateCreated nullable: true
         lastUpdated nullable: true
         valorPago nullable: true
@@ -61,6 +63,7 @@ class Parcela implements Serializable {
         invalido nullable: true
         valorPagoBackup nullable: true
         nomeDoCliente nullable: true
+        notas nullable: true
         }
 
     /*

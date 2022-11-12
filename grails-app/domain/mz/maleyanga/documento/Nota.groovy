@@ -12,6 +12,7 @@ class Nota implements Serializable {
 
     Date dateCreated
     String messagem
+    String referencia
     String autor
     Pagamento pagamento
     Nota pai
@@ -44,6 +45,7 @@ class Nota implements Serializable {
         pagamento nullable: true
         colorR nullable: true
         colorG nullable: true
+        referencia nullable: true
 
 
     }

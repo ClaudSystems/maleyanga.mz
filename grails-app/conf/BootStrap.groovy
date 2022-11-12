@@ -3,6 +3,7 @@ import mz.maleyanga.Taxa.Taxa
 import mz.maleyanga.cliente.Cliente
 import mz.maleyanga.conta.PlanoDeContas
 import mz.maleyanga.entidade.Entidade
+import mz.maleyanga.saidas.Saida
 import mz.maleyanga.security.Role
 import mz.maleyanga.security.RoleGroup
 import mz.maleyanga.security.Utilizador

@@ -1,5 +1,6 @@
 package mz.maleyanga.diario
 
+import mz.maleyanga.documento.Nota
 import mz.maleyanga.pagamento.Parcela
 import mz.maleyanga.saidas.Saida
 

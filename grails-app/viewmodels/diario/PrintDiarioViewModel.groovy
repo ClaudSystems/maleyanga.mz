@@ -3,6 +3,7 @@ package diario
 import mz.maleyanga.ComposerService
 import mz.maleyanga.SessionStorageService
 import mz.maleyanga.diario.Diario
+import mz.maleyanga.documento.Nota
 import mz.maleyanga.pagamento.Parcela
 import mz.maleyanga.saidas.Saida
 import org.springframework.stereotype.Service
@@ -22,10 +23,29 @@ class PrintDiarioViewModel {
     ListModelList<Saida> saidas
     ListModelList<Saida> saidasAtivas
     ListModelList<Saida> saidasPassivas
+    ListModelList<Nota> notas
      Diario diario
     BigDecimal totalParcelas = 0.0
-    BigDecimal saldo = 0.0
     ListModelList<Parcela> parcelas
+
+    ListModelList<Nota> getNotas() {
+        if(notas==null){
+            notas = new ListModelList<Nota>()
+        }
+        def saidas = getSaidas()
+        def parcelas = getParcelas()
+        for (Saida saida in saidas){
+            for(Nota nota in saida.notas){
+                notas.add(nota)
+            }
+        }
+        for(Parcela parcela in parcelas){
+            for(Nota nota in parcela.notas){
+                notas.add(nota)
+            }
+        }
+        return notas
+    }
 
     BigDecimal getTotalParcelas() {
         totalParcelas = 0.0

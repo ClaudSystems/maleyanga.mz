@@ -8,6 +8,7 @@ import mz.maleyanga.SessionStorageService
 import mz.maleyanga.UtilizadorService
 import mz.maleyanga.conta.Conta
 import mz.maleyanga.diario.Diario
+import mz.maleyanga.documento.Nota
 import mz.maleyanga.pagamento.Parcela
 import mz.maleyanga.ParcelaService
 import mz.maleyanga.saidas.Saida
@@ -15,6 +16,7 @@ import mz.maleyanga.security.Utilizador
 import mz.maleyanga.transacao.Transacao
 import mz.maleyanga.transferencia.Transferencia
 import org.springframework.stereotype.Service
+import org.zkoss.bind.annotation.BindingParam
 import org.zkoss.bind.annotation.Init
 import org.zkoss.bind.annotation.Command
 import org.zkoss.bind.annotation.NotifyChange
@@ -65,6 +67,43 @@ class DiarioViewModel {
     Saida saida
     Saida selectedSaida
     Conta selectedConta
+    boolean viewSaida = false
+    boolean viewParcela = false
+    private String  notaParcela
+    private String notaSaida
+    private Nota selectedNota
+
+    Nota getSelectedNota() {
+        return selectedNota
+    }
+
+    void setSelectedNota(Nota selectedNota) {
+        this.selectedNota = selectedNota
+    }
+
+    String getNotaParcela() {
+        return notaParcela
+    }
+
+    void setNotaParcela(String notaParcela) {
+        this.notaParcela = notaParcela
+    }
+
+    String getNotaSaida() {
+        return notaSaida
+    }
+
+    void setNotaSaida(String notaSaida) {
+        this.notaSaida = notaSaida
+    }
+
+    boolean getViewSaida() {
+        return viewSaida
+    }
+
+    boolean getViewParcela() {
+        return viewParcela
+    }
 
     @Command
     @NotifyChange(["items"])
@@ -79,6 +118,8 @@ class DiarioViewModel {
             info.value = "O Diário "+selectedDiario.numeroDoDiario+" foi atualizado com sucesso!"
         }catch(Exception e){
             info.value = e.toString()
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+
         }
         selectedDiario.merge()
         info
@@ -99,8 +140,12 @@ class DiarioViewModel {
         return selectedSaida
     }
 
+    @NotifyChange(["viewSaida","viewParcela","selectedSaida"])
     void setSelectedSaida(Saida selectedSaida) {
         this.selectedSaida = selectedSaida
+        viewSaida= true
+        viewParcela = false
+
     }
     Conta contaCaixa =  Conta.findByUtilizadorAndFinalidade(utilizador,'conta_caixa')
     ListModelList<Conta> contas
@@ -213,9 +258,83 @@ class DiarioViewModel {
     }
 
     @Command
-    @NotifyChange(["saida","selectedDiario"])
+    @NotifyChange(["selectedSaida"])
+    def addNotaSaida(){
+        Utilizador user = springSecurityService.currentUser as Utilizador
+        if (!user.authorities.any { it.authority == "REMISSAO_CREATE" }) {
+            info.value="Este utilizador não tem permissão para executar esta acção !"
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+            return
+        }
+        Nota nota = new Nota()
+        nota.autor = user
+        nota.messagem = notaSaida
+        nota.referencia = selectedSaida.numeroDaSaida
+
+        try {
+            nota.save(flush: true)
+            def notaDB = Nota.findById(nota.id)
+            if(notaDB){
+
+                if(selectedSaida.notas==null){
+                    selectedSaida.notas= new ArrayList<Nota>()
+                }
+                selectedSaida.notas.add(notaDB)
+                selectedSaida.merge(flush: true)
+                info.value= "A nota foi gravada com sucesso!"
+                info.style = "color:blue;font-weight;font-size:16px;background:back"
+
+            }
+        }catch(Exception e){
+            info.value = e.toString()
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+
+        }
+
+    }
+
+    @Command
+    @NotifyChange(["pickedParcela"])
+    def addNotaParcela(){
+
+        Utilizador user = springSecurityService.currentUser as Utilizador
+        if (!user.authorities.any { it.authority == "REMISSAO_CREATE" }) {
+            info.value="Este utilizador não tem permissão para executar esta acção !"
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+            return
+        }
+        Nota nota = new Nota()
+        nota.autor = user
+        nota.messagem = notaParcela
+        nota.referencia = pickedParcela.numeroDoRecibo
+
+        try {
+            nota.save(flush: true)
+            def notaDB = Nota.findById(nota.id)
+            if(notaDB){
+
+                if(pickedParcela.notas==null){
+                    pickedParcela.notas= new ArrayList<Nota>()
+                }
+                pickedParcela.notas.add(notaDB)
+                pickedParcela.merge(flush: true)
+                info.value= "A nota foi gravada com sucesso!"
+                info.style = "color:blue;font-weight;font-size:16px;background:back"
+
+            }
+        }catch(Exception e){
+            info.value = e.toString()
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+
+        }
+
+    }
+
+    @Command
+    @NotifyChange(["saida","selectedDiario","viewParcela","viewSaida"])
     def fecharEditor(){
-        saida = null
+        viewSaida=false
+        viewParcela = false
     }
     ListModelList<Conta> getContas() {
         if(contas ==null){
@@ -279,6 +398,7 @@ class DiarioViewModel {
         if(selectedDiario){
             parcelas = Parcela.findAllByDiario(selectedDiario)
         }
+        parcelas.sort{it.id}
         return parcelas
     }
     List<Parcela> getParcels() {
@@ -288,13 +408,14 @@ class DiarioViewModel {
         }
         parcels.clear()
         parcels = Parcela.findAllByValorPagoGreaterThanAndDiarioAndUtilizador(0.0,selectedDiario,utilizador)
-
+        parcels.sort{it.id}
         return parcels
     }
     ListModelList<Saida> getSaidas() {
         if(selectedDiario){
             saidas = Saida.findAllByDiarioAndValorGreaterThan(selectedDiario,0.0)
         }
+        saidas.sort{it.id}
         return saidas
     }
 
@@ -320,8 +441,11 @@ class DiarioViewModel {
         return pickedParcela
     }
 
+    @NotifyChange(["viewParcela","viewSaida","pickedParcela"])
     void setPickedParcela(Parcela pickedParcela) {
         this.pickedParcela = pickedParcela
+        viewParcela = true
+        viewSaida = false
     }
 
     Diario getSelectedDiario() {
@@ -541,11 +665,7 @@ class DiarioViewModel {
         utilizador = Utilizador.findById(springSecurityService.principal?.id)
     }
     @Command
-    void showIt() {
-        System.print(pickedItem.id)
-        sessionStorageService.parcelaId=pickedItem.id
-        sessionStorageService.parcela=pickedItem
-        Executions.sendRedirect("/parcela/show"+pickedItem.id)
+    void showIt(@BindingParam("index") Long index) {
 
     }
 

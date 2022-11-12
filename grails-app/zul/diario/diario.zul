@@ -44,94 +44,108 @@
                 image="${z.resource(dir:'images', file:'print.png')}" label="Imprimir"/>-->
         <label style="color:green" visible="@bind(not empty vm.selectedDiario)"
                value=""/>
-        <grid visible="@bind(not empty vm.selectedDiario)" width="400px">
-            <rows>
-                <row>
-
-                </row>
-                <row>
-                    <label value="Utilizador"/>
-                    <combobox onChange="@command('')"
-                              selectedItem="@bind(vm.selectedUtilizador)"
-                              model="@load(vm.utilizadores)" hflex="1"
-                              mold="rounded" autodrop="true"
-                              autocomplete="true">
-                        <template name="model">
-                            <comboitem onClick="@command('')"
-                                       label="@load(each)"
-                            />
-                        </template>
-                    </combobox>
-                </row>
-                <row>
-                    <label value="Diário por Utilizador"/>
-                    <div visible="@bind(not empty vm.selectedUtilizador)">
-                        <include src="/diario/printUser.gsp"/>
-                    </div>
-                    <!-- <button visible="@bind(not empty vm.selectedDiario)"
-                             onClick="@command('imprimirDiarioPorUtilizador')"
-                             image="${z.resource(dir:'images', file:'print.png')}" label="Imprimir"/>-->
-                </row>
-            </rows>
-        </grid>
-        Filtragem :
-        <textbox width="200px" placeholder="numero do diario, estado"
-                 style="background:#95B9C7;color:black" value="@bind(vm.filter)"
-                 onChange="@command('doSearch')"
-                 instant="false"/>
         <hbox>
-            <listbox visible="@load(vm.lb_items)" checkmark="true" selectedItem="@bind(vm.selectedDiario)"
-                     style="@bind('style')" model="@load(vm.items)" width="460px"
-                     height="" mold="paging" pageSize="5">
+            <vbox>
+                Filtragem :
+
+                <textbox width="200px" placeholder="numero do diario, estado"
+                         style="background:#95B9C7;color:black" value="@bind(vm.filter)"
+                         onChange="@command('doSearch')"
+                         instant="false"/>
+
+                <listbox visible="@load(vm.lb_items)" checkmark="true" selectedItem="@bind(vm.selectedDiario)"
+                         style="@bind('style')" model="@load(vm.items)" width="460px"
+                         height="" mold="paging" pageSize="5">
+                    <auxhead>
+                        <auxheader label="Diários" colspan="6" rowspan="1"/>
+                    </auxhead>
+                    <listhead>
+
+                        <listheader width="95px" sort="auto(numeroDoDiario)" label="Nº. Do Diário"/>
+                        <listheader width="90px" sort="auto(estado)" label="Estado"/>
+                        <listheader width="90px" sort="auto(dateCreated)" label="D. de Ref."/>
+                        <listheader width="90px" sort="auto(dateCreated)" label="D. de Crição"/>
+                        <listheader width="90px" sort="auto(lastUpdated)" label="Atualização"/>
+
+                    </listhead>
+                    <template name="model" var="item" status="s">
+
+                        <listitem onClick="@command('checkEstado')">
+
+                            <listcell style="border:none" label="@load(item.numeroDoDiario)"/>
+                            <listcell style="border:none" label="@load(item.estado)"/>
+                            <listcell style="border:none"
+                                      label="@load(item.dataDeReferencia) @converter('formatedDate', format='dd/MM/yy')"/>
+                            <listcell style="border:none"
+                                      label="@load(item.dateCreated) @converter('formatedDate', format='dd/MM/yy')"/>
+                            <listcell style="border:none"
+                                      label="@load(item.lastUpdated) @converter('formatedDate', format='dd/MM/yy')"/>
+
+                        </listitem>
+                    </template>
+                    <listfoot>
+                        <listfooter>
+                            <label value=""/>
+                        </listfooter>
+                        <listfooter>
+                            <label value=""/>
+                        </listfooter>
+                        <listfooter>
+                            <label value=""/>
+                        </listfooter>
+                        <listfooter>
+                            <label value=""/>
+                        </listfooter>
+                        <listfooter>
+                            <label value=""/>
+                        </listfooter>
+                        <listfooter>
+
+                        </listfooter>
+                    </listfoot>
+
+                </listbox>
+            </vbox>
+            <grid visible="@bind(not empty vm.selectedDiario)" width="400px">
                 <auxhead>
-                    <auxheader label="Diários" colspan="6" rowspan="1"/>
+                    <auxheader style="font-size:13pt;text-align:center" colspan="2" label="Diário por Caixa"/>
                 </auxhead>
-                <listhead>
+                <columns>
+                    <column/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
 
-                    <listheader width="95px" sort="auto(numeroDoDiario)" label="Nº. Do Diário"/>
-                    <listheader width="90px" sort="auto(estado)" label="Estado"/>
-                    <listheader width="90px" sort="auto(dateCreated)" label="D. de Ref."/>
-                    <listheader width="90px" sort="auto(dateCreated)" label="D. de Crição"/>
-                    <listheader width="90px" sort="auto(lastUpdated)" label="Atualização"/>
+                    </row>
+                    <row>
+                        <label value="Utilizador"/>
+                        <combobox onChange="@command('')"
+                                  selectedItem="@bind(vm.selectedUtilizador)"
+                                  model="@load(vm.utilizadores)" hflex="1"
+                                  mold="rounded" autodrop="true"
+                                  autocomplete="true">
+                            <template name="model">
+                                <comboitem onClick="@command('')"
+                                           label="@load(each)"
+                                />
+                            </template>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="Diário por Utilizador"/>
+                        <div visible="@bind(not empty vm.selectedUtilizador)">
+                            <include src="/diario/printUser.gsp"/>
+                        </div>
+                        <!-- <button visible="@bind(not empty vm.selectedDiario)"
+                                 onClick="@command('imprimirDiarioPorUtilizador')"
+                                 image="${z.resource(dir:'images', file:'print.png')}" label="Imprimir"/>-->
+                    </row>
+                </rows>
+            </grid>
 
-                </listhead>
-                <template name="model" var="item" status="s">
-
-                    <listitem onClick="@command('checkEstado')">
-
-                        <listcell style="border:none" label="@load(item.numeroDoDiario)"/>
-                        <listcell style="border:none" label="@load(item.estado)"/>
-                        <listcell style="border:none"
-                                  label="@load(item.dataDeReferencia) @converter('formatedDate', format='dd/MM/yy')"/>
-                        <listcell style="border:none"
-                                  label="@load(item.dateCreated) @converter('formatedDate', format='dd/MM/yy')"/>
-                        <listcell style="border:none"
-                                  label="@load(item.lastUpdated) @converter('formatedDate', format='dd/MM/yy')"/>
-
-                    </listitem>
-                </template>
-                <listfoot>
-                    <listfooter>
-                        <label value=""/>
-                    </listfooter>
-                    <listfooter>
-                        <label value=""/>
-                    </listfooter>
-                    <listfooter>
-                        <label value=""/>
-                    </listfooter>
-                    <listfooter>
-                        <label value=""/>
-                    </listfooter>
-                    <listfooter>
-                        <label value=""/>
-                    </listfooter>
-                    <listfooter>
-
-                    </listfooter>
-                </listfoot>
-
-            </listbox>
+        </hbox>
+        <hbox>
             <grid visible="@load(not empty vm.saida)" width="450px">
                 <columns>
                     <column width="150px"/>
@@ -198,54 +212,160 @@
 
                 </rows>
             </grid>
-            <grid visible="@load(not empty vm.selectedSaida)" width="450px">
+            <grid width="1104px">
                 <columns>
-                    <column width="150px"/>
                     <column/>
                 </columns>
                 <rows>
+                    <row visible="@load(vm.viewParcela)">
+                        <grid width="550px">
+                            <auxhead>
+                                <auxheader style="font-size:13pt;text-align:right" label="Recibo Nº"/>
+                                <auxheader style="font-size:13pt;text-align:left"
+                                           label="@load(vm.pickedParcela.numeroDoRecibo)"/>
+                            </auxhead>
+                            <columns>
+                                <column width="150px"/>
+                                <column/>
+                            </columns>
+                            <rows>
 
 
-                    <row>
-                        <label value="Valor"/>
-                        <decimalbox readonly="true" placeholder="Valor" constraint="no empty, no negative, no zero"
-                                    style="font-size:15pt;font-weight:bold;border:none"
-                                    onChange="@command('')" format="###,##0.00"
-                                    width="200px" value="@bind(vm.selectedSaida.valor)  "/>
+                                <row>
+                                    <label value="Valor"/>
+                                    <decimalbox readonly="true" placeholder="Valor"
+                                                constraint="no empty, no negative, no zero"
+                                                style="font-size:15pt;font-weight:bold;border:none"
+                                                onChange="@command('')" format="###,##0.00"
+                                                width="200px" value="@bind(vm.pickedParcela.valorParcial)  "/>
+                                </row>
+                                <row>
+                                    <label value="Data de Pag."/>
+                                    <datebox format="dd/MM/yy" readonly="true" constraint="no empty" width="100%"
+                                             value="@bind(vm.pickedParcela.dataDePagamento)"/>
+                                </row>
+                                <row>
+                                    <label value="Descrição"/>
+                                    <textbox readonly="true" width="100%" value="@bind(vm.pickedParcela.descricao)"/>
+                                </row>
+                                <row>
+                                    <label value="Forma De Pa."/>
+                                    <label value="@load(vm.pickedParcela.formaDePagamento)"/>
+                                </row>
+                                <row>
+                                    <cell colspan="2">
+                                        <listbox checkmark="true" selectedItem="@bind(vm.selectedNota)"
+                                                 model="@load(vm.pickedParcela.notas)" width="600px"
+                                                 height="" mold="paging" pageSize="10">
+
+                                            <template name="model" status="s">
+                                                <listitem onClick="@command('', index=each.id)" style="@bind('style')">
+                                                    <listcell label="@load(each.messagem)"/>
+                                                </listitem>
+                                            </template>
+                                        </listbox>
+                                    </cell>
+                                </row>
+
+                                <row>
+                                    <cell colspan="2">
+                                        <button image="${z.resource(dir:'images', file:'cancelar.png')}"
+                                                label="Fechar Editor" onClick="@command('fecharEditor')"/>
+
+                                    </cell>
+                                </row>
+
+                            </rows>
+                        </grid>
+
+                        <textbox value="@bind(vm.notaParcela)" placeholder="digitar nota aqui " width="100%" rows="4"/>
+                    </row>
+                    <row visible="@load(vm.viewSaida)">
+                        <textbox value="@bind(vm.notaSaida)" placeholder="digitar nota aqui " width="100%" rows="4"/>
+                        <grid width="550px">
+                            <auxhead>
+                                <auxheader style="font-size:13pt;text-align:right" label="Nota de Saída Nº.º"/>
+                                <auxheader style="font-size:13pt;text-align:left"
+                                           label="@load(vm.selectedSaida.numeroDaSaida)"/>
+                            </auxhead>
+                            <columns>
+                                <column width="150px" value="@load(vm.selectedSaida.id)"/>
+                                <column/>
+                            </columns>
+                            <rows>
+
+
+                                <row>
+                                    <label value="Valor"/>
+                                    <decimalbox readonly="true" placeholder="Valor"
+                                                constraint="no empty, no negative, no zero"
+                                                style="font-size:15pt;font-weight:bold;border:none"
+                                                onChange="@command('')" format="###,##0.00"
+                                                width="200px" value="@bind(vm.selectedSaida.valor)  "/>
+                                </row>
+                                <row>
+                                    <label value="Data de Pag."/>
+                                    <datebox format="dd/MM/yy" readonly="true" constraint="no empty" width="100%"
+                                             value="@bind(vm.selectedSaida.dataDePagamento)"/>
+                                </row>
+                                <row>
+                                    <label value="Descrição"/>
+                                    <textbox readonly="true" width="100%" value="@bind(vm.selectedSaida.descricao)"/>
+                                </row>
+                                <row>
+                                    <label value="Forma De Pa."/>
+
+                                    <combobox readonly="true" constraint="no empty" width="100%" onSelect="@command('')"
+                                              value="@bind(vm.selectedSaida.formaDePagamento)">
+                                        <comboitem label="numerário"/>
+                                        <comboitem label="deposito bancário"/>
+                                        <comboitem label="transferencia bancária"/>
+                                        <comboitem label="POS"/>
+                                        <comboitem label="Outra"/>
+                                    </combobox>
+                                </row>
+                                <row>
+                                    <label value="Notas:"/>
+                                </row>
+                                <row>
+
+                                    <cell colspan="2">
+                                        <listbox checkmark="true" selectedItem="@bind(vm.selectedNota)"
+                                                 model="@load(vm.selectedSaida.notas)" width="600px"
+                                                 height="" mold="paging" pageSize="10">
+                                            <template name="model" status="s">
+
+                                                <listitem onClick="@command('', index=each.id)" style="@bind('style')">
+
+                                                    <listcell label="@load(each.messagem)"/>
+                                                </listitem>
+                                            </template>
+                                        </listbox>
+                                    </cell>
+
+                                </row>
+                                <row>
+                                    <cell colspan="2">
+                                        <button image="${z.resource(dir:'images', file:'remover.png')}"
+                                                onDoubleClick="@command('eliminarSaida')"
+                                                onClick="@command('alertDelete')"
+                                                label="Invalidar " width="100px" height="30px"/>
+                                        <button image="${z.resource(dir:'images', file:'cancelar.png')}"
+                                                label="Fechar Editor" onClick="@command('fecharEditor')"/>
+
+                                    </cell>
+                                </row>
+
+                            </rows>
+                        </grid>
+
                     </row>
                     <row>
-                        <label value="Data de Pag."/>
-                        <datebox format="dd/MM/yy" readonly="true" constraint="no empty" width="100%"
-                                 value="@bind(vm.selectedSaida.dataDePagamento)"/>
+                        <button visible="@load(vm.viewSaida)" image="${z.resource(dir:'images', file:'note-25.png')}"
+                                label="Add Nota" onClick="@command('addNotaSaida')"/>
+                        <button visible="@load(vm.viewParcela)" image="${z.resource(dir:'images', file:'note-25.png')}"
+                                label="Add Nota" onClick="@command('addNotaParcela')"/>
                     </row>
-                    <row>
-                        <label value="Descrição"/>
-                        <textbox readonly="true" width="100%" value="@bind(vm.selectedSaida.descricao)"/>
-                    </row>
-                    <row>
-                        <label value="Forma De Pa."/>
-
-                        <combobox readonly="true" constraint="no empty" width="100%" onSelect="@command('')"
-                                  value="@bind(vm.selectedSaida.formaDePagamento)">
-                            <comboitem label="numerário"/>
-                            <comboitem label="deposito bancário"/>
-                            <comboitem label="transferencia bancária"/>
-                            <comboitem label="POS"/>
-                            <comboitem label="Outra"/>
-                        </combobox>
-                    </row>
-
-                    <row>
-                        <cell colspan="2">
-                            <button image="${z.resource(dir:'images', file:'remover.png')}"
-                                    onDoubleClick="@command('eliminarSaida')" onClick="@command('alertDelete')"
-                                    label="Invalidar " width="100px" height="30px"/>
-                            <button image="${z.resource(dir:'images', file:'cancelar.png')}"
-                                    label="Fechar Editor" onClick="@command('fecharEditor')"/>
-
-                        </cell>
-                    </row>
-
                 </rows>
             </grid>
         </hbox>
@@ -255,17 +375,15 @@
                      model="@load(vm.parcelas)" width="550px"
                      height="" mold="paging" pageSize="10">
                 <auxhead>
-                    <auxheader label="Recebimentos" colspan="6" rowspan="1"/>
+                    <auxheader style="font-size:13pt;text-align:center" label="Recebimentos" colspan="6" rowspan="1"/>
                 </auxhead>
-
                 <listhead sizable="true">
 
 
-                    <listheader width="60px" label="ID" align="left"/>
-
-                    <listheader width="80px" label="Data de Pag." align="left"/>
-                    <listheader width="100px" label="Data de Criação." align="left"/>
-                    <listheader width="200px" label="Descrição" align="left"/>
+                    <listheader width="60px" label="Nº do Recibo" align="left"/>
+                    <listheader width="60px" label="D. de Pag." align="left"/>
+                    <listheader width="" label="D. de Criação." align="left"/>
+                    <listheader width="150px" label="Descrição" align="left"/>
                     <listheader width="150px" label="Valor" align="left"/>
 
 
@@ -293,19 +411,19 @@
                      model="@load(vm.saidas)" width="550px"
                      height="" mold="paging" pageSize="10">
                 <auxhead>
-                    <auxheader label="Saidas" colspan="6" rowspan="1"/>
+                    <auxheader style="font-size:13pt;text-align:center" label="Saidas" colspan="6" rowspan="1"/>
                 </auxhead>
                 <listhead sizable="true">
 
                     <listheader width="80px" label="Utilizador" align="left"/>
-                    <listheader width="80px" label="Data de C." align="left"/>
+                    <listheader width="60px" label="Gerado em:" align="left"/>
 
-                    <listheader width="80px" label="Data de Pag." align="left"/>
+                    <listheader width="60px" label="D. de Pag." align="left"/>
 
-                    <listheader width="100px" label="C. Origem" align="left"/>
-                    <listheader width="100px" label="C. Destino" align="left"/>
-                    <listheader width="130px" label="F. de Pag." align="left"/>
-                    <listheader width="150px" label="Valor" align="left"/>
+                    <listheader width="90px" label="C. Origem" align="left"/>
+                    <listheader width="90px" label="C. Destino" align="left"/>
+                    <listheader width="60px" label="F. de Pag." align="left"/>
+                    <listheader width="100px" label="Valor" align="left"/>
 
                 </listhead>
                 <template name="model" var="item">

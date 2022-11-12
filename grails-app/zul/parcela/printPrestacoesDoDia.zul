@@ -20,6 +20,7 @@
             </auxhead>
             <columns>
                 <column width="200px" label="Cliente"/>
+                <column width="50px" label="Código"/>
                 <column width="100px" label="Gestor"/>
                 <column label="Contato"/>
                 <column label="V.Da Prestação"/>
@@ -29,6 +30,7 @@
             <template name="model">
                 <row>
                     <label value="@bind(each.credito.cliente.nome)"/>
+                    <label value="@bind(each.credito.cliente.codigo)"/>
                     <label value="@bind(each.credito.cliente.utilizador)"/>
                     <label value="@bind(each.credito.cliente.telefone)"/>
                     <label value="@bind(each.valorDaPrestacao)@converter('formatedNumber', format='###,##0.00')"/>
@@ -38,6 +40,7 @@
                 </row>
             </template>
             <foot>
+                <footer/>
                 <footer/>
                 <footer/>
                 <footer/>

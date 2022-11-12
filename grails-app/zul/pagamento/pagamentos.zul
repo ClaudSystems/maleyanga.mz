@@ -117,26 +117,26 @@
         </grid>
         <listbox id="lb_credito" checkmark="true" style="@bind('style')"
                  selectedItem="@bind(vm.selectedCredito)"
-                 model="@load(vm.creditos)" width=""
+                 model="@load(vm.creditos)" width="600px"
                  height="" mold="paging" pageSize="2">
             <auxhead>
-                <auxheader colspan="1" label="Cliente:"/>
-                <auxheader style="font-size:13pt;text-align:center;color:red" colspan="5"
+                <auxheader width="200px" colspan="1" label="Cliente:"/>
+                <auxheader width="200px" style="font-size:13pt;text-align:center;color:red" colspan="5"
                            label="@load(vm.selectedCliente.nome)"/>
             </auxhead>
             <listhead sizable="true">
-                <listheader sort="auto(id)" width="" label="Crédito Nº"
+                <listheader sort="auto(id)" width="100px" label="Crédito Nº"
                             align="left"/>
-                <listheader sort="auto(valorEmDivida)" width="80px"
+                <listheader sort="auto(valorEmDivida)" width="100px"
                             label="T. em dívida" align="left"/>
 
                 <listheader sort="auto(valorCreditado)" width="100px"
                             label="Valor Creditado" align="left"/>
-                <listheader sort="auto(numeroDePrestacoes)" width="50px"
+                <listheader sort="auto(numeroDePrestacoes)" width="100px"
                             label="Nº. das P."
                             align="left"/>
 
-                <listheader sort="auto(dateConcecao)" width="60px"
+                <listheader sort="auto(dateConcecao)" width="96px"
                             label="D. conceção"
                             align="left"/>
 
@@ -200,10 +200,62 @@
 
                                     <hbox width="600px">
                                         <div width="600px">
+                                            <div visible="@load(not empty vm.selectedCliente)" width="600px">
+                                                <listbox checkmark="true" style="@bind('style')"
+                                                         selectedItem="@bind(vm.selectedPagamento)"
+                                                         model="@load(vm.pagamentos)" width=""
+                                                         height="" mold="paging" pageSize="4">
+                                                    <listhead sizable="true">
+
+                                                        <listheader sort="auto(descricao)" width="130px"
+                                                                    label="Prestação"
+                                                                    align="left"/>
+                                                        <listheader sort="auto(valorDaPrestacao)" width="90px"
+                                                                    label="V. Da Prest."
+                                                                    align="left"/>
+                                                        <listheader sort="auto(valorPago)" width="90px" label="V. Pago"
+                                                                    align="left"/>
+                                                        <listheader sort="auto(totalEmDivida)" width="90px"
+                                                                    label="T. Em Dívida" align="left"/>
+                                                        <listheader sort="auto(valorDeJurosDeDemora)" width="90px"
+                                                                    label="V. Juros de Mora"
+                                                                    align="left"/>
+                                                        <listheader sort="auto(diasDeMora)" width="40px" label="Mora"
+                                                                    align="left"/>
+                                                        <listheader sort="auto(dataPrevistoDePagamento)" width="66px"
+                                                                    label="Data Prev. De Pag."
+                                                                    align="left"/>
+
+
+                                                    </listhead>
+                                                    <template name="model" status="s">
+
+                                                        <listitem
+                                                                onClick="@command('showSelectedPagamento', index=each.id)">
+                                                            <listcell label="@load(each.descricao)"/>
+                                                            <listcell
+                                                                    label="@load(each.valorDaPrestacao)@converter('formatedNumber', format='###,##0.00')"/>
+
+                                                            <listcell label="@bind(each.valorPago)"/>
+                                                            <listcell
+                                                                    label="@bind(each.totalEmDivida)@converter('formatedNumber', format='###,##0.00')"/>
+                                                            <listcell
+                                                                    label="@bind(each.valorDeJurosDeDemora) @converter('formatedNumber', format='###,##0.00')"/>
+
+                                                            <listcell label="@bind(each.diasDeMora)"/>
+                                                            <listcell
+                                                                    label="@bind(each.dataPrevistoDePagamento)@converter('formatedDate', format='dd/MM/yy')"/>
+                                                        </listitem>
+                                                    </template>
+
+                                                </listbox>
+                                            </div>
+
                                         </div>
 
                                         <div visible="@load(not empty vm.contaCaixa)">
                                             <hbox visible="@load(!vm.selectedPagamento.pago)">
+                                                <!--Menu pagamento da prestação-->
                                                 <grid visible="@load(not empty vm.selectedPagamento.id)" width="450px">
                                                     <columns>
                                                         <column align="right" width="150px" style="font-weight:bold"
@@ -308,59 +360,10 @@
 
                                     </hbox>
                                     <hbox>
-                                        <div visible="@load(not empty vm.selectedCliente)" width="600px">
-                                            <listbox checkmark="true" style="@bind('style')"
-                                                     selectedItem="@bind(vm.selectedPagamento)"
-                                                     model="@load(vm.pagamentos)" width=""
-                                                     height="" mold="paging" pageSize="4">
-                                                <listhead sizable="true">
-
-                                                    <listheader sort="auto(descricao)" width="130px" label="Prestação"
-                                                                align="left"/>
-                                                    <listheader sort="auto(valorDaPrestacao)" width="90px"
-                                                                label="V. Da Prest."
-                                                                align="left"/>
-                                                    <listheader sort="auto(valorPago)" width="90px" label="V. Pago"
-                                                                align="left"/>
-                                                    <listheader sort="auto(totalEmDivida)" width="90px"
-                                                                label="T. Em Dívida" align="left"/>
-                                                    <listheader sort="auto(valorDeJurosDeDemora)" width="90px"
-                                                                label="V. Juros de Mora"
-                                                                align="left"/>
-                                                    <listheader sort="auto(diasDeMora)" width="40px" label="Mora"
-                                                                align="left"/>
-                                                    <listheader sort="auto(dataPrevistoDePagamento)" width="66px"
-                                                                label="Data Prev. De Pag."
-                                                                align="left"/>
-
-
-                                                </listhead>
-                                                <template name="model" status="s">
-
-                                                    <listitem
-                                                            onClick="@command('showSelectedPagamento', index=each.id)">
-                                                        <listcell label="@load(each.descricao)"/>
-                                                        <listcell
-                                                                label="@load(each.valorDaPrestacao)@converter('formatedNumber', format='###,##0.00')"/>
-
-                                                        <listcell label="@bind(each.valorPago)"/>
-                                                        <listcell
-                                                                label="@bind(each.totalEmDivida)@converter('formatedNumber', format='###,##0.00')"/>
-                                                        <listcell
-                                                                label="@bind(each.valorDeJurosDeDemora) @converter('formatedNumber', format='###,##0.00')"/>
-
-                                                        <listcell label="@bind(each.diasDeMora)"/>
-                                                        <listcell
-                                                                label="@bind(each.dataPrevistoDePagamento)@converter('formatedDate', format='dd/MM/yy')"/>
-                                                    </listitem>
-                                                </template>
-
-                                            </listbox>
-                                        </div>
                                         <div visible="@load(not empty vm.selectedPagamento.parcelas)">
                                             <listbox id="lb_pagamentos" checkmark="true"
                                                      selectedItem="@bind(vm.sParcela)"
-                                                     model="@load(vm.selectedPagamento.parcelas)" width="445px"
+                                                     model="@load(vm.selectedPagamento.parcelas)" width="600px"
                                                      height="" mold="paging" pageSize="5">
                                                 <auxhead style="background:#ffc300">
                                                     <auxheader style="background:#F4F4F4" align="left"
@@ -417,6 +420,30 @@
                                             </div>
 
                                         </div>
+                                        <vbox width="100%">
+                                            <div visible="@load(vm.sParcela.valorPago>0.0)">
+                                                <listbox checkmark="true" selectedItem="@bind(vm.selectedNota)"
+                                                         model="@load(vm.sParcela.notas)" width="600px"
+                                                         height="" mold="paging" pageSize="10">
+
+                                                    <template name="model" status="s">
+                                                        <listitem onClick="@command('', index=each.id)"
+                                                                  style="@bind('style')">
+                                                            <listcell label="@load(each.messagem)"/>
+                                                        </listitem>
+                                                    </template>
+                                                </listbox>
+
+                                                <vbox>
+                                                    <textbox visible="@load(not empty vm.sParcela)"
+                                                             value="@bind(vm.notaParcela)"
+                                                             placeholder="digitar nota aqui " width="450px" rows="4"/>
+                                                    <button visible="@load(not empty vm.sParcela)"
+                                                            image="${z.resource(dir:'images', file:'note-25.png')}"
+                                                            label="Add Nota" onClick="@command('addNotaParcela')"/>
+                                                </vbox>
+                                            </div>
+                                        </vbox>
 
                                     </hbox>
 

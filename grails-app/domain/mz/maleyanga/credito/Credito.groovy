@@ -144,6 +144,7 @@ class Credito implements Serializable {
             return it > 0
         })
         valorEmDivida nullable: true
+        numeroDoCredito unique: true
     }
 
     String toString() {

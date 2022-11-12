@@ -6,6 +6,7 @@ import mz.maleyanga.credito.Credito
 import mz.maleyanga.diario.Diario
 import mz.maleyanga.pagamento.Pagamento
 import mz.maleyanga.pagamento.Parcela
+import mz.maleyanga.saidas.Saida
 
 /**
  * ContadorService
@@ -90,12 +91,12 @@ class ContadorService {
                 def numero = edp.numeroDoCredito.split("/")
                 Integer sub = numero[1].toInteger()
                 def ano = numero[0]
+
                 if (ano == num_ano) {
                     if (sub >= num) {
                         num = sub
                     }
                 }
-
             }
             num++
             return num_ano + "/" + num

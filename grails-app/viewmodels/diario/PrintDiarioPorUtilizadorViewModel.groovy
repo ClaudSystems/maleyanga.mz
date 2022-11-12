@@ -3,6 +3,7 @@ package diario
 
 import mz.maleyanga.SessionStorageService
 import mz.maleyanga.diario.Diario
+import mz.maleyanga.documento.Nota
 import mz.maleyanga.pagamento.Parcela
 import mz.maleyanga.saidas.Saida
 import mz.maleyanga.security.Utilizador
@@ -22,6 +23,27 @@ class PrintDiarioPorUtilizadorViewModel {
     List<Saida> saidas
     List<Saida> saidasAtivas
     List<Saida> saidasPassivas
+    ListModelList<Nota> notas
+
+    ListModelList<Nota> getNotas() {
+        if(notas==null){
+            notas = new ListModelList<Nota>()
+        }
+        def saidas = getSaidas()
+        def parcelas = getParcelas()
+        for (Saida saida in saidas){
+            for(Nota nota in saida.notas){
+                notas.add(nota)
+            }
+        }
+        for(Parcela parcela in parcelas){
+            for(Nota nota in parcela.notas){
+                notas.add(nota)
+            }
+        }
+        return notas
+    }
+
 
     BigDecimal getTotalSaidasAtivas() {
         totalSaidasAtivas =0.0

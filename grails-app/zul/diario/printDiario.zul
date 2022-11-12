@@ -184,17 +184,50 @@
                 </row>
             </rows>
         </grid>
-        <grid width="750px" style="margin-top:20px">
-            <auxhead>
-                <auxheader colspan="2" label="Assinaturas"/>
-            </auxhead>
-            <columns>
-                <column width="50%">
-                    <label value="Responsável da CAIXA"/>
-                </column>
-                <column width="50%">
-                    <label value="GERENTE"/>
-                </column>
+    <grid model="@bind(vm.notas)" width="750px" style="margin-top:20px">
+        <auxhead>
+            <auxheader style="font-size:13pt;text-align:center" colspan="4" label="Notas"/>
+        </auxhead>
+        <columns>
+            <column width="80px">
+                <label value="Hora-Data"/>
+            </column>
+            <column width="80px">
+                <label value="Ref."/>
+            </column>
+            <column width="100px">
+                <label value="Autor"/>
+            </column>
+
+            <column width="">
+                <label value="Nota:"/>
+            </column>
+
+        </columns>
+        <template name="model">
+            <row>
+
+                <label value="@bind(each.dateCreated)@converter('formatedDate', format='hh:mm-dd/MM')"/>
+                <label value="@bind(each.referencia)"/>
+                <label value="@bind(each.autor)"/>
+                <label value="@bind(each.messagem)"/>
+
+            </row>
+        </template>
+
+    </grid>
+
+    <grid width="750px" style="margin-top:20px">
+        <auxhead>
+            <auxheader style="font-size:13pt;text-align:center" colspan="2" label="Validações"/>
+        </auxhead>
+        <columns>
+            <column width="50%">
+                <label value="Responsável da CAIXA"/>
+            </column>
+            <column width="50%">
+                <label value="GERENTE"/>
+            </column>
             </columns>
             <rows>
                 <row>

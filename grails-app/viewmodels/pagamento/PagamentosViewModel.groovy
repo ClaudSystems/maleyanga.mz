@@ -13,6 +13,7 @@ import mz.maleyanga.cliente.Cliente
 import mz.maleyanga.conta.Conta
 import mz.maleyanga.credito.Credito
 import mz.maleyanga.diario.Diario
+import mz.maleyanga.documento.Nota
 import mz.maleyanga.pagamento.Pagamento
 import mz.maleyanga.pagamento.Parcela
 import mz.maleyanga.ParcelaService
@@ -107,9 +108,62 @@ class PagamentosViewModel {
     private  Utilizador utilizador
     private  Conta contaCliente = new Conta()
     private Remissao selectedRemissao
-
+    private  String notaParcela
+    private   Nota selectedNota
     private  Conta selectedConta
     private  Saida selectedSaida
+
+    @Command
+    @NotifyChange(["sParcela"])
+    def addNotaParcela(){
+        Utilizador user = springSecurityService.currentUser as Utilizador
+        if (!user.authorities.any { it.authority == "REMISSAO_CREATE" }) {
+            info.value="Este utilizador não tem permissão para executar esta acção !"
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+            return
+        }
+        Nota nota = new Nota()
+        nota.autor = user
+        nota.messagem = notaParcela
+        nota.referencia = sParcela.numeroDoRecibo
+
+        try {
+            nota.save(flush: true)
+            def notaDB = Nota.findById(nota.id)
+            if(notaDB){
+
+                if(sParcela.notas==null){
+                    sParcela.notas= new ArrayList<Nota>()
+                }
+                sParcela.notas.add(notaDB)
+                sParcela.merge()
+                info.value= "A nota foi gravada com sucesso!"
+                info.style = "color:blue;font-weight;font-size:16px;background:back"
+
+            }
+        }catch(Exception e){
+            info.value = e.toString()
+            info.style = "color:red;font-weight;font-size:16px;background:back"
+
+        }
+
+    }
+
+    Nota getSelectedNota() {
+        return selectedNota
+    }
+
+    void setSelectedNota(Nota selectedNota) {
+        this.selectedNota = selectedNota
+    }
+
+    String getNotaParcela() {
+        return notaParcela
+    }
+
+    void setNotaParcela(String notaParcela) {
+        this.notaParcela = notaParcela
+    }
 
     boolean getView_lb_creditos() {
         return view_lb_creditos
@@ -833,6 +887,7 @@ class PagamentosViewModel {
         saida.origem = contaCaixa
         saida.destino = selectedConta
         saida.diario = diario
+        saida.setNumeroDaSaida(contadorService.gerarNumeroDaSaida())
         saida.save(failOnError: true)
         info.value = "gravação feita com sucesso!"
         info.style = "color:red;font-weight;font-size:16px;background:back"
