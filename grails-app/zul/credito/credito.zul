@@ -32,42 +32,47 @@
                 <include src="/credito/printPenhoras.gsp"/>
             </hbox>
         </hbox>
-        <grid style="@load(vm.cliente_style)" width="695px">
-            <columns>
-                <column width="200px"/>
-                <column width="355px"/>
-            </columns>
-            <rows>
-                <row>
-                    <textbox width="300px" placeholder="nome do cliente"
-                             style="font-size:18px;background:#95B9C7;color:black"
-                             value="@bind(vm.filterCliente)"
-                             onChange="@command('doSearchCliente')"
-                             instant="true"/>
+        <hbox>
+            <grid style="@load(vm.cliente_style)" width="400px">
+                <columns>
+                    <column width="220px"/>
 
-                    <listbox onSelect="@command('showCreditos')" checkmark="true" style="@bind('style')"
-                             selectedItem="@bind(vm.selectedCliente)"
-                             model="@load(vm.clientes)" width=""
-                             height="" mold="paging" pageSize="4">
+                </columns>
+                <rows>
+
+                    <row>
+
+                        <textbox width="350px" placeholder="codigo do cliente "
+                                 style="font-size:18px;background:#95B9C7;color:black"
+                                 value="@bind(vm.filterCliente)"
+                                 onChange="@command('doSearchCliente')"
+                                 instant="false"/>
 
 
-                        <template name="model" status="s">
-
-                            <listitem onClick="@command('showCreditos')">
-
-                                <listcell label="@load(each.nome)"/>
-
-                            </listitem>
-                        </template>
-
-                    </listbox>
+                        <!--     <listbox onSelect="@command('showCreditos')" checkmark="true" style="@bind('style')"
+                                      selectedItem="@bind(vm.selectedCliente)"
+                                      model="@load(vm.clientes)" width=""
+                                      height="" mold="paging" pageSize="4">
 
 
-                </row>
+                                 <template name="model" status="s">
 
-            </rows>
-        </grid>
+                                     <listitem onClick="@command('showCreditos')">
 
+                                         <listcell label="@load(each.nome)"/>
+
+                                     </listitem>
+                                 </template>
+
+                             </listbox>-->
+
+
+                    </row>
+
+                </rows>
+            </grid>
+            Digite codigo do cliente ou Nº. de Telefone
+        </hbox>
         <tabbox>
 
             <tabs>
@@ -108,7 +113,8 @@
                                     <columns>
 
                                         <column label="Nome do cliente:" width="110px"/>
-                                        <column label="@load(vm.selectedCliente.nome)"
+                                        <column style="font-weight:bold;font-size:11pt;color:red"
+                                                label="@load(vm.selectedCliente.nome)"
                                                 width=""/>
 
                                     </columns>
@@ -312,7 +318,8 @@
                 <tabpanel>
                     <tabbox height="600px">
                         <toolbar>
-                            <label style="font-size:13pt;text-align:center" value="@load(vm.selectedCliente.nome)"/>
+                            <label style="font-size:13pt;text-align:center;color:red"
+                                   value="@load(vm.selectedCliente.nome)"/>
                         </toolbar>
                         <tabs>
 

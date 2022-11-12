@@ -1,5 +1,6 @@
 package mz.maleyanga.cliente
 
+import mz.maleyanga.GenerateRandomNumber
 import mz.maleyanga.conta.Conta
 import mz.maleyanga.credito.Credito
 import mz.maleyanga.documento.Anexo
@@ -13,6 +14,7 @@ import mz.maleyanga.security.Utilizador
 class Cliente implements Serializable {
     private static final long serialVersionUID = 1
     String nome
+    String codigo = ""
     String nuit
     String tipoDeIndentificacao
     String numeroDeIndentificao
@@ -114,11 +116,13 @@ class Cliente implements Serializable {
         // penhoras nullable: true
         dataDeEmissao nullable: true
         genero nullable: true
+        codigo nullable: true, unique: true
 
     }
 
     String toString() {
         return "${nome}"
     }
+
 
 }

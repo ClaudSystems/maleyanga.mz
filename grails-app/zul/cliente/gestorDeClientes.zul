@@ -54,7 +54,7 @@
                                 <textbox width="300px" placeholder="nome do cliente, datas nuit, email, telefone "
                                          style="background:#95B9C7;color:black" value="@bind(vm.filterCliente)"
                                          onChange="@command('doSearchCliente')"
-                                         instant="false"/>
+                                         instant="true"/>
                                 <hbox visible="@load(not empty vm.editCliente.id)" id="hb_new_cliente">
 
                                 </hbox>
@@ -275,7 +275,7 @@
                                          model="@load(vm.todosClientes)" width=""
                                          height="" mold="paging" pageSize="12">
                                     <listhead sizable="true">
-                                        <listheader sort="auto(id)" width="80px" label="ID" align="left"/>
+                                        <listheader sort="auto(codigo)" width="100px" label="CODIGO" align="left"/>
                                         <listheader sort="auto(nome)" width="" label="Nome" align="left"/>
                                         <listheader sort="auto(nuit)" width="100px" label="NUIT" align="left"/>
                                         <listheader sort="auto(tipoDeIndentificacao)" width="100px" label="T. De Indet."
@@ -294,9 +294,10 @@
                                     </listhead>
                                     <template name="model" status="s">
 
-                                        <listitem onClick="@command('showClientes', index=each.id)"
+                                        <listitem onDoubleClick="@command('showClientes', index=each.id)"
                                                   style="@bind('style')">
-                                            <listcell label="@load(each.id)"/>
+                                            <listcell style="font-weight:bold;font-size:11pt"
+                                                      label="@load(each.codigo)"/>
                                             <listcell label="@load(each.nome)"/>
                                             <listcell label="@load(each.nuit)"/>
                                             <listcell label="@load(each.tipoDeIndentificacao)"/>
@@ -373,6 +374,7 @@
                              style="background:#95B9C7;color:black" value="@bind(vm.filterAssinante)"
                              onChange="@command('doSearchAssinantes')"
                              instant="false"/>
+
                     <hbox>
 
                         <grid visible="@load(not empty vm.sAssinante)" id="gd_banc" width="500px"

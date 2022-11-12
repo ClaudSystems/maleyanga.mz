@@ -1,4 +1,6 @@
+import mz.maleyanga.GenerateRandomNumber
 import mz.maleyanga.Taxa.Taxa
+import mz.maleyanga.cliente.Cliente
 import mz.maleyanga.conta.PlanoDeContas
 import mz.maleyanga.entidade.Entidade
 import mz.maleyanga.security.Role
@@ -444,7 +446,14 @@ class BootStrap {
 
         }
 
-
+        def clientes = Cliente.all
+        for(Cliente c in clientes){
+            if(c.codigo==null){
+                c.codigo = GenerateRandomNumber.randomBigNumberString
+                c.merge(flush: true)
+            }
+        }
+        return Cliente.all
 
     }
     def destroy = {

@@ -38,6 +38,15 @@ class ClienteService {
             maxResults(4)
             order("nome", "desc")
         }
+        results.each {
+            System.println("results")
+            if (it.codigo == null) {
+                it.codigo = GenerateRandomNumber.randomBigNumberString
+                System.println("cliente.codigo")
+                System.println(it.codigo)
+                it.merge(flush: true)
+            }
+        }
         return results
     }
 
@@ -182,7 +191,15 @@ class ClienteService {
     }
 
     def all() {
+        def clientes = Cliente.all
+        for (Cliente c in clientes) {
+            if (c.codigo == null) {
+                c.codigo = GenerateRandomNumber.randomBigNumberString
+                c.merge(flush: true)
+            }
+        }
         return Cliente.all
+
     }
 
     def findAllByCreditosIsNotEmpty() {

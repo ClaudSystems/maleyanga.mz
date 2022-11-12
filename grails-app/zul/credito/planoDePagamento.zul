@@ -35,8 +35,8 @@
                     </cell>
                 </row>
                 <row>
-                    <label value="ID:"/>
-                    <label value="@load(vm.creditoInstance.cliente.id)"/>
+                    <label value="CODIGO DO CLIENTE:"/>
+                    <label style="font-weight:bold;font-size:11pt" value="@load(vm.creditoInstance.cliente.codigo)"/>
                     <cell colspan="1" style="text-align:left">
                         <label value="Gestor:  "/>
                         <label value="@load(vm.creditoInstance.cliente.utilizador.username)"/>
@@ -44,7 +44,7 @@
                 </row>
                 <row>
                     <label value="Nome:"/>
-                    <label value="@load(vm.creditoInstance.cliente.nome)"/>
+                    <label style="font-weight:bold;font-size:11pt" value="@load(vm.creditoInstance.cliente.nome)"/>
                 </row>
                 <row>
                     <cell colspan="2">

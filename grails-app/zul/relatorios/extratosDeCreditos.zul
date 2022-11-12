@@ -17,18 +17,18 @@
                  height="">
 
             <listhead sizable="true">
-                <listheader sort="auto(gestor)" width="90px" label="Gestor" align="left"/>
-                <listheader sort="auto(nome)" width="200px" label="Nome" align="left"/>
+                <listheader sort="auto(gestor)" width="110px" label="Gestor" align="left"/>
+                <listheader sort="auto(nome)" width="100px" label="Código do Cliente" align="left"/>
                 <listheader sort="auto(contacto)" width="70px" label="Contacto" align="left"/>
-                <listheader sort="auto(dateConcecao)" width="55px" label="D. De C.D.Cr." align="left"/>
-                <listheader sort="auto(periodicidade)" width="60px" label="Periodic." align="left"/>
-                <listheader sort="auto(numeroDoCredito)" width="50px" label="Nº. do C." align="left"/>
-                <listheader sort="auto(numeroDePrestacoesEmDia)" width="50px" label="Nº Prest." align="left"/>
-                <listheader sort="auto(valorCreditado)" width="94px" label="V. Alocado" align="left"/>
-                <listheader sort="auto(totalCredito)" width="94px" label="T. Pago" align="left"/>
-                <listheader sort="auto(totalJurosDeMora)" width="93px" label="Juros de M." align="left"/>
-                <listheader sort="auto(valorEmMora)" width="93px" label="V. Em Mora" align="left"/>
-                <listheader sort="auto(valorEmDivida)" width="95px" label="V. Em Dívida" align="left"/>
+                <listheader sort="auto(dateConcecao)" width="85px" label="D. De C.D.Cr." align="left"/>
+                <listheader sort="auto(periodicidade)" width="80px" label="Periodic." align="left"/>
+                <listheader sort="auto(numeroDoCredito)" width="60px" label="Nº. do C." align="left"/>
+                <listheader sort="auto(numeroDePrestacoesEmDia)" width="60px" label="Nº Prest." align="left"/>
+                <listheader sort="auto(valorCreditado)" width="95px" label="V. Alocado" align="left"/>
+                <listheader sort="auto(totalCredito)" width="95px" label="T. Pago" align="left"/>
+                <listheader sort="auto(totalJurosDeMora)" width="95px" label="Juros de M." align="left"/>
+                <listheader sort="auto(valorEmMora)" width="95px" label="V. Em Mora" align="left"/>
+                <listheader sort="auto(valorEmDivida)" width="100px" label="V. Em Dívida" align="left"/>
             </listhead>
             <template name="model" status="s">
 

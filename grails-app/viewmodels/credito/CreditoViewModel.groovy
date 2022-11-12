@@ -463,7 +463,7 @@ class CreditoViewModel {
         }
         //  credito?.pagamentos?.each {pagamentoService.calcularJurosDeDemora(it)}
         soma()
-        hb_editor.visible = false
+      //  hb_editor.visible = false
         creditoService.credito = credito
         sessionStorageService.credito = credito
 
@@ -473,11 +473,27 @@ class CreditoViewModel {
 
 
     @Command
-    @NotifyChange(["credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor","clientes"])
+    @NotifyChange(["cliente_style","credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor","clientes","selectedCliente"])
     void doSearchCliente() {
+        info.value=""
+        if(!filterCliente.empty){
+            selectedCliente = Cliente.findByCodigo(filterCliente)
+        }else return
+
+        if(selectedCliente==null){
+            if(!filterCliente.empty){
+                selectedCliente = Cliente.findByTelefone(filterCliente)
+            }else return
+
+        }
+        if(selectedCliente==null){
+            info.value+="Cliente não indentificado !"
+            info.style = red
+        }
+
       //  bt_add_novo_credito.visible = false
 
-        info.value = ""
+  /*      info.value = ""
         clientes.clear()
         List<Cliente> allItems = clienteService.findAllByName(filterCliente)
         if (filterCliente != null &&! "".equals(filterCliente))
@@ -490,7 +506,8 @@ class CreditoViewModel {
                  info.value+="Cliente não indentificado !"
                  info.style = red
              }
-        }
+        }*/
+
     }
 
     ListModelList<Pagamento> getPagamentos() {
@@ -528,7 +545,7 @@ class CreditoViewModel {
               }
            }
 
-        hb_editor.visible = false
+       // hb_editor.visible = false
     }
     @Command
     @NotifyChange(["prestacoes","credito","editor"])
@@ -538,7 +555,7 @@ class CreditoViewModel {
         if(!settings.permitirDesembolsoComDivida){
             if(selectedCliente){
                 if(!creditos.empty){
-                    hb_editor.visible=false
+                   // hb_editor.visible=false
                     bt_fechar.label="Não é permitido desembolso de clientes com dívidas!"
                 }
 
@@ -949,7 +966,7 @@ class CreditoViewModel {
 
         if(selectedCliente.id==Credito.last().cliente.id){
             info.value = "ESTE CLIENTE JÁ FOI DESEMBOLSADO!"
-            hb_editor.visible = false
+          //  hb_editor.visible = false
             return
         }
         info.value=""

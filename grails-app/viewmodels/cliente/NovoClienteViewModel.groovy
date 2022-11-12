@@ -2,6 +2,7 @@ package cliente
 
 import grails.transaction.Transactional
 import mz.maleyanga.ClienteService
+import mz.maleyanga.GenerateRandomNumber
 import mz.maleyanga.UtilizadorService
 import mz.maleyanga.cliente.Cliente
 import mz.maleyanga.conta.Conta
@@ -224,6 +225,7 @@ class NovoClienteViewModel {
             novoCliente.classificacao = "medio"
             novoCliente.utilizador = selectedGestor
             novoCliente.ativo = true
+             novoCliente.codigo = GenerateRandomNumber.randomBigNumberString
             def result = clienteService.saveCliente(novoCliente)
              if(result){
                  info.value = "Dados gravados com sucesso!"

@@ -68,7 +68,7 @@ SessionStorageService sessionStorageService
             Cliente cliente = Cliente.findById(creditoInstance?.clienteId)
              extratosDeCredito?.numeroDoCredito = creditoInstance?.numeroDoCredito
              extratosDeCredito?.dateConcecao = creditoInstance?.dateConcecao
-             extratosDeCredito?.nome = cliente.nome
+             extratosDeCredito?.nome = cliente.codigo
              extratosDeCredito?.gestor = cliente.getUtilizador()
              extratosDeCredito?.numeroDePrestacoesEmDia =  getNumeroDePrestacoesEmDia(creditoInstance)
              extratosDeCredito?.valorDaPrestacao = getValorDaPrestacao(creditoInstance)

@@ -13,9 +13,10 @@
                  model="@load(vm.clientes)" width="1050px"
                  height="">
             <listhead sizable="true">
-                <listheader sort="auto(gestor)" width="80px" label="GESTOR" align="left"/>
+
                 <listheader sort="auto(nome)" width="200px" label="Nome" align="left"/>
-                <listheader sort="auto(contacto)" width="90px" label="Contacto" align="left"/>
+                <listheader sort="auto(codigo)" width="60px" label="CODIGO" align="left"/>
+                <listheader sort="auto(telefone)" width="90px" label="Contacto" align="left"/>
                 <listheader sort="auto(residencia)" width="200px" label="Endereço"
                             align="left"/>
                 <listheader sort="auto(ativo)" width="50px"
@@ -23,19 +24,23 @@
                             align="left"/>
                 <listheader sort="auto(classificacao)" width="90px" label="Classificação"
                             align="left"/>
+                <listheader sort="auto(utilizador.username)" width="90px" label="Gestor"
+                            align="left"/>
 
 
             </listhead>
-            <template name="model" status="s">
+            <template name="model" var="cliente" status="s">
 
                 <listitem onClick="@command('', index=each.id)"
                           style="@bind('style')">
-                    <listcell label="@load(each.gestor)"/>
-                    <listcell label="@load(each.nome)"/>
-                    <listcell label="@load(each.contacto)"/>
-                    <listcell label="@load(each.residencia)"/>
-                    <listcell label="@load(each.ativo)"/>
-                    <listcell label="@load(each.classificacao)"/>
+
+                    <listcell label="@load(cliente.nome)"/>
+                    <listcell label="@load(cliente.codigo)"/>
+                    <listcell label="@load(cliente.telefone)"/>
+                    <listcell label="@load(cliente.residencia)"/>
+                    <listcell label="@load(cliente.ativo)"/>
+                    <listcell label="@load(cliente.classificacao)"/>
+                    <listcell label="@load(cliente.utilizador)"/>
 
 
                 </listitem>

@@ -212,6 +212,7 @@
                 <listhead sizable="true">
 
                     <listheader sort="auto(nome)" width="" label="Nome" align="left"/>
+                    <listheader sort="auto(codigo)" width="" label="Codigo" align="left"/>
                     <listheader sort="auto(nuit)" width="100px" label="NUIT" align="left"/>
                     <listheader sort="auto(tipoDeIndentificacao)" width="150px" label="T. De Indet."
                                 align="left"/>
@@ -222,7 +223,6 @@
                                 align="left"/>
                     <listheader sort="auto(telefone)" width="100px" label="Tel." align="left"/>
                     <listheader sort="auto(telefone1)" width="100px" label="Tel." align="left"/>
-                    <listheader sort="auto(telefone2)" width="100px" label="Tel." align="left"/>
                     <listheader sort="auto(utilizador.username)" width="100px" label="Gestor"
                                 align="left"/>
 
@@ -234,13 +234,13 @@
                             style="@bind('style')">
 
                         <listcell label="@load(each.nome)"/>
+                        <listcell label="@load(each.codigo)"/>
                         <listcell label="@load(each.nuit)"/>
                         <listcell label="@load(each.tipoDeIndentificacao)"/>
                         <listcell label="@load(each.numeroDeIndentificao)"/>
                         <listcell label="@load(each.residencia)"/>
                         <listcell label="@load(each.telefone)"/>
                         <listcell label="@load(each.telefone1)"/>
-                        <listcell label="@load(each.telefone2)"/>
                         <listcell label="@load(each.utilizador.username)"/>
 
                     </listitem>

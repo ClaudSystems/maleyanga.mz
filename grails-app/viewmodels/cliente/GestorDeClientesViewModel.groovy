@@ -6,6 +6,7 @@ import mz.maleyanga.AssinanteService
 import mz.maleyanga.ClienteService
 import mz.maleyanga.CreditoService
 import mz.maleyanga.ExtratoDeConta
+import mz.maleyanga.GenerateRandomNumber
 import mz.maleyanga.UtilizadorService
 import mz.maleyanga.cliente.Assinante
 import mz.maleyanga.cliente.Cliente

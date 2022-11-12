@@ -62,7 +62,6 @@ class PagamentosViewModel {
     @Wire Button bt_salvar
     @Wire Button bt_fechar_caixa
     @Wire Listbox lb_credito
-    @Wire Listbox lb_creditos
     private  String filter
     private  String filterCliente
     private  boolean  allPagamentos
@@ -72,8 +71,7 @@ class PagamentosViewModel {
     private  Pagamento selectedPagamento
     private  Pagamento selectedPagamentoo
     private  Credito selectedCredito
-    private  Credito selectedCreditoo
-    private ListModelList<Pagamento> pagamentos
+     private ListModelList<Pagamento> pagamentos
     private ListModelList<Pagamento> pagamentoss
     private ListModelList<Parcela> parcelas
     private ListModelList<Parcela> entradas
@@ -113,34 +111,64 @@ class PagamentosViewModel {
     private  Conta selectedConta
     private  Saida selectedSaida
 
+    boolean getView_lb_creditos() {
+        return view_lb_creditos
+    }
+
     @Command
-    @NotifyChange(["clientes","selectedCliente","pagamentos","selectedCredito","creditos","selectedPagamento","filterCliente"])
+    @NotifyChange(["clientes","clientess","selectedCliente","selectedClientee","pagamentos","selectedCredito","creditos","selectedPagamento","filterCliente"])
     void doSearchCliente() {
         info.value=""
         gd_entrada.visible = false
         selectedCliente= null
+        selectedClientee = null
+        if(filterCliente.empty){
+            selectedCliente==null
+            selectedClientee==null
+            return
+        }
+
         fecharEditor()
-        clientes.clear()
-        clientess.clear()
+       // clientes.clear()
+       // clientess.clear()
         pagamentos.clear()
         if(filterCliente.contains("/")){
             selectedCredito = Credito.findByNumeroDoCredito(filterCliente)
             if(selectedCredito){
                 creditos.add(selectedCredito)
                 selectedCliente = selectedCredito.cliente
-                showCreditos()
+                selectedClientee = selectedCredito.cliente
                 getSelectedCliente()
-                return
+
             }else {
-               lb_credito.visible = false
+                lb_credito.visible = false
                 creditos.clear()
                 info.value+="Crédito não indentificado !"
                 info.style = "color:red;font-weight;font-size:16px;background:back"
             }
-        }
+        }else
+            {
 
-        List<Cliente> allItems = clienteService.findAllByName(filterCliente)
-        if (filterCliente != null &&! "".equals(filterCliente))
+                info.value=""
+                selectedCliente = Cliente.findByCodigo(filterCliente)
+                selectedClientee = selectedCliente
+                if(selectedCliente==null){
+                    selectedCliente = Cliente.findByTelefone(filterCliente)
+                    selectedClientee = selectedCliente
+                }
+                if(selectedCliente==null){
+                    info.value+="Cliente não indentificado !"
+                    info.style = red
+                }else {
+
+                    getSelectedCliente()
+                }
+
+            }
+
+
+       // List<Cliente> allItems = clienteService.findAllByName(filterCliente)
+        /*if (filterCliente != null &&! "".equals(filterCliente))
         {
             for (Cliente item : allItems) {
                 if (item.nome.toLowerCase().indexOf(filterCliente.toLowerCase()) >= 0 ||
@@ -157,7 +185,9 @@ class PagamentosViewModel {
                 info.value+="Cliente não indentificado !"
                 info.style = "color:red;font-weight;font-size:16px;background:back"
             }
-        }
+        }*/
+
+
     }
 
     String getFilterCliente() {
@@ -179,22 +209,15 @@ class PagamentosViewModel {
         remissao = new Remissao()
     }
 
-    Credito getSelectedCreditoo() {
-        return selectedCreditoo
-    }
 
-    @NotifyChange(["pagamentoss","selectedPagamentoo","remissao","selectedRemissao","selectedCreditoo"])
-    void setSelectedCreditoo(Credito selectedCreditoo) {
-        selectedRemissao = null
-        remissao = new Remissao()
-        this.selectedCreditoo = selectedCreditoo
-    }
+
+
 
     Cliente getSelectedClientee() {
         return selectedClientee
     }
 
-    @NotifyChange(["selectedCredito","pagamentos","selectedPagamento","selectedPagamentoo","selectedCreditoo","selectedClientee","creditoss"])
+    @NotifyChange(["selectedCredito","pagamentos","selectedPagamento","selectedPagamentoo","selectedClientee","creditoss"])
     void setSelectedClientee(Cliente selectedClientee) {
         sessionStorageService.cliente = selectedClientee
         this.selectedClientee = selectedClientee
@@ -293,18 +316,13 @@ class PagamentosViewModel {
      //   lb_credito.visible = false
         getPagamentos()
     }
-    @Command
-    @NotifyChange(["creditos","creditoss","selectedClientee","selectedCliente","selectedCredito","pagamentos","pagamentoss","selectedPagamentoo"])
-    def showCreditos(){
-        lb_credito.visible= true
-        lb_creditos.visible= true
-    }
+
     Cliente getSelectedCliente() {
         return selectedCliente
     }
 
 
-    @NotifyChange(["info","selectedCredito","pagamentos","selectedPagamento","selectedPagamentoo","selectedCreditoo","creditos","selectedCliente"])
+    @NotifyChange(["info","selectedCredito","pagamentos","selectedPagamento","selectedPagamentoo","creditos","selectedCliente"])
     void setSelectedCliente(Cliente selectedCliente) {
         info.value = ""
         selectedCredito = null
@@ -717,6 +735,7 @@ class PagamentosViewModel {
      /*   bt_fechar_caixa.visible = false
         dv_filtragem.visible = false
         lb_pagamentos.visible = false*/
+        lb_credito.visible = false
         tb_saida_descriao.readonly = false
         saida = new Saida()
         saida.dataDePagamento = new Date()
@@ -727,11 +746,15 @@ class PagamentosViewModel {
         remissao = null
     }
 
-
-
     @Command
+    @NotifyChange(["creditos"])
+    def menuRemissao (){
+        lb_credito.visible= true
+    }
+
     @NotifyChange(["saida","parcela","selectedPagamentoo","remissao"])
-    def addRemissao(){
+    @Command
+    addRemissao(){
         parcela = null
         parcelaEntrada = null
         saida = null
@@ -922,10 +945,16 @@ class PagamentosViewModel {
        }
     }
 
+        @Command
+        addRecibos(){
+        lb_credito.visible= false
+
+    }
 
     @NotifyChange(["selectedPagamento",'parcela',"contaOrigem","saida","pagamento_id","parcelaEntrada","entradas"])
     @Command
     addEntrada(){
+        lb_credito.visible= false
         for(Saida saida1 in saidas){
             if(saida1.descricao=="FEIXO DE CAIXA"){
                 info.value ="Esta caixa já foi fechado, por favor contacte o seu gerente!"
@@ -967,12 +996,17 @@ class PagamentosViewModel {
     }
 
     @Command
-    @NotifyChange(["selectedCreditoo","creditoss","remissoes","pagamentoss","selectedPagamentoo"])
+    addPgmtPrestacao(){
+        lb_credito.visible=true
+    }
+
+    @Command
+    @NotifyChange(["creditoss","remissoes","pagamentoss","selectedPagamentoo"])
     def redemirCredito(){
         remissao = new Remissao()
 
         try {
-            remissao.valorDaRemissao = selectedCreditoo.valorEmDivida*(-1)
+            remissao.valorDaRemissao = selectedCredito.valorEmDivida*(-1)
             Utilizador user = springSecurityService.currentUser as Utilizador
             if (!user.authorities.any { it.authority == "REMISSAO_CREATE" }) {
                 info.value="Este utilizador não tem permissão para executar esta acção !"
@@ -992,10 +1026,10 @@ class PagamentosViewModel {
                 info.style = "color:red;font-weight;font-size:16px;background:back"
                 return
             }
-            if(remissao.valorDaRemissao>selectedCreditoo.valorEmDivida*(-1)){
+            if(remissao.valorDaRemissao>selectedCredito.valorEmDivida*(-1)){
                 info.value="O valor da remissão não pode ser superior ao valor em dívida!"
                 info.style = "color:red;font-weight;font-size:16px;background:back"
-                remissao.valorDaRemissao = selectedCreditoo.valorEmDivida*(-1)
+                remissao.valorDaRemissao = selectedCredito.valorEmDivida*(-1)
                 return
             }
             if(remissao.valorDaRemissao<0){
@@ -1012,7 +1046,7 @@ class PagamentosViewModel {
                 info.style = "color:red;font-weight;font-size:16px;background:back"
                 return
             }*/
-            Pagamento pagamento = Pagamento.findById(pagamentoss.first().id)
+            Pagamento pagamento = Pagamento.findById(pagamentos.first().id)
             remissao.pagamento = pagamento
             if(pagamento.remissoes==null){
                 pagamento.remissoes = new ArrayList<Remissao>()
@@ -1051,15 +1085,9 @@ class PagamentosViewModel {
                 devedora.merge(failOnError: true)
                 info.value = "Operações feitas com sucesso!"
                 info.style = "color:red;font-weight;font-size:16px;background:back"
-
-                //addRemissao()
                 selectedRemissao = Remissao.findById(remissao.id)
                 remissoes.add(selectedRemissao)
-                pagamentoss.clear()
-                selectedCreditoo=null
-
-                // remissao =null
-                // fecharEditor()
+                selectedCredito=null
 
             }else {
                 info.value="Erro na na gravação da remissão!"
@@ -1152,11 +1180,7 @@ class PagamentosViewModel {
                 info.value = "Operações feitas com sucesso!"
                 info.style = "color:red;font-weight;font-size:16px;background:back"
                 remissoes.add(remissao)
-                
-               //addRemissao()
                 selectedRemissao = Remissao.findById(remissao.id)
-               // remissao =null
-               // fecharEditor()
 
             }else {
                 info.value="Erro na na gravação da remissão!"
@@ -1571,7 +1595,7 @@ class PagamentosViewModel {
     }
 
     @Command
-    @NotifyChange(['selectedPagamentoo','selectedRemissao','remissoes',"selectedCreditoo","pagamentoss"])
+    @NotifyChange(['selectedPagamentoo','selectedRemissao','remissoes',"pagamentoss"])
     def fecharEditorRemissao(){
         selectedPagamentoo=null
         remissao = null
@@ -1749,7 +1773,7 @@ class PagamentosViewModel {
         if(pagamentoss==null){
             pagamentoss = new ArrayList<>()
         }
-            pagamentoss = Pagamento.findAllByCreditoAndPago(selectedCreditoo,false).sort{it.id}
+            pagamentoss = Pagamento.findAllByCreditoAndPago(selectedCredito,false).sort{it.id}
         return pagamentoss
     }
 

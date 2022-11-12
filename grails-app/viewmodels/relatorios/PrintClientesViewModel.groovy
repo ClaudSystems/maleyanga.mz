@@ -9,7 +9,7 @@ import org.zkoss.zul.ListModelList
 
 class PrintClientesViewModel {
     ClienteService clienteService
-    ListModelList<Cliente> clientes = new ListModelList<Cliente>(clienteService.all())
+    ListModelList<Cliente> clientes
 
     ListModelList<Cliente> getClientes() {
         if(clientes==null){

@@ -71,7 +71,7 @@
                             </auxhead>
 
                             <listhead sizable="true">
-                                <listheader sort="auto(id)" width="80px" label="ID" align="left"/>
+                                <listheader sort="auto(codigo)" width="80px" label="CODIGO" align="left"/>
                                 <listheader sort="auto(nome)" width="" label="Nome" align="left"/>
                                 <listheader sort="auto(telefone)" width="100px" label="Tel." align="left"/>
 
@@ -79,7 +79,7 @@
                             <template name="model" status="s">
 
                                 <listitem onClick="@command('')">
-                                    <listcell label="@load(each.id)"/>
+                                    <listcell label="@load(each.codigo)"/>
                                     <listcell label="@load(each.nome)"/>
                                     <listcell label="@load(each.telefone)"/>
                                 </listitem>
@@ -102,7 +102,7 @@
                             </auxhead>
 
                             <listhead sizable="true">
-                                <listheader sort="auto(id)" width="80px" label="ID" align="left"/>
+                                <listheader sort="auto(codigo)" width="80px" label="CODIGO" align="left"/>
                                 <listheader sort="auto(nome)" width="" label="Nome" align="left"/>
                                 <listheader sort="auto(telefone)" width="100px" label="Tel." align="left"/>
 
@@ -110,7 +110,7 @@
                             <template name="model" status="s">
 
                                 <listitem onClick="@command('')">
-                                    <listcell label="@load(each.id)"/>
+                                    <listcell label="@load(each.codigo)"/>
                                     <listcell label="@load(each.nome)"/>
                                     <listcell label="@load(each.telefone)"/>
                                 </listitem>
@@ -127,7 +127,7 @@
                             </auxhead>
 
                             <listhead sizable="true">
-                                <listheader sort="auto(id)" width="80px" label="ID" align="left"/>
+                                <listheader sort="auto(codigo)" width="80px" label="CODIGO" align="left"/>
                                 <listheader sort="auto(nome)" width="" label="Nome" align="left"/>
                                 <listheader sort="auto(telefone)" width="100px" label="Tel." align="left"/>
 
@@ -135,7 +135,7 @@
                             <template name="model" status="s">
 
                                 <listitem onClick="@command('')">
-                                    <listcell label="@load(each.id)"/>
+                                    <listcell label="@load(each.codigo)"/>
                                     <listcell label="@load(each.nome)"/>
                                     <listcell label="@load(each.telefone)"/>
                                 </listitem>
@@ -152,7 +152,7 @@
                              model="@load(vm.todosClientes)" width=""
                              height="" mold="paging" pageSize="12">
                         <listhead sizable="true">
-                            <listheader sort="auto(id)" width="80px" label="ID" align="left"/>
+                            <listheader sort="auto(codigo)" width="80px" label="CODIGO" align="left"/>
                             <listheader sort="auto(nome)" width="200px" label="Nome" align="left"/>
                             <listheader sort="auto(nuit)" width="100px" label="NUIT" align="left"/>
                             <listheader sort="auto(tipoDeIndentificacao)" width="100px" label="T. De Indet."
@@ -171,7 +171,7 @@
 
                             <listitem onClick="@command('', index=each.id)"
                                       style="@bind('style')">
-                                <listcell label="@load(each.id)"/>
+                                <listcell label="@load(each.codigo)"/>
                                 <listcell label="@load(each.nome)"/>
                                 <listcell label="@load(each.nuit)"/>
                                 <listcell label="@load(each.tipoDeIndentificacao)"/>
