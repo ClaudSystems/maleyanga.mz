@@ -33,10 +33,15 @@ class PrintContratoDeCreditoViewModel {
     String percentualDeMorasExt
     BigDecimal valorDaComissao
     String valorDaComissaoExt
+    String valorDeJurosExt
     PenhoraService penhoraService
 
     BigDecimal getValorDaComissao() {
-        return credito.valorCreditado*0.02/100
+        return credito.valorCreditado*0.2/100
+    }
+
+    String getValorDeJurosExt() {
+        return currencyWriter.write(credito.valorDeJuros)
     }
 
     String getValorDaComissaoExt() {

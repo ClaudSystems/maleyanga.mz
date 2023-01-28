@@ -13,10 +13,10 @@
 
 <body>
 <z:body/>
-<script type='text/javascript'>
+%{--<script type='text/javascript'>
     $(document).ready(function () {
         window.print();
     });
-</script>
+</script>--}%
 </body>
 </html>

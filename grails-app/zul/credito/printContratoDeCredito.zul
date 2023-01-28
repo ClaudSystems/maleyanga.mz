@@ -168,9 +168,12 @@
                         <label value="( "/>
                         <label value="@load(vm.percentualPorExtenso)"/>
                         <label value=")"/>
-                        <label value=", referente a "/>
-                        <label value="@load(vm.credito.numeroDePrestacoes)"/>
-                        <label value="@load(vm.prestacao)"/>
+
+                        <label value=", com o juro total de "/>
+                        <label value="@load(vm.credito.valorDeJuros)@converter('formatedNumber', format='###,##0.00')"/>
+                        <label value=" ("/>
+                        <label value="@load(vm.valorDeJurosExt)"/>
+                        <label value="), "/>
                         <label value=" totalizando a quantia a reembolsar de "/>
                         <label value="@load(vm.valorAPagar)@converter('formatedNumber', format='###,##0.00')"/>
                         <label value=" ("/>
@@ -188,12 +191,12 @@
                 <row>
                     <cell align="justify">
                         <label value="3. O MUTUÁRIO deverá efectuar o reembolso do empréstimo concedido,
-                     na conta bancária domiciliado no ."/>
+                     na conta bancária domiciliado no: "/>
                         <label style="font-weight:bold;align:left" value="@load(vm.settings.conta1)"/>
-                        <label value="ou no escritório da "/>
+                        <label value=", ou no escritório da "/>
                         <label value="@load(vm.entidade)"/>
-                        <label value="."/>
-                        <label value="ou ainda pelo canal electrónico "/>
+                        <label value=", "/>
+                        <label value="ou ainda pelo canal electrónico: "/>
                         <label style="font-weight:bold;align:left" value="@load(vm.settings.conta2)"/>
 
                     </cell>
@@ -245,6 +248,7 @@
                         <label value="( "/>
                         <label value="@load(vm.valorDaComissaoExt)"/>
                         <label value=" )."/>
+                        <label value=" a ser cobrado na assinatura do contrato ou descontado no empréstimo a ser  concedido."/>
                     </cell>
                 </row>
                 <row>
@@ -482,7 +486,7 @@
                 <row>
                     <label/>
                     <label value="c)"/>
-                    <label value="c)	Mudança de domicílio sem prévia comunicação ao MUTUANTE."/>
+                    <label value="Mudança de domicílio sem prévia comunicação ao MUTUANTE."/>
                 </row>
             </rows>
         </grid>
@@ -648,7 +652,25 @@
                     <label value="MUTUANTE"/>
                     <label value="MUTUÁRIO"/>
                 </row>
+                <row align="center">
+                    <label value=""/>
+                    <label value=""/>
+                </row>
+                <row align="center">
+                    <label value=""/>
+                    <label value=""/>
+                </row>
+                <row align="center">
+                    <label value="_____________________________________________"/>
+                    <label value=""/>
+                </row>
+                <row align="center">
+                    <label value="AVALISTA"/>
+                    <label value=""/>
+                </row>
+
             </rows>
+
         </grid>
 
     </window>
