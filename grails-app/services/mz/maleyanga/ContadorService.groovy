@@ -132,7 +132,6 @@ class ContadorService {
 
 
     }
-
     String gerarNumeroDaSaida(Saida saida) {
         Calendar cal = Calendar.getInstance()
         cal.setTime(saida.dateCreated)

@@ -159,7 +159,6 @@ public class CurrencyWriter {
 
 		return sb.substring(3);
 	}
-
 	public String escreve(final BigDecimal amount) {
 		if (null == amount) {
 			throw new IllegalArgumentException();

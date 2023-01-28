@@ -336,7 +336,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="1. Para salvaguardar o crédito concedido, o MUTUÁRIO irá
                         prestar a título de garantia, os bens abaixo descritos, que lhe será
                         exigível no acto da assinatura do presente contrato:  "/>
@@ -409,7 +409,7 @@
                         <label value="%("/>
                         <label value="@load(vm.percentualDeMorasExt)"/>
 
-                        <label value="), por mês sobre o capital e juros em dívida."/>
+                        <label value="). "/>
                     </cell>
                 </row>
                 <row>

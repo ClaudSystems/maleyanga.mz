@@ -47,18 +47,11 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="actualizado a adição de notas no pagamento das prestações e no diario">
+    <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="atualizacao do contrato feito com sucesso">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.slcache/.index" beforeDir="false" afterPath="$PROJECT_DIR$/.slcache/.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/conf/BootStrap.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/BootStrap.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/saidas/Saida.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/saidas/Saida.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/ContadorService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/ContadorService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/utils/mz/maleyanga/CurrencyWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/utils/mz/maleyanga/CurrencyWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/credito/PrintContratoDeCreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/credito/PrintContratoDeCreditoViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/diario/DiarioViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/diario/DiarioViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/planoDePagamento.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/planoDePagamento.zul" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/zul/credito/printContratoDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/credito/printContratoDeCredito.zul" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -1551,14 +1544,7 @@
       <workItem from="1670331497461" duration="763000" />
       <workItem from="1670568023845" duration="116000" />
       <workItem from="1674501186271" duration="5000" />
-      <workItem from="1674868603094" duration="10592000" />
-    </task>
-    <task id="LOCAL-00117" summary="efetivado com sucesso os erros que havia nos relatorios das prestações devido a falha da existencia de clientes sem gestores">
-      <created>1630702728784</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1630702728784</updated>
+      <workItem from="1674868603094" duration="11743000" />
     </task>
     <task id="LOCAL-00118" summary="actualizacao do printExtratoDePrestacoes">
       <created>1630926320415</created>
@@ -1896,7 +1882,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668274075538</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="atualizacao do contrato feito com sucesso">
+      <created>1674879391290</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1674879391291</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1976,7 +1969,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feito extrato de diario dado um periodo" />
     <MESSAGE value="querendo novamente fazer o calculo de juros de mora" />
     <MESSAGE value="O SISTEMA JA PERMITE ESCRITA POR EXTENSO NOS RECIBOS" />
     <MESSAGE value="relatorio de resumo de extratos de credito" />
@@ -2001,7 +1993,8 @@
     <MESSAGE value="update de impressão e melhoria do codigo" />
     <MESSAGE value="actualização do sistema para o uso de codigo ao inves de nomes" />
     <MESSAGE value="actualizado a adição de notas no pagamento das prestações e no diario" />
-    <option name="LAST_COMMIT_MESSAGE" value="actualizado a adição de notas no pagamento das prestações e no diario" />
+    <MESSAGE value="atualizacao do contrato feito com sucesso" />
+    <option name="LAST_COMMIT_MESSAGE" value="atualizacao do contrato feito com sucesso" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -2009,30 +2002,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1674878142222" />
-    <state width="1323" height="147" key="GridCell.Tab.0.bottom" timestamp="1674878187903">
+    <state width="1323" height="147" key="GridCell.Tab.0.bottom" timestamp="1674879541593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="174" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1668273263748" />
     <state width="1323" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1668419637633" />
-    <state width="1323" height="147" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1674878187903" />
-    <state width="1323" height="147" key="GridCell.Tab.0.center" timestamp="1674878187902">
+    <state width="1323" height="147" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1674879541593" />
+    <state width="1323" height="147" key="GridCell.Tab.0.center" timestamp="1674879541593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="174" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1668273263748" />
     <state width="1323" height="223" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1668419637633" />
-    <state width="1323" height="147" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1674878187902" />
-    <state width="1323" height="147" key="GridCell.Tab.0.left" timestamp="1674878187902">
+    <state width="1323" height="147" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1674879541593" />
+    <state width="1323" height="147" key="GridCell.Tab.0.left" timestamp="1674879541593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="174" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1668273263748" />
     <state width="1323" height="223" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1668419637633" />
-    <state width="1323" height="147" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1674878187901" />
-    <state width="1323" height="147" key="GridCell.Tab.0.right" timestamp="1674878187902">
+    <state width="1323" height="147" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1674879541593" />
+    <state width="1323" height="147" key="GridCell.Tab.0.right" timestamp="1674879541593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1237" height="174" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1668273263748" />
     <state width="1323" height="223" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1280.680@0.0.1366.728" timestamp="1668419637633" />
-    <state width="1323" height="147" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1674878187902" />
+    <state width="1323" height="147" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1674879541593" />
     <state width="1323" height="223" key="GridCell.Tab.1.bottom" timestamp="1668419637634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
