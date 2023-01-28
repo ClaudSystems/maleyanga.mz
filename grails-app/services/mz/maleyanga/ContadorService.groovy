@@ -133,6 +133,15 @@ class ContadorService {
 
     }
 
+    String gerarNumeroDaSaida(Saida saida) {
+        Calendar cal = Calendar.getInstance()
+        cal.setTime(saida.dateCreated)
+        int year = cal.get(Calendar.YEAR)
+        def num_ano = year.toString().substring(2, 4)
+        return num_ano + "/" + saida.id
+
+    }
+
     Conta getByNumeroDacoonta(String numeroDaConta) {
         Conta.findByNumeroDaConta(numeroDaConta)
     }

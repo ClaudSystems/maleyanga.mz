@@ -31,7 +31,7 @@
                     </cell>
                 </row>
                 <row height="20px">
-                    <cell>
+                    <cell align="justify">
                         <label value=" PRIMEIRO: "/>
                         <label value="@bind(vm.entidade.nome)"/>
                         <label value=", inscrito no Banco de Moçambique, "/>
@@ -53,7 +53,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="SEGUNDO: "/>
                         <label value="@load(vm.credito.cliente.nome)"/>
                         <label value=", de nacionalidade "/>
@@ -80,7 +80,7 @@
                     </cell>
                 </row>
                 <row height="60px">
-                    <cell>
+                    <cell align="justify">
                         <label value="As partes, livremente e de boa-fé,
                      celebram e reciprocamente aceitam o presente Contrato de Empréstimo, que se regerá pelas seguintes cláusulas:"/>
                     </cell>
@@ -93,6 +93,33 @@
                 <row>
                     <cell align="center">
                         <label style="font-weight:bold;font-size:pt14" value="(Objecto)"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="1. O presente contrato tem por objecto a concessão de um empréstimo pelo primeiro contraente (mutuante),
+                         a segundo contraente (mutuarío) que este recebe e da qual se confessa devedor ficando o terceiro contraente(avalista)
+                          garante acessório  da satisfação do direito de crédito."/>
+
+
+                    </cell>
+
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="2. Fará parte deste contrato de empréstimo uma declaração de avalista, devidamente assinado pelo avalista,
+                        que se compromete a liquidar o valor do empréstimo na totalidade, correspondente ao capital e juros, se o mutuário não
+                        estiver em condições de liquidar no prazo estabelecido do presente contrato, que constitui como Anexo 1."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="center">
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Segunda"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="center">
+                        <label style="font-weight:bold;font-size:pt14" value="(Montante)"/>
                     </cell>
                 </row>
                 <row>
@@ -109,54 +136,9 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="2. O montante acima referido, será concedido ao MUTUÁRIO na data de assinatura do presente contrato,
-                     por meio de transferência bancária, mpesa, ou em espécie."/>
-                    </cell>
-                </row>
-                <row>
-                    <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Segunda"/>
-                    </cell>
-                </row>
-                <row>
-                    <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value=" (Modalidades de reembolso)"/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="1. Em retribuição ao empréstimo concedido, o MUTUÁRIO efetuará em periodicidade(s) "/>
-                        <label value="@load(vm.credito.periodicidade)"/>
-                        <label value=" "/>
-                        <label value="o pagamento de "/>
-                        <label value="@load(vm.valorDaPrestacao)@converter('formatedNumber', format='###,##0.00')"/>
-                        <label value=" ("/>
-                        <label value="@load(vm.valorDaPrestacaoExt)"/>
-                        <label value=") do capital em dívida, acrescido dos juros compensatórios a taxa de "/>
-                        <label value="@load(vm.credito.percentualDejuros)"/>
-                        <label value="%."/>
-                        <label value="), referente a "/>
-                        <label value="@load(vm.credito.numeroDePrestacoes)"/>
-                        <label value="@load(vm.prestacao)"/>
-                        <label value=" totalizando a quantia de "/>
-                        <label value="@load(vm.valorAPagar)@converter('formatedNumber', format='###,##0.00')"/>
-                        <label value=" ("/>
-                        <label value="@load(vm.valorAPagarExt)"/>
-                        <label value=")."/>
-                    </cell>
-
-                </row>
-                <row>
-                    <cell>
-                        <label value="2. O MUTUÁRIO deverá efectuar o reembolso do empréstimo concedido, em espécie, via depósito,
-                     transferência bancária ou Mpesa."/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="3. Fará parte deste contrato de empréstimo um plano de reembolso devidamente assinado pelo MUTUÁRIO,
-                     que constitui como Anexo 1."/>
+                     por meio de transferência bancária ou cheque."/>
                     </cell>
                 </row>
                 <row>
@@ -166,13 +148,76 @@
                 </row>
                 <row>
                     <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value=" (Encargos)"/>
+                        <label style="font-weight:bold;font-size:pt14" value=" (Modalidades de reembolso)"/>
                     </cell>
                 </row>
                 <row>
-                    <cell>
-                        <label value="Os custos administrativos pelo reconhecimento e autenticação de
-                     documentos e outros associados a operação de crédito correm por conta do MUTUÁRIO."/>
+                    <cell align="justify">
+                        <label value="1. Em retribuição ao empréstimo concedido, o MUTUÁRIO efetuará a amortização em "/>
+                        <label value="@load(vm.credito.numeroDePrestacoes)"/>
+                        <label value=" prestações em periodicidade "/>
+                        <label value="@load(vm.credito.periodicidade)"/>
+                        <label value=" "/>
+                        <label value="o pagamento de "/>
+                        <label value="@load(vm.valorDaPrestacao)@converter('formatedNumber', format='###,##0.00')"/>
+                        <label value=" ("/>
+                        <label value="@load(vm.valorDaPrestacaoExt)"/>
+                        <label value=") do capital em dívida, acrescido dos juros compensatórios a taxa de "/>
+                        <label value="@load(vm.credito.percentualDejuros)"/>
+                        <label value="%."/>
+                        <label value="( "/>
+                        <label value="@load(vm.percentualPorExtenso)"/>
+                        <label value=")"/>
+                        <label value=", referente a "/>
+                        <label value="@load(vm.credito.numeroDePrestacoes)"/>
+                        <label value="@load(vm.prestacao)"/>
+                        <label value=" totalizando a quantia a reembolsar de "/>
+                        <label value="@load(vm.valorAPagar)@converter('formatedNumber', format='###,##0.00')"/>
+                        <label value=" ("/>
+                        <label value="@load(vm.valorAPagarExt)"/>
+                        <label value=")."/>
+                    </cell>
+
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="2. Os prazos do presente contrato contam-se todos dias do calendário e se o
+                        acto calhar nos dias de feriado ou equiparado e domingo deve-se praticar no primeiro dia útil."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="3. O MUTUÁRIO deverá efectuar o reembolso do empréstimo concedido,
+                     na conta bancária domiciliado no ."/>
+                        <label style="font-weight:bold;align:left" value="@load(vm.settings.conta1)"/>
+                        <label value="ou no escritório da "/>
+                        <label value="@load(vm.entidade)"/>
+                        <label value="."/>
+                        <label value="ou ainda pelo canal electrónico "/>
+                        <label style="font-weight:bold;align:left" value="@load(vm.settings.conta2)"/>
+
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="4. A quantia mutuada será reembolsada em "/>
+                        <label value="@load(vm.credito.numeroDePrestacoes)"/>
+                        <label value=" prestações," style="font-weight:bold"/>
+                        <label value=" podendo se estender o prazo em caso de acordo mútuo."/>
+
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="5. Não obstante o prazo de amortização acima referido pode o
+                        segundo contraente antecipar a amortização do empréstimo e esta antecipação
+                         faz cessar juros  na data  do mês em antecipação.  "/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="6. Fará parte deste contrato de empréstimo um plano de reembolso
+                        devidamente assinado pelo MUTUÁRIO, que constitui como Anexo 2."/>
                     </cell>
                 </row>
                 <row>
@@ -182,11 +227,38 @@
                 </row>
                 <row>
                     <cell align="center">
+                        <label style="font-weight:bold;font-size:pt14" value=" (Encargos)"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="1. Os custos administrativos pelo reconhecimento e autenticação de
+                     documentos e outros associados a operação de crédito correm por conta do MUTUÁRIO."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="2. Sobre o montante de crédito concedido incide uma comissão
+                         administrativa de organização do processo seguro na taxa de 2% equivalente a
+                      "/>
+                        <label value="@load(vm.valorDaComissao)@converter('formatedNumber', format='###,##0.00')"/>
+                        <label value="( "/>
+                        <label value="@load(vm.valorDaComissaoExt)"/>
+                        <label value=" )."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="center">
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Quinta"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="center">
                         <label style="font-weight:bold;font-size:pt14" value="(Ré empréstimo)"/>
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="Em caso de amortização do valor mutuado, de acordo com as condições previstas
                     na cláusula primeira, o MUTUÁRIO poderá solicitar um empréstimo mediante celebração de novo contrato."/>
                     </cell>
@@ -204,7 +276,7 @@
             <rows>
                 <row>
                     <cell colspan="3" align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Quinta"/>
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Sexta"/>
                     </cell>
                 </row>
                 <row>
@@ -255,7 +327,7 @@
             <rows>
                 <row>
                     <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Sexta"/>
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Sétima"/>
                     </cell>
                 </row>
                 <row>
@@ -302,68 +374,21 @@
                     </listbox>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="2. No acto da assinatura do contrato, o Mutuário irá igualmente assinar um Termo
-                         de Garantia, que constitui parte integrante do contrato com Anexo 2."/>
+                         de Garantia, que constitui parte integrante do contrato com Anexo 3."/>
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="3. Tratando-se de bens imóveis prestados como Garantia, o MUTUÁRIO irá emitir
                         uma Procuração Irrevogável a favor do MUTUANTE com todos os poderes para administrar e alienar o respectivo bem."/>
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label style="font-weight:bold" value="4. O MUTUÁRIO irá voluntariamente, entregar os bens prestados como garantia,
                         após 10 dias do incumprimento da sua obrigação."/>
-                    </cell>
-                </row>
-                <row>
-                    <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Sétima"/>
-                    </cell>
-                </row>
-                <row>
-                    <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value=" (Incumprimento)"/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="1. Em caso de mora no pagamento, será aplicada juros de
-                         mora de  "/>
-                        <label value="@load(vm.credito.percentualJurosDeDemora)"/>
-                        <label value="% (POR CENTO), por dia/mês de atraso. "/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="2. Em caso de incumprimento, o MUTUANTE poderá tomar todas
-                         as medidas extrajudiciais ou judiciais cabíveis para satisfação do crédito,
-                         ficando o MUTUÁRIO responsável pelo pagamento das despesas realizadas com tais acções,
-                          inclusive honorários de Advogado."/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="3. Caso o incumprimento contratual derivar de mudança da situação económica
-                        do MUTUÁRIO (perda de emprego ou qualquer incapacidade temporária ou permanente),
-                         confere o direito ao MUTUANTE accionar a garantia prestada."/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="4. Caso os bens prestados como garantia não forem suficientes para liquidar
-                         o crédito em dívida, o MUTUANTE reserva-se ao direito de penhorar outros bens não arrolados
-                         para satisfazer o crédito em dívida."/>
-                    </cell>
-                </row>
-                <row>
-                    <cell>
-                        <label value="5. Em caso de morte do MUTUÁRIO, o presente contrato obrigará igualmente a
-                        todos os seus herdeiros e sucessores, o qual deverão efectuar o pagamento da dívida
-                         contraída na proporção dos bens deixados em vida pelo MUTUÁRIO."/>
                     </cell>
                 </row>
                 <row>
@@ -373,11 +398,61 @@
                 </row>
                 <row>
                     <cell align="center">
+                        <label style="font-weight:bold;font-size:pt14" value=" (Incumprimento)"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="1. Em caso de mora no pagamento, será aplicada juros de
+                         mora de  "/>
+                        <label value="@load(vm.credito.percentualJurosDeDemora)"/>
+                        <label value="%("/>
+                        <label value="@load(vm.percentualDeMorasExt)"/>
+
+                        <label value="), por mês sobre o capital e juros em dívida."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="2. Em caso de incumprimento, o MUTUANTE poderá tomar todas
+                         as medidas extrajudiciais ou judiciais cabíveis para satisfação do crédito,
+                         ficando o MUTUÁRIO responsável pelo pagamento das despesas realizadas com tais acções,
+                          inclusive honorários de Advogado."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="3. Caso o incumprimento contratual derivar de mudança da situação económica
+                        do MUTUÁRIO (perda de emprego ou qualquer incapacidade temporária ou permanente),
+                         confere o direito ao MUTUANTE accionar a garantia prestada."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="4. Caso os bens prestados como garantia não forem suficientes para liquidar
+                         o crédito em dívida, o MUTUANTE reserva-se ao direito de penhorar outros bens não arrolados
+                         para satisfazer o crédito em dívida."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="justify">
+                        <label value="5. Em caso de morte do MUTUÁRIO, o presente contrato obrigará igualmente a
+                        todos os seus herdeiros e sucessores, o qual deverão efectuar o pagamento da dívida
+                         contraída na proporção dos bens deixados em vida pelo MUTUÁRIO."/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="center">
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Nona"/>
+                    </cell>
+                </row>
+                <row>
+                    <cell align="center">
                         <label style="font-weight:bold;font-size:pt14" value=" (Vencimento imediato)"/>
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="Pode ser considerado imediatamente vencido este contrato,
                          exigindo-se de imediato o pagamento de todas quantias de capital e
                          juros ainda em dívida, bem como, quaisquer outros encargos devidos
@@ -415,7 +490,7 @@
             <rows>
                 <row>
                     <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Nona"/>
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima"/>
                     </cell>
                 </row>
                 <row>
@@ -424,7 +499,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="O presente Contrato entra em vigor a partir da data da sua assinatura e vigorará por período de( "/>
                         <label value="@load(vm.credito.numeroDePrestacoes)"/>
                         <label value="x "/>
@@ -434,7 +509,7 @@
                 </row>
                 <row>
                     <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima"/>
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima Primeira"/>
                     </cell>
                 </row>
                 <row>
@@ -443,7 +518,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="1. O presente Contrato poderá ser rescindido, com justa causa,
                         por qualquer das partes, desde que se verifique o incumprimento ou violação
                          culposa e reiterada, total ou parcial de qualquer uma das obrigações dele
@@ -452,7 +527,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="2. Em caso de rescisão do presente contrato,
                          as partes ficam obrigadas em tudo o que já hajam assumido
                           pelo presente Contrato até que se concluam as obrigações assumidas."/>
@@ -460,7 +535,7 @@
                 </row>
                 <row>
                     <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima Primeira"/>
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima Segunda"/>
                     </cell>
                 </row>
                 <row>
@@ -469,7 +544,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="Todas as comunicações e notificações entre as partes devem ser
                         efectuadas por escrito e serão dirigidas para os endereços adiante indicados,
                          devendo qualquer alteração aos mesmos ser comunicada a outra parte com
@@ -525,7 +600,7 @@
             <rows>
                 <row>
                     <cell align="center">
-                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima Segunda"/>
+                        <label style="font-weight:bold;font-size:pt14" value="Cláusula Décima Terceira"/>
                     </cell>
                 </row>
                 <row>
@@ -535,14 +610,14 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="1. O presente contrato, a sua validade e interpretação e aplicação encontram-se
                         sujeitos à legislação moçambicana, sendo todo o omisso e não previsto neste contrato será
                          regulado pela legislação aplicável àquele."/>
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="2. Em caso de litígio
                          que não possa ser resolvido de forma amigável entre as partes,
                           estas acordam como competente, para dirimir litígios emergentes do presente
@@ -550,7 +625,7 @@
                     </cell>
                 </row>
                 <row>
-                    <cell>
+                    <cell align="justify">
                         <label value="Feito em Maputo, aos "/>
                         <label value="@load(vm.credito.dateConcecao)@converter('formatedDate', format='dd/MM/yyyy') "/>
                         <label value=", em dois exemplares, de igual valor e conteúdo,

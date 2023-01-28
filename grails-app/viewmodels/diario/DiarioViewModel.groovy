@@ -261,7 +261,7 @@ class DiarioViewModel {
     @NotifyChange(["selectedSaida"])
     def addNotaSaida(){
         Utilizador user = springSecurityService.currentUser as Utilizador
-        if (!user.authorities.any { it.authority == "REMISSAO_CREATE" }) {
+        if (!user.authorities.any { it.authority == "NOTA_CREATE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
             info.style = "color:red;font-weight;font-size:16px;background:back"
             return
@@ -296,7 +296,6 @@ class DiarioViewModel {
     @Command
     @NotifyChange(["pickedParcela"])
     def addNotaParcela(){
-
         Utilizador user = springSecurityService.currentUser as Utilizador
         if (!user.authorities.any { it.authority == "REMISSAO_CREATE" }) {
             info.value="Este utilizador não tem permissão para executar esta acção !"
@@ -456,8 +455,18 @@ class DiarioViewModel {
     void setSelectedDiario(Diario selectedDiario) {
         sessionStorageService.diario = selectedDiario
         this.selectedDiario = selectedDiario
+        gerarNumeros()
 
+    }
 
+    @NotifyChange (["saidas"])
+    def gerarNumeros(){
+        for (Saida saida1 in getSaidas()){
+            if(saida1.numeroDaSaida==null){
+             saida1.numeroDaSaida=  contadorService.gerarNumeroDaSaida(saida1)
+                saida1.merge(flush: true)
+            }
+        }
     }
 
     Transferencia getPickedTransferencia() {

@@ -51,14 +51,6 @@ class Saida implements Serializable {
         numeroDaSaida nullable: true, unique: true
     }
 
-    String getNumeroDaSaida() {
-        Calendar cal = Calendar.getInstance()
-        cal.setTime(dateCreated)
-        int year = cal.get(Calendar.YEAR)
-        def num_ano = year.toString().substring(2, 4)
-        return num_ano + "/" + this.id
-
-    }
 /*
      * Methods of the Domain Class
      */

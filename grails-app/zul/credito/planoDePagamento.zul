@@ -210,10 +210,28 @@
             </auxhead>
             <columns>
                 <column width="50%">
-                    <label value="Gestor de Crédito"/>
+                    <label value="CLIENTE"/>
                 </column>
                 <column width="50%">
                     <label value="GERENTE"/>
+                </column>
+            </columns>
+            <rows>
+                <row>
+                    <textbox cols="2" width="100%"/>
+                    <textbox cols="2" width="100%"/>
+                </row>
+                <row>
+                    <textbox cols="2" width="100%"/>
+                    <textbox cols="2" width="100%"/>
+                </row>
+
+            </rows>
+        </grid>
+        <grid width="750px" style="margin-top:20px">
+            <columns>
+                <column width="50%">
+                    <label value="GESTOR DE CRÉDITO"/>
                 </column>
             </columns>
             <rows>

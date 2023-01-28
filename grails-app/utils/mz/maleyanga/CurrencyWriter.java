@@ -54,6 +54,7 @@ public class CurrencyWriter {
 
 	private static final String MOEDA_SINGULAR = "metical";
 	private static final String MOEDA_PLURAL = "meticais";
+	private static final String PORCENTOS = "por centos";
 
 	private static final String FRACAO_SINGULAR = "centavo";
 	private static final String FRACAO_PLURAL = "centavos";
@@ -141,6 +142,81 @@ public class CurrencyWriter {
 							sb.append(" ").append(PARTICULA_DESCRITIVA);
 						}
 						sb.append(" ").append(MOEDA_PLURAL);
+					}
+					break;
+
+				case -3:
+					if (1 == valor) {
+						sb.append(" ").append(FRACAO_SINGULAR);
+					} else if (valor > 1) {
+						sb.append(" ").append(FRACAO_PLURAL);
+					}
+					break;
+			}
+
+			expoente -= 3;
+		}
+
+		return sb.substring(3);
+	}
+
+	public String escreve(final BigDecimal amount) {
+		if (null == amount) {
+			throw new IllegalArgumentException();
+		}
+
+		/*
+		 * TODO substituir o método setScale, abaixo, pela versão cujo
+		 * parâmetro de arredondamento é um enum
+		 */
+		BigDecimal value = amount.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+
+		if (value.compareTo(BigDecimal.ZERO) <= 0) {
+			return "";
+		}
+
+		if (MAX_SUPPORTED_VALUE.compareTo(value) < 0) {
+			throw new IllegalArgumentException("Valor acima do limite suportado.");
+		}
+
+		Stack<Integer> decomposed = decompose(value);
+
+		/* Se o número estiver, digamos, na casa dos milhões, a pilha
+		 * deverá conter 4 elementos sendo os dois últimos os das
+		 * centenas e dos centavos, respectivamente. Assim, o expoente de
+		 * dez que representa a grandeza no topo da pilha é o número de
+		 * (elementos - 2) * 3 */
+		int expoente = 3 * (decomposed.size() - 2); // TODO usar um índice de grupos em vez do expoente
+
+		StringBuffer sb = new StringBuffer();
+		int lastNonZeroExponent = -1;
+
+		while (!decomposed.empty()) {
+			int valor = decomposed.pop();
+
+			if (valor > 0) {
+				sb.append(" ").append(PARTICULA_ADITIVA).append(" ");
+				sb.append(comporNomeGrupos(valor));
+				String nomeGrandeza = obterNomeGrandeza(expoente, valor);
+				if (nomeGrandeza.length() > 0) {
+					sb.append(" ");
+				}
+				sb.append(nomeGrandeza);
+
+				lastNonZeroExponent = expoente;
+			}
+
+			switch (expoente) { // TODO ao invés desses switches e ifs, partir para a idéia das "Pendências"; talvez implementá-las com enum
+				case 0:
+					BigInteger parteInteira = value.toBigInteger();
+
+					if (BigInteger.ONE.equals(parteInteira)) {
+						sb.append(" ").append(PORCENTOS);
+					} else if (parteInteira.compareTo(BigInteger.ZERO) > 0) {
+						if (lastNonZeroExponent >= 6) {
+							sb.append(" ").append(PARTICULA_DESCRITIVA);
+						}
+						sb.append(" ").append(PORCENTOS);
 					}
 					break;
 

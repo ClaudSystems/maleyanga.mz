@@ -887,7 +887,6 @@ class PagamentosViewModel {
         saida.origem = contaCaixa
         saida.destino = selectedConta
         saida.diario = diario
-        saida.setNumeroDaSaida(contadorService.gerarNumeroDaSaida())
         saida.save(failOnError: true)
         info.value = "gravação feita com sucesso!"
         info.style = "color:red;font-weight;font-size:16px;background:back"

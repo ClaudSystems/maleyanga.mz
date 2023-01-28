@@ -454,7 +454,7 @@ class BootStrap {
                 c.merge(flush: true)
             }
         }
-        return Cliente.all
+
 
     }
     def destroy = {

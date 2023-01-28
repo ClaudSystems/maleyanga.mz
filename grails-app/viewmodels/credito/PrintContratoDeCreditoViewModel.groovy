@@ -3,10 +3,12 @@ package credito
 import mz.maleyanga.CurrencyWriter
 import mz.maleyanga.PenhoraService
 import mz.maleyanga.SessionStorageService
+import mz.maleyanga.SettingsService
 import mz.maleyanga.credito.Credito
 import mz.maleyanga.entidade.Entidade
 import mz.maleyanga.pedidoDeCredito.PedidoDeCredito
 import mz.maleyanga.pedidoDeCredito.Penhora
+import mz.maleyanga.settings.Settings
 import org.springframework.stereotype.Service
 import org.zkoss.bind.annotation.Init
 import org.zkoss.zul.ListModelList
@@ -14,9 +16,12 @@ import org.zkoss.zul.ListModelList
 
 @Service
 class PrintContratoDeCreditoViewModel {
+    Settings settings
+    SettingsService settingsService
     SessionStorageService sessionStorageService
     private  Credito credito
     String valorCreditadoPorExtenso
+    String percentualPorExtenso
     String prestacao
     String representante
     String numeroDeRegisto
@@ -25,9 +30,23 @@ class PrintContratoDeCreditoViewModel {
     BigDecimal valorAPagar
     String valorAPagarExt
     String valorDaPrestacaoExt
+    String percentualDeMorasExt
+    BigDecimal valorDaComissao
+    String valorDaComissaoExt
     PenhoraService penhoraService
 
+    BigDecimal getValorDaComissao() {
+        return credito.valorCreditado*0.02/100
+    }
+
+    String getValorDaComissaoExt() {
+        return currencyWriter.write(getValorDaComissao())
+    }
     CurrencyWriter currencyWriter = CurrencyWriter.getInstance()
+
+    Settings getSettings() {
+        return settings
+    }
 
     String getRepresentante() {
         if(entidade.genero=="femenino"){
@@ -62,6 +81,14 @@ class PrintContratoDeCreditoViewModel {
         return getValorDaPrestacao()*credito.numeroDePrestacoes
     }
     ListModelList<Penhora> penhoras
+
+    String getPercentualPorExtenso() {
+        return currencyWriter.escreve(credito.percentualDejuros)
+    }
+
+    String getPercentualDeMorasExt() {
+        return currencyWriter.escreve(credito.percentualJurosDeDemora)
+    }
 
     String getValorDaPrestacaoExt() {
         return currencyWriter.write(getValorDaPrestacao())
@@ -101,6 +128,8 @@ class PrintContratoDeCreditoViewModel {
 
     @Init init() {
         credito = Credito.findById(sessionStorageService?.credito?.id)
+        settings = settingsService.getSettings()
+
     }
 
 
