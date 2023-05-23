@@ -34,44 +34,52 @@
         </hbox>
         <hbox>
             <grid style="@load(vm.cliente_style)" width="400px">
-                <columns>
-                    <column width="220px"/>
 
-                </columns>
                 <rows>
 
                     <row>
 
-                        <textbox width="350px" placeholder="codigo do cliente "
+                        <textbox width="150px" placeholder="codigo do cliente ou Nº. de Telefone "
                                  style="font-size:18px;background:#95B9C7;color:black"
                                  value="@bind(vm.filterCliente)"
                                  onChange="@command('doSearchCliente')"
                                  instant="false"/>
 
-
-                        <!--     <listbox onSelect="@command('showCreditos')" checkmark="true" style="@bind('style')"
-                                      selectedItem="@bind(vm.selectedCliente)"
-                                      model="@load(vm.clientes)" width=""
-                                      height="" mold="paging" pageSize="4">
-
-
-                                 <template name="model" status="s">
-
-                                     <listitem onClick="@command('showCreditos')">
-
-                                         <listcell label="@load(each.nome)"/>
-
-                                     </listitem>
-                                 </template>
-
-                             </listbox>-->
-
-
+                        <label style="font-size:18px;background:#95B9C7;color:#49484b" value=" ou Nº. de Telefone "/>
                     </row>
 
+
+                </rows>
+
+            </grid>
+
+            <grid width="600px">
+                <columns>
+                    <column/>
+                    <column width="400px"/>
+                </columns>
+                <rows>
+
+                    <row>
+                        <textbox width="200px" placeholder=" Pesquisar nome"
+                                 style="font-size:18px;background:#95B9C7;color:black"
+                                 value="@bind(vm.filterNomeCliente)"
+                                 onChange="@command('doSearchClienteByNome')"
+                                 instant="true"/>
+                        <listbox onSelect="@command('showCreditos')" checkmark="true" style="@bind('style')"
+                                 model="@load(vm.todosClientes)" width=""
+                                 height="" mold="paging" pageSize="2">
+                            <template name="model" status="s">
+                                <listitem>
+                                    <listcell style="font-size:18px;background:#95B9C7;color:black"
+                                              label="@load(each.codigo)"/>
+                                    <listcell label="@load(each.nome)"/>
+                                </listitem>
+                            </template>
+                        </listbox>
+                    </row>
                 </rows>
             </grid>
-            Digite codigo do cliente ou Nº. de Telefone
         </hbox>
         <tabbox>
 

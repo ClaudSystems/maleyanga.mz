@@ -42,13 +42,14 @@ class CreditoViewModel {
     @Wire Label info
     @Wire Hbox hb_editor
     @Wire Button bt_fechar
-
+    private ListModelList<Cliente> todosClientes
     private  boolean  allCreditos
     private  boolean  vw_bt_novo_credito = false
     String red = "color:red;font-size:18px;font-weight;background:back"
     String blue = "color:blue;font-size:18px;font-weight;background:back"
     ClienteService clienteService
     Utilizador utilizador
+    String filterNomeCliente
     private  boolean  allPagamentos
     ListModelList<Credito> creditos
     ListModelList<Credito> emPagamento
@@ -101,6 +102,12 @@ class CreditoViewModel {
     private  String creditosDe = "Créditos"
     private Pagamento pagamento
 
+    ListModelList<Cliente> getTodosClientes() {
+        if(todosClientes==null){
+            todosClientes = new ListModelList<Cliente>()
+        }
+        return todosClientes
+    }
     boolean getVw_bt_novo_credito() {
        return vw_bt_novo_credito
     }
@@ -279,8 +286,14 @@ class CreditoViewModel {
     @Command
     def showCreditos(){
         if(selectedCliente==null){
-            info.value = "Selecione um cliente!"
-            return
+            if(!filterNomeCliente.empty){
+                info.value = "Digite o codigo do clinte!"
+                return
+            }else {
+                info.value = "Selecione um cliente!"
+                return
+            }
+
         }
         tb_abertos.value = "Creditos do(a) "+selectedCliente.nome
         mostrarCreditos=true
@@ -473,9 +486,10 @@ class CreditoViewModel {
 
 
     @Command
-    @NotifyChange(["cliente_style","credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor","clientes","selectedCliente"])
+    @NotifyChange(["cliente_style","credito","pagamentos","v_amo","v_juro","v_pago","v_divida","v_mora","v_prestacao","hb_editor","clientes","selectedCliente","doSearchCliente"])
     void doSearchCliente() {
         info.value=""
+        todosClientes.clear()
         if(!filterCliente.empty){
             selectedCliente = Cliente.findByCodigo(filterCliente)
         }else return
@@ -507,6 +521,29 @@ class CreditoViewModel {
                  info.style = red
              }
         }*/
+
+    }
+    @Command
+    @NotifyChange(["todosClientes","selectedCliente"])
+    void doSearchClienteByNome() {
+         todosClientes.clear()
+        List<Cliente> allItems = clienteService.findAllByName(filterNomeCliente)
+        if (filterNomeCliente == null || "".equals(filterNomeCliente)) {
+
+        } else {
+            for (Cliente item : allItems) {
+                if (item.nome.toLowerCase().indexOf(filterNomeCliente.toLowerCase()) >= 0 ||
+                        item.nuit.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.telefone.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.telefone1.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.telefone2.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.residencia.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.dateCreated.format('dd/MM/yyyy').toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.numeroDeIndentificao.indexOf(filterNomeCliente) >= 0) {
+                    todosClientes.add(item)
+                }
+            }
+        }
 
     }
 
@@ -883,10 +920,13 @@ class CreditoViewModel {
     def verificarData(){
         info.value = ""
            Credito lastCredito = Credito.last()
-           if(lastCredito.cliente==selectedCliente&&!lastCredito.invalido){
-               info.value = "Este CLiente ja foi desembolsado!"
-               hb_novo_credito.visible = false
-           }
+        if(lastCredito){
+            if(lastCredito.cliente==selectedCliente&&!lastCredito.invalido){
+                info.value = "Este CLiente ja foi desembolsado!"
+                hb_novo_credito.visible = false
+            }
+        }
+
     }
 
     @Command
@@ -963,12 +1003,20 @@ class CreditoViewModel {
             info.style = red
             return
         }
+        settings = Settings.findByNome("settings")
+        settings.pagarEmSequencia
+        if(settings.pagarEmSequencia){
+            if(Credito?.last()?.cliente?.id){
 
-        if(selectedCliente.id==Credito.last().cliente.id){
-            info.value = "ESTE CLIENTE JÁ FOI DESEMBOLSADO!"
-          //  hb_editor.visible = false
-            return
+                if(selectedCliente.id==Credito.last().cliente.id){
+                    info.value = "ESTE CLIENTE JÁ FOI DESEMBOLSADO!"
+                    //  hb_editor.visible = false
+                    return
+                }
+            }
+
         }
+
         info.value=""
         if(contaCliente==null){
             getContaCliente()

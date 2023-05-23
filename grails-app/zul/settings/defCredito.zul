@@ -311,9 +311,16 @@
                                     <label value="@bind(vm.setting.ignorarValorPagoNoPrazo)"/>
                                 </row>
                                 <row>
-
+                                    <button width="100%" image="${z.resource(dir:'images', file:'update.png')}"
+                                            onClick="@command('pagarEmSequencia')"
+                                            label=" Não permitir pagamentos sequenciados do mesmo cliente"/>
+                                    <label value="@bind(vm.setting.pagarEmSequencia)"/>
                                 </row>
                                 <row>
+                                    <button width="100%" image="${z.resource(dir:'images', file:'update.png')}"
+                                            onClick="@command('altearDataDePagamento')"
+                                            label="Não permitir a alteração a data de pagamento"/>
+                                    <label value="@bind(vm.setting.altearDataDePagamento)"/>
 
                                 </row>
                                 <row>

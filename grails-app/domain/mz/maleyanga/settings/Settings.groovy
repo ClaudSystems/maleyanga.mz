@@ -29,6 +29,8 @@ class Settings implements Serializable{
     String nbPlanoDePagamento
     Boolean gd_prestacoes
     Boolean ignorarValorPagoNoPrazo
+    Boolean pagarEmSequencia
+    Boolean altearDataDePagamento
     /* Default (injected) attributes of GORM */
 //	Long	id
 //	Long	version
@@ -69,6 +71,8 @@ class Settings implements Serializable{
         nbPlanoDePagamento nullable: true
         gd_prestacoes nullable: true
         ignorarValorPagoNoPrazo nullable: true
+        pagarEmSequencia nullable: true
+        altearDataDePagamento nullable: true
 
     }
 	

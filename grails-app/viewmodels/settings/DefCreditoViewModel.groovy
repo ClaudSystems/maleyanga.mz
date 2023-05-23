@@ -55,6 +55,26 @@ class DefCreditoViewModel {
         info.value ="Dados atualizados com sucesso!"+settings.ignorarValorPagoNoPrazo
         info.style = "color:red;font-weight;font-size:14ptpt;background:back"
     }
+
+    @Command
+    @NotifyChange(["settings"])
+    def pagarEmSequencia(){
+        settings = Settings.findByNome("settings")
+        settings.pagarEmSequencia= !settings.pagarEmSequencia
+        settings.merge(flush: true)
+        info.value ="Dados atualizados com sucesso!"+settings.pagarEmSequencia
+        info.style = "color:red;font-weight;font-size:14ptpt;background:back"
+    }
+
+    @Command
+    @NotifyChange(["settings"])
+    def altearDataDePagamento(){
+        settings = Settings.findByNome("settings")
+        settings.altearDataDePagamento= !settings.altearDataDePagamento
+        settings.merge(flush: true)
+        info.value ="Dados atualizados com sucesso!"+settings.altearDataDePagamento
+        info.style = "color:red;font-weight;font-size:14ptpt;background:back"
+    }
      boolean getVariavel() {
         return variavel
     }

@@ -20,6 +20,7 @@ import mz.maleyanga.ParcelaService
 import mz.maleyanga.pagamento.Remissao
 import mz.maleyanga.saidas.Saida
 import mz.maleyanga.security.Utilizador
+import mz.maleyanga.settings.Settings
 import mz.maleyanga.transacao.Transacao
 import mz.maleyanga.transferencia.Transferencia
 import org.springframework.stereotype.Service
@@ -63,6 +64,7 @@ class PagamentosViewModel {
     @Wire Button bt_salvar
     @Wire Button bt_fechar_caixa
     @Wire Listbox lb_credito
+    private String filterNomeCliente
     private  String filter
     private  String filterCliente
     private  boolean  allPagamentos
@@ -72,7 +74,8 @@ class PagamentosViewModel {
     private  Pagamento selectedPagamento
     private  Pagamento selectedPagamentoo
     private  Credito selectedCredito
-     private ListModelList<Pagamento> pagamentos
+    private ListModelList<Cliente> todosClientes
+    private ListModelList<Pagamento> pagamentos
     private ListModelList<Pagamento> pagamentoss
     private ListModelList<Parcela> parcelas
     private ListModelList<Parcela> entradas
@@ -112,6 +115,52 @@ class PagamentosViewModel {
     private   Nota selectedNota
     private  Conta selectedConta
     private  Saida selectedSaida
+    Boolean  altearDataDePagamento
+
+    @Command
+    @NotifyChange(["todosClientes","selectedCliente"])
+    void doSearchClienteByNome() {
+
+        todosClientes.clear()
+        List<Cliente> allItems = clienteService.findAllByName(filterNomeCliente)
+        if (filterNomeCliente == null || "".equals(filterNomeCliente)) {
+
+        } else {
+            for (Cliente item : allItems) {
+                if (item.nome.toLowerCase().indexOf(filterNomeCliente.toLowerCase()) >= 0 ||
+                        item.nuit.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.telefone.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.telefone1.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.telefone2.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.residencia.toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.dateCreated.format('dd/MM/yyyy').toString().indexOf(filterNomeCliente) >= 0 ||
+                        item.numeroDeIndentificao.indexOf(filterNomeCliente) >= 0) {
+                    todosClientes.add(item)
+                }
+            }
+        }
+
+    }
+    ListModelList<Cliente> getTodosClientes() {
+        if(todosClientes==null){
+            todosClientes = new ListModelList<Cliente>()
+        }
+        return todosClientes
+    }
+    String getFilterNomeCliente() {
+        return filterNomeCliente
+    }
+
+    void setFilterNomeCliente(String filterNomeCliente) {
+        this.filterNomeCliente = filterNomeCliente
+    }
+
+    @NotifyChange(["altearDataDePagamento"])
+    boolean getAltearDataDePagamento() {
+        Settings settings = Settings.findByNome("settings")
+        altearDataDePagamento= settings.altearDataDePagamento
+       return altearDataDePagamento
+    }
 
     @Command
     @NotifyChange(["sParcela"])
@@ -170,8 +219,9 @@ class PagamentosViewModel {
     }
 
     @Command
-    @NotifyChange(["clientes","clientess","selectedCliente","selectedClientee","pagamentos","selectedCredito","creditos","selectedPagamento","filterCliente"])
+    @NotifyChange(["clientes","clientess","selectedCliente","selectedClientee","pagamentos","selectedCredito","creditos","selectedPagamento","filterCliente","todosClientes"])
     void doSearchCliente() {
+        todosClientes.clear()
         info.value=""
         gd_entrada.visible = false
         selectedCliente= null
@@ -888,7 +938,7 @@ class PagamentosViewModel {
         saida.destino = selectedConta
         saida.diario = diario
         saida.save(failOnError: true)
-        info.value = "gravação feita com sucesso!"
+        /*info.value = "gravação feita com sucesso!"
         info.style = "color:red;font-weight;font-size:16px;background:back"
 
         Transacao tCredito = new Transacao()
@@ -913,7 +963,7 @@ class PagamentosViewModel {
         devedora.transacoes.add(tDebito)
         credora.merge(failOnError: true)
         devedora.merge(failOnError: true)
-
+*/
 
         info.value = "Operações feitas com sucesso!"
         info.style = "color:red;font-weight;font-size:16px;background:back"

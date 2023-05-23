@@ -44,10 +44,32 @@
                             <label value="@bind(vm.dia)@converter('formatedDate', format='dd/MM/yy')"/>
                             <datebox format="dd/MM/yy" width="25px" onOK="@command('setDia')" value="@bind(vm.dia)"/>
                         </row>
+
                     </rows>
                 </grid>
 
-
+                <grid>
+                    <rows>
+                        <row>
+                            <textbox width="200px" placeholder=" Pesquisar nome"
+                                     style="font-size:18px;background:#95B9C7;color:black"
+                                     value="@bind(vm.filterNomeCliente)"
+                                     onChange="@command('doSearchClienteByNome')"
+                                     instant="true"/>
+                            <listbox checkmark="true" style="@bind('style')"
+                                     model="@load(vm.todosClientes)" width=""
+                                     height="" mold="paging" pageSize="2">
+                                <template name="model" status="s">
+                                    <listitem>
+                                        <listcell style="font-size:18px;background:#95B9C7;color:black"
+                                                  label="@load(each.codigo)"/>
+                                        <listcell label="@load(each.nome)"/>
+                                    </listitem>
+                                </template>
+                            </listbox>
+                        </row>
+                    </rows>
+                </grid>
             </hbox>
 
 
@@ -66,10 +88,8 @@
                              value="@bind(vm.filterCliente)"
                              onChange="@command('doSearchCliente')"
                              instant="false
-"/>
-
+                    "/>
                     <label value="ou o codigo do cliente ou o Nº. de Telefone"/>
-
                     <cell>
                         T. Créditos
                         <checkbox width=""
@@ -111,6 +131,9 @@
                                style="background:#20c1e9"
                                value="@load(vm.contaCliente.saldo)@converter('formatedNumber', format='###,##0.00')"/>
                     </cell>
+
+                </row>
+                <row>
 
                 </row>
             </rows>
@@ -279,9 +302,9 @@
                                                                         width="200px"
                                                                         value="@bind(vm.parcela.valorPago)  "/>
                                                         </row>
-                                                        <row>
+                                                        <row visible="@load(vm.altearDataDePagamento)">
                                                             <label value="Data de Pag."/>
-                                                            <datebox readonly="true" format="dd/MM/yy"
+                                                            <datebox format="dd/MM/yy"
                                                                      onOK="@command('calcularMoras')"
                                                                      onChange="@command('calcularMoras')"
                                                                      constraint="no empty" width="100%"

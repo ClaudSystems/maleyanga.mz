@@ -198,6 +198,8 @@
                         <label value=", "/>
                         <label value="ou ainda pelo canal electrónico: "/>
                         <label style="font-weight:bold;align:left" value="@load(vm.settings.conta2)"/>
+                        <label value="; "/>
+                        <label style="font-weight:bold;align:left" value="@load(vm.settings.conta3)"/>
 
                     </cell>
                 </row>
@@ -504,11 +506,11 @@
                 </row>
                 <row>
                     <cell align="justify">
-                        <label value="O presente Contrato entra em vigor a partir da data da sua assinatura e vigorará por período de( "/>
-                        <label value="@load(vm.credito.numeroDePrestacoes)"/>
-                        <label value="x "/>
-                        <label value="@load(vm.credito.periodicidade)"/>
-                        <label value="), e só cessará automaticamente assim que estiver devidamente cumprida as obrigações contratuais."/>
+                        <label value="O presente Contrato entra em vigor a partir da data da sua assinatura e vigorará até dia o dia  "/>
+
+
+                        <label value="@load(vm.credito.validade)@converter('formatedDate', format='dd/MM/yyyy') "/>
+                        <label value=", e só cessará automaticamente assim que estiver devidamente cumprida as obrigações contratuais."/>
                     </cell>
                 </row>
                 <row>
