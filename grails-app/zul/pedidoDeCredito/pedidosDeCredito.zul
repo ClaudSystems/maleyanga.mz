@@ -21,14 +21,18 @@
             </columns>
             <rows>
                 <row>
-                    <cell colspan="3" style="text-align:center">
+                    <cell colspan="11" style="text-align:center">
                         <label style="font-size:16pt" value="Lista de Candidatos a Crédito"/>
                     </cell>
 
                 </row>
                 <row>
-                    <cell colspan="3" style="text-align:center">
+                    <cell colspan="9" style="text-align:center">
                         <label style="font-size:14pt" value="@load(vm.listaDeDesembolso.descricao)"/>
+                    </cell>
+                    <cell colspan="2" style="text-align:left">
+                        <label style="font-size:14pt" value="Nº: "/>
+                        <label style="font-size:14pt" value="@load(vm.listaDeDesembolso.numeroDaLista)"/>
                     </cell>
                 </row>
                 <row>
@@ -67,15 +71,16 @@
         >
             <listhead>
                 <listheader width="45px" label="Item Nº:" align="left"/>
+                <listheader width="50px" label="Codigo" align="left"/>
                 <listheader sort="auto(nome)" width="" label="Nome do Cliente" align="left"/>
                 <listheader width="100px" label="V. de Desemb." align="left"/>
                 <listheader width="90px" label="V.  Comissão" align="left"/>
 
 
                 <listheader width="90px" label="Renova/Novo" align="left"/>
-                <listheader width="60px" label="Nº.Prest." align="left"/>
+                <listheader width="50px" label="Nº.Prest." align="left"/>
 
-                <listheader width="90px" label="Def. De Crédito" align="left"/>
+                <listheader width="83px" label="Tp. De Crédito" align="left"/>
                 <listheader width="90px" label="Taxa. De Juros" align="left"/>
 
                 <listheader width="100px" label="Gestor" align="left"/>
@@ -85,6 +90,7 @@
 
                 <listitem style="@bind('style')">
                     <listcell label="@bind(s.index+1)"/>
+                    <listcell label="@load(item.cliente.codigo)"/>
                     <listcell label="@load(item.cliente.nome)"/>
 
                     <listcell label="@load(item.valorDeCredito)  @converter('formatedNumber', format='###,##0.00') "/>
@@ -104,6 +110,7 @@
             </template>
             <listfoot>
 
+                <listfooter/>
                 <listfooter/>
                 <listfooter style="text-align:right">
                     <label style="font-weight:bold" value="Total"/>

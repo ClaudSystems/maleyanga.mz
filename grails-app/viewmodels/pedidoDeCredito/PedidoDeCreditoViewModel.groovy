@@ -2,6 +2,7 @@ package pedidoDeCredito
 
 import grails.plugin.springsecurity.SpringSecurityService
 import mz.maleyanga.ClienteService
+import mz.maleyanga.ContadorService
 import mz.maleyanga.CreditoService
 import mz.maleyanga.SessionStorageService
 import mz.maleyanga.SettingsService
@@ -57,6 +58,7 @@ private PedidoDeCredito sPDC
   private  String descricao
   private ListModelList<ListaDeDesembolso> listasDosDesembolsos
   private String filterLista
+  ContadorService contadorService
 
 
 
@@ -164,6 +166,7 @@ private PedidoDeCredito sPDC
     penhoras.clear()
     this.selectedCliente = selectedCliente
     info.value = ""
+    addPDC()
     }
 
 
@@ -197,6 +200,7 @@ private PedidoDeCredito sPDC
       for (ListaDeDesembolso item : allItems) {
         if (item.descricao?.toLowerCase()?.indexOf(filterLista?.toLowerCase()) >= 0 ||
         item?.balcao?.toLowerCase()?.indexOf(filterLista?.toLowerCase()) >= 0 ||
+        item?.numeroDaLista?.toLowerCase()?.indexOf(filterLista?.toLowerCase()) >= 0 ||
          item?.dataDeDesembolso?.format("dd/MM/yy")?.toString()?.indexOf(filterLista) >= 0) {
           listasDosDesembolsos.add(item)
 
@@ -320,6 +324,7 @@ private PedidoDeCredito sPDC
 
     @Init init() {
       settings = settingsService.getSettings()
+
     }
 
   @Command
@@ -347,6 +352,11 @@ private PedidoDeCredito sPDC
 
   }
 
+  @Command
+  @NotifyChange([""])
+  def informar(){
+    info.value = "Faça double click para adicionar o PDC na lista!"
+  }
   @Command
   @NotifyChange(["listaDePedidos","totalDesembolsado"])
   def addPedido(){
@@ -398,6 +408,7 @@ private PedidoDeCredito sPDC
       listaDeDesembolso.dataDeDesembolso = dataDeDesembolso
       Utilizador user = springSecurityService.currentUser as Utilizador
       listaDeDesembolso.gerente = user
+      listaDeDesembolso.setNumeroDaLista(contadorService.gerarNumeroDaLista())
       listaDeDesembolso.save(failOnError: true,flush: true)
       sessionStorageService.setListaDeDesembolso(listaDeDesembolso)
       info.value = "A lista dos candidatos a crédito foi criado com sucesso!"
@@ -565,5 +576,14 @@ private PedidoDeCredito sPDC
 
       }
     }
+  }
+
+  @Command
+  @NotifyChange(["selectedLista"])
+  def updateLista(){
+
+    selectedLista.merge()
+    info.value="Dados actualizados com sucesso!"
+    info.style = "color:blue;font-weight;font-size:16px;background:back"
   }
 }

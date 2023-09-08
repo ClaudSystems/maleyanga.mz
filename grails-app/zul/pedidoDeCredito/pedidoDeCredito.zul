@@ -37,10 +37,10 @@
                      label="Pedidos de Credito(PDC)"/>
                 <tab onClick="@command('cleanInfo')" id="tab_lpdc"
                      image="${z.resource(dir:'images', file:'open_diario_25.png')}"
-                     label="Listagem dos PDCs"/>
+                     label="Criar Lista dos PDC"/>
                 <tab onClick="@command('cleanInfo')" id="tab_editor"
                      image="${z.resource(dir:'images', file:'editor_25.png')}"
-                     label="Editor das Listas dos PDCs"/>
+                     label="Listas dos PDC"/>
 
             </tabs>
             <tabpanels height="800px">
@@ -52,7 +52,7 @@
                     <button visible="@load(not empty vm.sPDC.id)" image="${z.resource(dir:'images', file:'add.png')}"
                             style="color:black;background:#20c1e9" onClick="@command('addCredito')"
                             label="Add Credito"/>
-                    <grid visible="@load(not empty vm.sPDC)" width=""
+                    <grid width=""
                           style="margin-top:20px">
                         <columns>
                             <column image="${z.resource(dir:'images', file:'pedido_25.png')}" label="Cliente"
@@ -234,7 +234,8 @@
                         </listhead>
                         <template name="model" status="s">
 
-                            <listitem onDoubleClick="@command('addPedido', index=each.id)" style="@bind('style')">
+                            <listitem onClick="@command('informar')"
+                                      onDoubleClick="@command('addPedido', index=each.id)" style="@bind('style')">
 
                                 <listcell label="@load(each.cliente)"/>
                                 <listcell label="@load(each.motivo)"/>
@@ -423,13 +424,18 @@
                                  instant="true"/>
 
                         <include visible="@load(not empty vm.selectedLista)" src="/pedidoDeCredito/printPDCs.gsp"/>
+                        <button visible="@load(not empty vm.selectedLista)"
+                                image="${z.resource(dir:'images', file:'update.png')}"
+                                onClick="@command('updateLista')"
+                                label=""/>
                     </hbox>
                     <hbox>
-                        <listbox width="460px" checkmark="true" style="@bind('style')"
+                        <listbox width="480px" checkmark="true" style="@bind('style')"
                                  selectedItem="@bind(vm.selectedLista)"
                                  model="@load(vm.listasDosDesembolsos)"
                                  height="" mold="paging" pageSize="10">
                             <listhead sizable="true">
+                                <listheader sort="auto(numeroDaLista)" width="80px" label="Nº." align="left"/>
                                 <listheader sort="auto(descricao)" width="" label="Descrição" align="left"/>
                                 <listheader sort="auto(balcao)" width="150px" label="Balção" align="left"/>
                                 <listheader sort="auto(dataDeDesembolso)" width="90px" label="Data De Desemb."
@@ -439,10 +445,9 @@
 
                                 <listitem onDoubleClick="@command('removePedido', index=each.id)"
                                           style="@bind('style')">
-                                    <listcell label="@load(each.descricao)">
-                                    </listcell>
-                                    <listcell label="@load(each.balcao)">
-                                    </listcell>
+                                    <listcell label="@load(each.numeroDaLista)"/>
+                                    <listcell label="@load(each.descricao)"/>
+                                    <listcell label="@load(each.balcao)"/>
 
 
                                     <listcell

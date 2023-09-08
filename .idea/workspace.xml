@@ -50,7 +50,13 @@
     <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="atualizacao do contrato feito com sucesso€">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.slcache/.index" beforeDir="false" afterPath="$PROJECT_DIR$/.slcache/.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pagamento/Pagamento.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pagamento/Pagamento.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pedidoDeCredito/ListaDeDesembolso.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pedidoDeCredito/ListaDeDesembolso.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/ContadorService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/ContadorService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pedidoDeCredito/PedidoDeCreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pedidoDeCredito/PedidoDeCreditoViewModel.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidoDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidoDeCredito.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidosDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidosDeCredito.zul" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1560,13 +1566,11 @@
       <workItem from="1683866185540" duration="1848000" />
       <workItem from="1684869291511" duration="5430000" />
       <workItem from="1685525795348" duration="1692000" />
-    </task>
-    <task id="LOCAL-00121" summary="personalização dos dados do plano de pag.&#10;correcções de CreditoViewModel e pagamentos . inicio de criação de relatorios dos diarios por caixa">
-      <created>1631665794216</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1631665794216</updated>
+      <workItem from="1685529196251" duration="119000" />
+      <workItem from="1687028061843" duration="174000" />
+      <workItem from="1693834571485" duration="10984000" />
+      <workItem from="1694027787998" duration="814000" />
+      <workItem from="1694165770100" duration="6593000" />
     </task>
     <task id="LOCAL-00122" summary="personalização dos dados do plano de pag.&#10;correcções de CreditoViewModel e pagamentos . inicio de criação de relatorios dos diarios por caixa">
       <created>1632139703369</created>
@@ -1904,7 +1908,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684874650701</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="atualizacao do contrato feito com sucesso€">
+      <created>1685529242742</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1685529242744</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2013,47 +2024,50 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser" timestamp="1684873691735">
+    <state x="488" y="47" key="#com.intellij.ide.util.MemberChooser" timestamp="1693836694785">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="64" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1684873691735" />
-    <state width="1323" height="177" key="GridCell.Tab.0.bottom" timestamp="1685527041447">
+    <state x="488" y="47" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1693836694785" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1693835552882">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1685527041447" />
-    <state width="1323" height="177" key="GridCell.Tab.0.center" timestamp="1685527041447">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1693835552882" />
+    <state width="1323" height="150" key="GridCell.Tab.0.bottom" timestamp="1694173168864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1685527041447" />
-    <state width="1323" height="177" key="GridCell.Tab.0.left" timestamp="1685527041446">
+    <state width="1323" height="150" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
+    <state width="1323" height="150" key="GridCell.Tab.0.center" timestamp="1694173168864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1685527041446" />
-    <state width="1323" height="177" key="GridCell.Tab.0.right" timestamp="1685527041447">
+    <state width="1323" height="150" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
+    <state width="1323" height="150" key="GridCell.Tab.0.left" timestamp="1694173168864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="177" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1685527041447" />
-    <state x="496" y="66" key="RollbackChangesDialog" timestamp="1684872734065">
+    <state width="1323" height="150" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
+    <state width="1323" height="150" key="GridCell.Tab.0.right" timestamp="1694173168864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="496" y="66" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1684872734065" />
-    <state width="515" height="477" key="SwitcherDM" timestamp="1684874669111">
+    <state width="1323" height="150" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
+    <state x="508" y="66" key="RollbackChangesDialog" timestamp="1693843421880">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="515" height="472" key="SwitcherDM/0.0.1366.720@0.0.1366.720" timestamp="1681792956610" />
-    <state width="515" height="477" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1684874669111" />
-    <state x="390" y="99" width="585" height="530" key="find.popup" timestamp="1684872992037">
+    <state x="508" y="66" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1693843421880" />
+    <state width="498" height="457" key="SwitcherDM" timestamp="1694172918557">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="390" y="99" width="585" height="530" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1684872992037" />
-    <state x="324" y="90" width="700" height="530" key="recent.locations.popup" timestamp="1684869985794">
+    <state width="498" height="457" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1694172918557" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1685529276849">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="324" y="90" width="700" height="530" key="recent.locations.popup/0.0.1366.728@0.0.1366.728" timestamp="1684869985794" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1684874664824">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1685529276849" />
+    <state x="390" y="99" width="585" height="560" key="find.popup" timestamp="1693840662354">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1684874664824" />
+    <state x="390" y="99" width="585" height="560" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1693840662354" />
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup" timestamp="1693845817687">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="17" width="672" height="676" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1693845817687" />
   </component>
   <component name="grailsSettings">
     <option name="map">

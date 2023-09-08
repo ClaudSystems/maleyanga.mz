@@ -1630,17 +1630,17 @@ class PagamentosViewModel {
     }
 
     @Command
-    @NotifyChange(['selectedPagamento','caixas','contaCaixa'])
+    @NotifyChange(['selectedPagamento','caixas','contaCaixa','parcela'])
 
     def verificarCondicoes(){
         info.value= ""
        // def pagamentos = Pagamento.findAllByCredito(selectedCredito)
        // def totalCreditoEmDivida = 0.0
       //  pagamentos.each {totalCreditoEmDivida+=it.totalEmDivida}
-        if(parcela.valorPago>selectedCredito.valorEmDivida*(-1)){
-            info.value = "O valor alocado (" +parcela.valorPago +") não deve ser maior que o total em dívida ("+ selectedCredito.valorEmDivida +") das prestações!"
+        if(parcela.valorPago>selectedPagamento.totalEmDivida*(-1)){
+            info.value = "O valor alocado (" +parcela.valorPago +") não deve ser maior que o total em dívida da Prestaçãp ("+ selectedPagamento.totalEmDivida +") das prestações!"
             info.style = "color:red;font-weight;font-size:14pt;background:back"
-            parcela.valorPago = selectedCredito.valorEmDivida*(-1)
+            parcela.valorPago = selectedPagamento.totalEmDivida*(-1)
             return
         }
         if(selectedPagamento.pago){

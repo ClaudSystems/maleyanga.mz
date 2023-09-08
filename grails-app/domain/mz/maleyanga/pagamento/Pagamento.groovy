@@ -186,6 +186,7 @@ class Pagamento implements Serializable {
         if (this.descricao == "CAPITALIZACAO") {
             return 0.0
         }
+
         if (diasDeMora == 0) {
             return 0.0
         } else if (parcelas != null) {

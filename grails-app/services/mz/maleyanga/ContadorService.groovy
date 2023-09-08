@@ -6,6 +6,7 @@ import mz.maleyanga.credito.Credito
 import mz.maleyanga.diario.Diario
 import mz.maleyanga.pagamento.Pagamento
 import mz.maleyanga.pagamento.Parcela
+import mz.maleyanga.pedidoDeCredito.ListaDeDesembolso
 import mz.maleyanga.saidas.Saida
 
 /**
@@ -103,6 +104,35 @@ class ContadorService {
         }
 
     }
+
+    String gerarNumeroDaLista() {
+        Integer num = 0
+        Date date = new Date()
+        Calendar cal = Calendar.getInstance()
+        cal.setTime(date)
+        int year = cal.get(Calendar.YEAR)
+        def num_ano = year.toString().substring(2, 4)
+        def ldds = ListaDeDesembolso.all
+        if (ldds == null) {
+            return num_ano + "/" + 1
+        } else {
+            for (ListaDeDesembolso edp in ldds) {
+                def numero = edp.numeroDaLista.split("/")
+                Integer sub = numero[1].toInteger()
+                def ano = numero[0]
+
+                if (ano == num_ano) {
+                    if (sub >= num) {
+                        num = sub
+                    }
+                }
+            }
+            num++
+            return num_ano + "/" + num
+        }
+
+    }
+
 
     String gerarNumeroDoDiario() {
         Integer num = 0
