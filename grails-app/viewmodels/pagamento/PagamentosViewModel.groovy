@@ -406,11 +406,12 @@ class PagamentosViewModel {
         return selectedCredito
     }
 
-    @NotifyChange(["pagamentos","selectedPagamento"])
+    @NotifyChange(["pagamentos","selectedPagamento","remissoes"])
     void setSelectedCredito(Credito selectedCredito) {
         this.selectedCredito = selectedCredito
         selectedPagamento = null
        getPagamentos()
+        getRemissoes()
 
     }
 
@@ -637,10 +638,28 @@ class PagamentosViewModel {
         return parcels
     }
 
+    @NotifyChange(["remissoes"])
     ListModelList<Remissao> getRemissoes() {
+
         if(remissoes ==null){
            remissoes = new ListModelList<Remissao>()
         }
+        Utilizador user = springSecurityService.currentUser as Utilizador
+        if (user.authorities.any { it.authority == "REMISSAO_DELETE" }) {
+            if(selectedCredito){
+
+                def pagamentos = Pagamento.findAllByCredito(selectedCredito)
+                remissoes.clear()
+                for(Pagamento p in pagamentos){
+                    if(!p.remissoes.empty){
+                        for(Remissao r in p.remissoes){
+                            remissoes.add(r)
+                        }
+                    }
+                }
+            }
+        }
+
         return remissoes
     }
 
@@ -737,7 +756,8 @@ class PagamentosViewModel {
     }
     @Command
     def checkSelectedItem(){
-        if(parcela.formaDePagamento=="transferencia bancária"||parcela.formaDePagamento=="deposito bancário"){
+        if(parcela.formaDePagamento=="transferencia bancária"||parcela.formaDePagamento=="deposito bancário"||parcela.formaDePagamento=="Paga Fácil"||
+        parcela.formaDePagamento=="POS"){
             rw_destino.visible =true
             saida = new Saida()
         }else {

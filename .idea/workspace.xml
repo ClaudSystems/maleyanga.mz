@@ -47,16 +47,9 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="atualizacao do contrato feito com sucesso€">
+    <list default="true" id="d7d2c64e-beaf-4306-ace8-bcc22d40706c" name="Default" comment="no pagamento de prestações foi alterado para que o sistema não aceite pagamento acim d valor de cada prestação.&#10;actualização dos pedidos de crédito">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.slcache/.index" beforeDir="false" afterPath="$PROJECT_DIR$/.slcache/.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pagamento/Pagamento.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pagamento/Pagamento.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pedidoDeCredito/ListaDeDesembolso.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/domain/mz/maleyanga/pedidoDeCredito/ListaDeDesembolso.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/ContadorService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/services/mz/maleyanga/ContadorService.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pagamento/PagamentosViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/viewmodels/pedidoDeCredito/PedidoDeCreditoViewModel.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/viewmodels/pedidoDeCredito/PedidoDeCreditoViewModel.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidoDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidoDeCredito.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidosDeCredito.zul" beforeDir="false" afterPath="$PROJECT_DIR$/grails-app/zul/pedidoDeCredito/pedidosDeCredito.zul" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1570,14 +1563,7 @@
       <workItem from="1687028061843" duration="174000" />
       <workItem from="1693834571485" duration="10984000" />
       <workItem from="1694027787998" duration="814000" />
-      <workItem from="1694165770100" duration="6593000" />
-    </task>
-    <task id="LOCAL-00122" summary="personalização dos dados do plano de pag.&#10;correcções de CreditoViewModel e pagamentos . inicio de criação de relatorios dos diarios por caixa">
-      <created>1632139703369</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1632139703369</updated>
+      <workItem from="1694165770100" duration="11720000" />
     </task>
     <task id="LOCAL-00123" summary="estou a tentar novamente resolver a questão das moras">
       <created>1632229514396</created>
@@ -1915,7 +1901,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685529242744</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="no pagamento de prestações foi alterado para que o sistema não aceite pagamento acim d valor de cada prestação.&#10;actualização dos pedidos de crédito">
+      <created>1694174721245</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1694174721246</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1995,7 +1988,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="O SISTEMA JA PERMITE ESCRITA POR EXTENSO NOS RECIBOS" />
     <MESSAGE value="relatorio de resumo de extratos de credito" />
     <MESSAGE value="retificação de recibos de entrada em caixa" />
     <MESSAGE value="mehorias na view CreditoViewModel" />
@@ -2020,10 +2012,15 @@
     <MESSAGE value="actualizado a adição de notas no pagamento das prestações e no diario" />
     <MESSAGE value="atualizacao do contrato feito com sucesso" />
     <MESSAGE value="atualizacao do contrato feito com sucesso€" />
-    <option name="LAST_COMMIT_MESSAGE" value="atualizacao do contrato feito com sucesso€" />
+    <MESSAGE value="no pagamento de prestações foi alterado para que o sistema não aceite pagamento acim d valor de cada prestação.&#10;actualização dos pedidos de crédito" />
+    <option name="LAST_COMMIT_MESSAGE" value="no pagamento de prestações foi alterado para que o sistema não aceite pagamento acim d valor de cada prestação.&#10;actualização dos pedidos de crédito" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="568" y="226" key="#Notifications" timestamp="1694174758907">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="568" y="226" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1694174758907" />
     <state x="488" y="47" key="#com.intellij.ide.util.MemberChooser" timestamp="1693836694785">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -2032,34 +2029,38 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1693835552882" />
-    <state width="1323" height="150" key="GridCell.Tab.0.bottom" timestamp="1694173168864">
+    <state width="661" height="150" key="GridCell.Tab.0.bottom" timestamp="1694178165603">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="150" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
-    <state width="1323" height="150" key="GridCell.Tab.0.center" timestamp="1694173168864">
+    <state width="661" height="150" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1694178165603" />
+    <state width="661" height="150" key="GridCell.Tab.0.center" timestamp="1694178165603">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="150" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
-    <state width="1323" height="150" key="GridCell.Tab.0.left" timestamp="1694173168864">
+    <state width="661" height="150" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1694178165603" />
+    <state width="661" height="150" key="GridCell.Tab.0.left" timestamp="1694178165603">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="150" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
-    <state width="1323" height="150" key="GridCell.Tab.0.right" timestamp="1694173168864">
+    <state width="661" height="150" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1694178165603" />
+    <state width="661" height="150" key="GridCell.Tab.0.right" timestamp="1694178165603">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="150" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1694173168864" />
+    <state width="661" height="150" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1694178165603" />
     <state x="508" y="66" key="RollbackChangesDialog" timestamp="1693843421880">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="508" y="66" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1693843421880" />
-    <state width="498" height="457" key="SwitcherDM" timestamp="1694172918557">
+    <state x="163" y="0" key="SettingsEditor" timestamp="1694177104754">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="498" height="457" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1694172918557" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1685529276849">
+    <state x="163" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1694177104754" />
+    <state width="498" height="457" key="SwitcherDM" timestamp="1694178953003">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1685529276849" />
+    <state width="498" height="457" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1694178953003" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1694177124406">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1694177124406" />
     <state x="390" y="99" width="585" height="560" key="find.popup" timestamp="1693840662354">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
