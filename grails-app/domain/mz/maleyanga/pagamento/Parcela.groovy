@@ -55,7 +55,7 @@ class Parcela implements Serializable {
         dataDePagamento nullable: false
         descricao nullable: true
         anexo nullable: true
-        numeroDoRecibo nullable: true, unique: true
+        numeroDoRecibo nullable: true, unique: false
         dateCreated nullable: true
         lastUpdated nullable: true
         valorPago nullable: true

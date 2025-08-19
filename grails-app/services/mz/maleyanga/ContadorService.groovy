@@ -15,6 +15,7 @@ import mz.maleyanga.saidas.Saida
  */
 @Transactional
 class ContadorService {
+
     String gerarNumeroDoPagamento() {
         Integer num = 0
         Date date = new Date()
@@ -22,33 +23,37 @@ class ContadorService {
         cal.setTime(date)
         int year = cal.get(Calendar.YEAR)
 
-        def pagamentos = Pagamento.all
-        if (pagamentos == null) {
+        def pagamentos = Pagamento.list()
+        if (!pagamentos) {
+            return "$year/1"
+        }
 
-            return year + "/" + 1
-        } else {
-            for (Pagamento pagamento in pagamentos) {
+        for (Pagamento pagamento in pagamentos) {
+            if (!pagamento.numeroDePagamento) {
+                continue
+            }
 
+            try {
                 def numero = pagamento.numeroDePagamento.split("/")
-                Integer sub = numero[1].toInteger()
-                Integer ano = numero[0].toInteger()
-                if (ano == year) {
-                    if (sub >= num) {
+                if (numero.size() >= 2) {
+                    Integer sub = numero[1].toInteger()
+                    Integer ano = numero[0].toInteger()
+                    if (ano == year && sub >= num) {
                         num = sub
                     }
                 }
-
+            } catch (NumberFormatException e) {
+                // Ignorar números mal formatados e continuar
+                continue
+            } catch (Exception e) {
+                // Ignorar outros erros e continuar
+                continue
             }
-
-
-            num++
-
-            return year + "/" + num
-
         }
 
+        num++
+        return "$year/$num"
     }
-
 
     String gerarNumeroDaParcela() {
         Integer num = 0
@@ -57,24 +62,35 @@ class ContadorService {
         cal.setTime(date)
         int year = cal.get(Calendar.YEAR)
         def num_ano = year.toString().substring(2, 4)
-        def parcelas = Parcela.all
-        if (parcelas == null) {
-            return num_ano + "/" + 1
-        } else {
-            for (Parcela edp in parcelas) {
-                def numero = edp.numeroDoRecibo.split("/")
-                Integer sub = numero[1].toInteger()
-                def ano = numero[0]
-                if (ano == num_ano) {
-                    if (sub >= num) {
+
+        def parcelas = Parcela.list()
+        if (!parcelas) {
+            return "$num_ano/1"
+        }
+
+        for (Parcela parcela in parcelas) {
+            if (!parcela.numeroDoRecibo) {
+                continue
+            }
+
+            try {
+                def numero = parcela.numeroDoRecibo.split("/")
+                if (numero.size() >= 2) {
+                    Integer sub = numero[1].toInteger()
+                    def ano = numero[0]
+                    if (ano == num_ano && sub >= num) {
                         num = sub
                     }
                 }
-
+            } catch (NumberFormatException e) {
+                continue
+            } catch (Exception e) {
+                continue
             }
-            num++
-            return num_ano + "/" + num
         }
+
+        num++
+        return "$num_ano/$num"
     }
 
     String gerarNumeroDoCredito() {
@@ -84,25 +100,35 @@ class ContadorService {
         cal.setTime(date)
         int year = cal.get(Calendar.YEAR)
         def num_ano = year.toString().substring(2, 4)
-        def creditos = Credito.all
-        if (creditos == null) {
-            return num_ano + "/" + 1
-        } else {
-            for (Credito edp in creditos) {
-                def numero = edp.numeroDoCredito.split("/")
-                Integer sub = numero[1].toInteger()
-                def ano = numero[0]
 
-                if (ano == num_ano) {
-                    if (sub >= num) {
+        def creditos = Credito.list()
+        if (!creditos) {
+            return "$num_ano/1"
+        }
+
+        for (Credito credito in creditos) {
+            if (!credito.numeroDoCredito) {
+                continue
+            }
+
+            try {
+                def numero = credito.numeroDoCredito.split("/")
+                if (numero.size() >= 2) {
+                    Integer sub = numero[1].toInteger()
+                    def ano = numero[0]
+                    if (ano == num_ano && sub >= num) {
                         num = sub
                     }
                 }
+            } catch (NumberFormatException e) {
+                continue
+            } catch (Exception e) {
+                continue
             }
-            num++
-            return num_ano + "/" + num
         }
 
+        num++
+        return "$num_ano/$num"
     }
 
     String gerarNumeroDaLista() {
@@ -112,27 +138,36 @@ class ContadorService {
         cal.setTime(date)
         int year = cal.get(Calendar.YEAR)
         def num_ano = year.toString().substring(2, 4)
-        def ldds = ListaDeDesembolso.all
-        if (ldds == null) {
-            return num_ano + "/" + 1
-        } else {
-            for (ListaDeDesembolso edp in ldds) {
-                def numero = edp.numeroDaLista.split("/")
-                Integer sub = numero[1].toInteger()
-                def ano = numero[0]
 
-                if (ano == num_ano) {
-                    if (sub >= num) {
+        def ldds = ListaDeDesembolso.list()
+        if (!ldds) {
+            return "$num_ano/1"
+        }
+
+        for (ListaDeDesembolso lista in ldds) {
+            if (!lista.numeroDaLista) {
+                continue
+            }
+
+            try {
+                def numero = lista.numeroDaLista.split("/")
+                if (numero.size() >= 2) {
+                    Integer sub = numero[1].toInteger()
+                    def ano = numero[0]
+                    if (ano == num_ano && sub >= num) {
                         num = sub
                     }
                 }
+            } catch (NumberFormatException e) {
+                continue
+            } catch (Exception e) {
+                continue
             }
-            num++
-            return num_ano + "/" + num
         }
 
+        num++
+        return "$num_ano/$num"
     }
-
 
     String gerarNumeroDoDiario() {
         Integer num = 0
@@ -141,38 +176,54 @@ class ContadorService {
         cal.setTime(date)
         int year = cal.get(Calendar.YEAR)
         def num_ano = year.toString().substring(2, 4)
-        def diarios = Diario.all
-        if (diarios == null) {
-            return num_ano + "/" + 1
-        } else {
-            for (Diario edp in diarios) {
-                def numero = edp.numeroDoDiario.split("/")
-                Integer sub = numero[1].toInteger()
-                def ano = numero[0]
-                if (ano == num_ano) {
-                    if (sub >= num) {
+
+        def diarios = Diario.list()
+        if (!diarios) {
+            return "$num_ano/1"
+        }
+
+        for (Diario diario in diarios) {
+            if (!diario.numeroDoDiario) {
+                continue
+            }
+
+            try {
+                def numero = diario.numeroDoDiario.split("/")
+                if (numero.size() >= 2) {
+                    Integer sub = numero[1].toInteger()
+                    def ano = numero[0]
+                    if (ano == num_ano && sub >= num) {
                         num = sub
                     }
                 }
-
+            } catch (NumberFormatException e) {
+                continue
+            } catch (Exception e) {
+                continue
             }
-            num++
-            return num_ano + "/" + num
         }
 
-
+        num++
+        return "$num_ano/$num"
     }
+
     String gerarNumeroDaSaida(Saida saida) {
+        if (!saida?.dateCreated) {
+            Calendar cal = Calendar.getInstance()
+            cal.setTime(new Date())
+            int year = cal.get(Calendar.YEAR)
+            def num_ano = year.toString().substring(2, 4)
+            return "$num_ano/0"
+        }
+
         Calendar cal = Calendar.getInstance()
         cal.setTime(saida.dateCreated)
         int year = cal.get(Calendar.YEAR)
         def num_ano = year.toString().substring(2, 4)
-        return num_ano + "/" + saida.id
-
+        return "$num_ano/$saida.id"
     }
 
     Conta getByNumeroDacoonta(String numeroDaConta) {
         Conta.findByNumeroDaConta(numeroDaConta)
     }
-
 }

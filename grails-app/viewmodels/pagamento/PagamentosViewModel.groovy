@@ -1341,7 +1341,7 @@ class PagamentosViewModel {
         }
 
         if(settingsService.getSettings().pagamentosEmOrdem){
-             def pagamentos = Pagamento.findAllByCredito(selectedCredito).sort{it.id}
+            def pagamentos = Pagamento.findAllByCredito(selectedCredito).sort{it.id}
             for(Pagamento pagamento in pagamentos){
                 if(!pagamento.pago){
                     if(selectedPagamento.id>pagamento.id){
@@ -1350,17 +1350,14 @@ class PagamentosViewModel {
                         selectedPagamento = pagamento
                     }
                 }
-
             }
         }
-
 
         try {
             if(parcela.dataDePagamento>new Date()){
                 parcela.dataDePagamento = new Date()
                 info.value = "Data inválida!"
                 info.style = "color:red;font-weight;font-size:16px;background:back"
-
             }
             if(Parcela.findById(parcela.id)){
                 info.value = "Este Pagamento já foi lançado!"
@@ -1406,99 +1403,86 @@ class PagamentosViewModel {
                 selectedPagamento=null
                 return
             }
-            List<Pagamento> pagamentoss= new LinkedList<Pagamento>(Pagamento.findAllByCredito(selectedCredito))
+
+            List<Pagamento> pagamentoss = Pagamento.findAllByCredito(selectedCredito)
             parcela.setNumeroDoRecibo(contadorService.gerarNumeroDaParcela())
             Pagamento pagamento = Pagamento.findById(selectedPagamento.id)
             parcela.pagamento = pagamento
             parcela.diario = diario
             Utilizador util = Utilizador.findById(utilizador.id)
             parcela.utilizador = util
-            BigDecimal totalEmDivida = parcela.pagamento.totalEmDivida*(-1)
+            BigDecimal totalEmDivida = parcela.pagamento.totalEmDivida * (-1)
             BigDecimal valorParcial = parcela.valorPago
-            if(parcela.valorPago>totalEmDivida){
+            BigDecimal valorRemanescente = 0.0
 
-                BigDecimal valor = parcela.valorPago - totalEmDivida
+            if(parcela.valorPago > totalEmDivida){
+                valorRemanescente = parcela.valorPago - totalEmDivida
                 parcela.valorParcial = totalEmDivida
-                System.println("valor remanescente"+valor)
-                BigDecimal totalCreditoDivida = 0.0
-                pagamentoss.each {totalCreditoDivida+=it.totalEmDivida}
-                if(valor> totalCreditoDivida*(-1)){
-                    info.value = "O valor remanescente (" +valor+ ")não deve ser maior que o total em dívida ("+ totalCreditoDivida+") das prestações!"
-                    info.style = "color:red;font-weight;font-size:14pt;background:back"
+                parcela.descricao += "*"
 
-                    return
-                }
-                parcela.descricao+="*"
-                System.println(valor)
-                if(pagamento.parcelas==null){
+                // Inicializa a coleção de parcelas se for nula
+                if(pagamento.parcelas == null){
                     pagamento.parcelas = new LinkedHashSet<Parcela>()
                 }
 
                 pagamento.parcelas.add(parcela)
                 parcela.save(failOnError: true)
                 pagamento.merge(failOnError: true)
-              //  lancamentos(parcela)
 
+                // Calcula o total da dívida do crédito
+                BigDecimal totalCreditoDivida = 0.0
+                pagamentoss.each { totalCreditoDivida += it.totalEmDivida }
+                totalCreditoDivida = totalCreditoDivida * (-1)
 
-               // System.println(pagamentoss)
-                for(int x=0;x<pagamentoss.size(); x++){
-                    if(valor>0){
-                        Pagamento pagamento1 = Pagamento.findById(pagamentoss[x].id)
-
-                        if(!pagamento1.getPago()){
-                            if(pagamento1.totalEmDivida*(-1)>=valor){
-                                Parcela parcela1 = new Parcela()
-                                parcela1.diario = diario
-                                parcela1.pagamento = pagamento1
-                                parcela1.valorParcial = valor
-                                parcela1.dataDePagamento = parcela.dataDePagamento
-                                parcela1.formaDePagamento = parcela.formaDePagamento
-                                valor = 0
-                                parcela1.descricao="*Amortização da dívida*"+selectedPagamento.id
-                                parcela1.numeroDoRecibo=parcela.numeroDoRecibo
-                                parcela1.utilizador = util
-                                if(pagamento1.parcelas==null){
-                                    pagamento1.parcelas = new LinkedHashSet<Parcela>()
-                                }
-
-                                pagamento1.parcelas.add(parcela1)
-                                parcela1.save(failOnError: true)
-                                pagamento1.merge(failOnError: true)
-                               // lancamentos(parcela1)
-
-
-                            }else {
-
-                                Parcela parcela2 = new Parcela()
-                                parcela2.diario = diario
-                                parcela2.pagamento = pagamento1
-                                valor-=pagamento1.totalEmDivida*(-1)
-                                parcela2.valorParcial = pagamento1.totalEmDivida*(-1)
-                                parcela2.dataDePagamento = parcela.dataDePagamento
-                                parcela2.formaDePagamento = parcela.formaDePagamento
-                                parcela2.descricao="*Amortização da dívida*"+selectedPagamento.id
-                                parcela2.numeroDoRecibo = parcela.numeroDoRecibo
-                                parcela2.utilizador = util
-                                if(pagamento1.parcelas==null){
-                                    pagamento1.parcelas = new LinkedHashSet<Parcela>()
-                                }
-
-                                pagamento1.parcelas.add(parcela2)
-                                parcela2.save(failOnError: true)
-                                pagamento1.merge(failOnError: true)
-                               // lancamentos(parcela2)
-
-
-
-                            }
-                        }
-                    }else break
-
+                if(valorRemanescente > totalCreditoDivida){
+                    info.value = "O valor remanescente (" + valorRemanescente + ") não deve ser maior que o total em dívida (" + totalCreditoDivida + ") das prestações!"
+                    info.style = "color:red;font-weight;font-size:14pt;background:back"
+                    return
                 }
 
+                // MELHORIA: Loop otimizado para distribuir o valor remanescente
+                // Ordena os pagamentos por ID para garantir a ordem correta
+                def pagamentosOrdenados = pagamentoss.sort { it.id }
 
-            }else {
-                if(pagamento.parcelas==null){
+                for(Pagamento pagamentoAtual in pagamentosOrdenados){
+                    if(valorRemanescente <= 0) break
+
+                    // Pula o pagamento atual (já foi processado) e pagamentos já quitados
+                    if(pagamentoAtual.id == selectedPagamento.id || pagamentoAtual.pago) continue
+
+                    BigDecimal dividaAtual = pagamentoAtual.totalEmDivida * (-1)
+                    if(dividaAtual > 0){
+                        Parcela novaParcela = new Parcela()
+                        novaParcela.diario = diario
+                        novaParcela.pagamento = pagamentoAtual
+                        novaParcela.dataDePagamento = parcela.dataDePagamento
+                        novaParcela.formaDePagamento = parcela.formaDePagamento
+                        novaParcela.descricao = "*Amortização da dívida*" + selectedPagamento.id
+                        novaParcela.numeroDoRecibo = parcela.numeroDoRecibo
+                        novaParcela.utilizador = util
+
+                        if(valorRemanescente >= dividaAtual){
+                            novaParcela.valorParcial = dividaAtual
+                            valorRemanescente -= dividaAtual
+                        } else {
+                            novaParcela.valorParcial = valorRemanescente
+                            valorRemanescente = 0
+                        }
+
+                        // Inicializa a coleção de parcelas se for nula
+                        if(pagamentoAtual.parcelas == null){
+                            pagamentoAtual.parcelas = new LinkedHashSet<Parcela>()
+                        }
+
+                        pagamentoAtual.parcelas.add(novaParcela)
+                        novaParcela.save(failOnError: true)
+                        pagamentoAtual.merge(failOnError: true)
+                    }
+                }
+
+            } else {
+                // Caso normal: valor pago é menor ou igual à dívida
+                if(pagamento.parcelas == null){
                     pagamento.parcelas = new LinkedHashSet<Parcela>()
                 }
 
@@ -1506,8 +1490,6 @@ class PagamentosViewModel {
                 parcela.valorParcial = parcela.valorPago
                 parcela.save(failOnError: true)
                 pagamento.merge(failOnError: true)
-              //  lancamentos(parcela)
-
             }
 
             if(parcela.formaDePagamento=="transferencia bancária"||parcela.formaDePagamento=="deposito bancário"){
@@ -1515,7 +1497,6 @@ class PagamentosViewModel {
                 saida.valor = valorParcial
                 saida.dataDePagamento = parcela.dataDePagamento
                 saida.descricao=parcela.descricao
-
                 salvarSaida()
             }
 
@@ -1525,14 +1506,12 @@ class PagamentosViewModel {
             info.style = "color:red;font-weight;font-size:14pt;background:back"
             bt_salvar.label = "Pago!"
 
-          //  selectedPagamento = Pagamento.findById(selectedPagamento.id)
-           // Executions.sendRedirect("/parcela/printParcela/")
-        }catch(Exception e){
+        } catch(Exception e){
             info.value = "Erro na gravação dos dados!"
             info.style = "color:red;font-weight;font-size:14pt;background:back"
             System.println(e.toString())
+            e.printStackTrace()
         }
-
     }
     def lancamentos(Parcela parcel){
 
@@ -1657,12 +1636,12 @@ class PagamentosViewModel {
        // def pagamentos = Pagamento.findAllByCredito(selectedCredito)
        // def totalCreditoEmDivida = 0.0
       //  pagamentos.each {totalCreditoEmDivida+=it.totalEmDivida}
-        if(parcela.valorPago>selectedPagamento.totalEmDivida*(-1)){
+       /* if(parcela.valorPago>selectedPagamento.totalEmDivida*(-1)){
             info.value = "O valor alocado (" +parcela.valorPago +") não deve ser maior que o total em dívida da Prestaçãp ("+ selectedPagamento.totalEmDivida +") das prestações!"
             info.style = "color:red;font-weight;font-size:14pt;background:back"
             parcela.valorPago = selectedPagamento.totalEmDivida*(-1)
             return
-        }
+        }*/
         if(selectedPagamento.pago){
             info.value = "Esta Parcela já foi paga na Totalidade!"
             info.style = "color:red;font-weight;font-size:14pt;background:back"
